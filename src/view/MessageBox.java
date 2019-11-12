@@ -23,7 +23,7 @@ public class MessageBox {
     private final JFrame window ;
     private final JEditorPane html ;
     private final JScrollPane scrollPane;
-    String texte ;
+    private String texte ;
     private final JPanel panelZephyr;
     private final JPanel panelCalice;
     private final JPanel panelCristal;
@@ -89,10 +89,11 @@ public class MessageBox {
     
     public void displayMessage(String texte, Color couleur, Boolean precederDunTrait, Boolean garderCouleur) {
         html.setText("<html>" + (precederDunTrait ? "<hr>" : "") + this.texte + "<div style=\"color : " + toRGB(couleur) + "\">"+ texte + "</div></html>");
-        if (garderCouleur)
+        if (garderCouleur) {
             this.texte += "<div style=\"color : " + toRGB(couleur) + "\">" + (precederDunTrait ? "<hr>" : "") + texte + "</div>" ;
-        else 
+        } else {
             this.texte += "<div>" + (precederDunTrait ? "<hr>" : "") + texte + "</div>" ;
+        }
     }
     
     public void displayAlerte(String texte) {

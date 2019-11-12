@@ -6,7 +6,7 @@ import java.awt.Color;
  *
  * @author IUT2-Dept Info
  */
-public class Parameters {
+public final class Parameters {
     
     // ====================================================================================
     // Paramètres NF
@@ -34,13 +34,13 @@ public class Parameters {
 
     // ====================================================================================
     // COULEURS
-    public static Color PLATEAU_BG = new Color(67, 119, 204); // Couleur de fond du plateau 
-    public static Color TUILE_ASSECHEE_BG = Color.WHITE; // Couleur de fond d'une tuile asséchée
-    public static Color TUILE_INONDEE_BG = new Color(138, 169, 204); // Couleur de fond d'une tuile inondée
-    public static Color COULEUR_TUILE_ASSECHEE_GRISEE = new Color(192, 192, 192); // Couleur de fond d'une tuile asséchée non cliquable
-    public static Color COULEUR_TUILE_INONDEE_GRISEE = new Color(175, 192, 192); // Couleur de fond d'une tuile asséchée non cliquable
-    public static Color COULEUR_TUILE_PAIRE = new Color(230, 180, 181) ; // Couleur de fond du titre d'une tuile (1/2)
-    public static Color COULEUR_TUILE_IMPAIRE = new Color(184, 208, 138); // Couleur de fond du titre d'une tuile (2/2)
+    public static final Color PLATEAU_BG = new Color(67, 119, 204); // Couleur de fond du plateau 
+    public static final Color TUILE_ASSECHEE_BG = Color.WHITE; // Couleur de fond d'une tuile asséchée
+    public static final Color TUILE_INONDEE_BG = new Color(138, 169, 204); // Couleur de fond d'une tuile inondée
+    public static final Color COULEUR_TUILE_ASSECHEE_GRISEE = new Color(192, 192, 192); // Couleur de fond d'une tuile asséchée non cliquable
+    public static final Color COULEUR_TUILE_INONDEE_GRISEE = new Color(175, 192, 192); // Couleur de fond d'une tuile asséchée non cliquable
+    public static final Color COULEUR_TUILE_PAIRE = new Color(230, 180, 181) ; // Couleur de fond du titre d'une tuile (1/2)
+    public static final Color COULEUR_TUILE_IMPAIRE = new Color(184, 208, 138); // Couleur de fond du titre d'une tuile (2/2)
 
     // ====================================================================================
     // Chemins vers les images

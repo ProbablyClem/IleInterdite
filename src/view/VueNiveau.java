@@ -21,9 +21,9 @@ public class VueNiveau {
     
     private Integer niveau ;
     private final JFrame window ;
-    HashMap<Integer, JPanel> panelsGauches ;
-    Integer cellWidth = 50 ;
-    Integer cellHeight = (Parameters.HAUTEUR_AUTRES_VUES - 25 - (Parameters.UNDECORATED ? 0 : Parameters.DECORATION_HEIGHT)) / 10 ;
+    private final HashMap<Integer, JPanel> panelsGauches ;
+    private final Integer cellWidth = 50 ;
+    private final Integer cellHeight = (Parameters.HAUTEUR_AUTRES_VUES - 25 - (Parameters.UNDECORATED ? 0 : Parameters.DECORATION_HEIGHT)) / 10 ;
     private final JPanel mainPanel;
         
     public VueNiveau(Integer niveauInitial) {
@@ -145,17 +145,15 @@ public class VueNiveau {
     }
 
     private Color getBgColor(Integer niveau) {
-        if (niveau <= 2)
+        if (niveau <= 2) {
             return new Color(169, 215, 226) ;
-        
-        if (niveau <= 5)
+        } else if (niveau <= 5) {
             return new Color(129, 194, 212) ;
-            
-        
-        if (niveau <= 7)
+        } else if (niveau <= 7) {
             return new Color(67, 119, 204) ;
-        
-        return new Color(42, 76, 127) ;
+        } else {
+            return new Color(42, 76, 127) ;
+        }
     }
 
     private String getLibelle(int i) {

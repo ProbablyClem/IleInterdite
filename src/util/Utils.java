@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import javax.swing.JOptionPane;
-import model.aventuriers.Aventurier;
+import model.Aventurier;
 
 /**
  *
@@ -43,7 +43,8 @@ public class Utils {
         INONDEE("Inondée"),
         COULEE("Coulée");
 
-        String libelle ;
+        private final String libelle ;
+        
         EtatTuile(String libelle) {
             this.libelle = libelle ;
         }
@@ -60,10 +61,10 @@ public class Utils {
         CRISTAL("Le Cristal Ardent", new Color(219,56,154), new Color(99,187,242), Parameters.TRESORS + "cristal.png"),
         CALICE("Le Calice de l'Onde", new Color(27,188,245), new Color(141,79,9), Parameters.TRESORS + "calice.png") ;
 
-        String libelle;
-        Color bgColor ;
-        Color textColor ;
-        String pathPicture ;
+        private final String libelle;
+        private final Color bgColor ;
+        private final Color textColor ;
+        private final String pathPicture ;
 
         Tresor(String libelle, Color bgColor, Color textColor, String pathPicture) {
             this.libelle = libelle;
@@ -88,13 +89,14 @@ public class Utils {
         public String getPathPicture() {
             return this.pathPicture ;
         }
-
+        
         public static Tresor getFromName(String name) {
-            if (name.equals(PIERRE.name())) return PIERRE ;
-            if (name.equals(ZEPHYR.name())) return ZEPHYR ;
-            if (name.equals(CRISTAL.name())) return PIERRE ;
-            if (name.equals(CALICE.name())) return CALICE ;
-            return null ;
+            for (Tresor tresor: Tresor.values()) {
+                if (tresor.name().equals(name)) {
+                    return tresor;
+                }
+            }
+            return null;
         }
     }
 
@@ -146,16 +148,16 @@ public class Utils {
         public String getPath() {
             return this.picturePath ;
         }
-
-        static Pion getFromName(String name) {
-            if (ROUGE.name().equals(name)) return ROUGE ;
-            if (VERT.name().equals(name)) return VERT ;
-            if (BLEU.name().equals(name)) return BLEU ;
-            if (ORANGE.name().equals(name)) return ORANGE ;
-            if (VIOLET.name().equals(name)) return VIOLET ;
-            if (JAUNE.name().equals(name)) return JAUNE ;
-            return null ;
+        
+        public static Pion getFromName(String name) {
+            for (Pion pion: Pion.values()) {
+                if (pion.name().equals(name)) {
+                    return pion;
+                }
+            }
+            return null;
         }
+
 
     }
 
