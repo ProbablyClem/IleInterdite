@@ -7,13 +7,13 @@ import java.awt.Color;
  * @author IUT2-Dept Info
  */
 public final class Parameters {
-    
+
     // ====================================================================================
     // Paramètres NF
     public static final Boolean LOGS = false ; // Afficher des traces par System.out.println()
     public static final Boolean ALEAS = true ; // Attribuer les aventuriers aléatoirement ou non, mélanger les défausses et les pioches
     public static final Boolean SIMPLIFIED = true ; // Processus simplifié (pas d'interruption pendant les tours)
-    
+
     // ====================================================================================
     // Paramètres IHM
     public static final Boolean UNDECORATED = true ; // Indique si la barre de fenêtre doit être affichée
@@ -34,7 +34,7 @@ public final class Parameters {
 
     // ====================================================================================
     // COULEURS
-    public static final Color PLATEAU_BG = new Color(67, 119, 204); // Couleur de fond du plateau 
+    public static final Color PLATEAU_BG = new Color(67, 119, 204); // Couleur de fond du plateau
     public static final Color TUILE_ASSECHEE_BG = Color.WHITE; // Couleur de fond d'une tuile asséchée
     public static final Color TUILE_INONDEE_BG = new Color(138, 169, 204); // Couleur de fond d'une tuile inondée
     public static final Color COULEUR_TUILE_ASSECHEE_GRISEE = new Color(192, 192, 192); // Couleur de fond d'une tuile asséchée non cliquable
@@ -81,5 +81,5 @@ public final class Parameters {
     public static final String ICON_SHIFT = ICONS + "iconShift.png" ;
     public static final String ICON_SHIFT_DISABLED = ICONS + "iconShift_disabled.png" ;
     public static final Integer ICON_SHIFT_WIDTH = 24 ;
-    
+
 }

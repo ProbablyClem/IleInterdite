@@ -40,7 +40,7 @@ public class VueAventurier {
     private final JButton btnTerminer;
     private Boolean titreCliquable ;
     private boolean cartesActivees;
-     
+
     public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
         this.idAventurier = id ;
@@ -115,7 +115,7 @@ public class VueAventurier {
         JPanel panelBoutons_ligne1 = new JPanel(new GridLayout(1, 3));
         panelBoutons_ligne1.setOpaque(false);
         panelBoutons.add(panelBoutons_ligne1);
-        
+
         this.btnAller = creerBouton(1, "Aller", Utils.Commandes.BOUGER, "Se déplacer vers une tuile") ;
         panelBoutons_ligne1.add(btnAller);
 
@@ -128,7 +128,7 @@ public class VueAventurier {
         JPanel panelBoutons_ligne2 = new JPanel(new GridLayout(1, 3));
         panelBoutons_ligne2.setOpaque(false);
         panelBoutons.add(panelBoutons_ligne2);
-        
+
         this.btnPrendre = creerBouton(4, "Prendre", Utils.Commandes.RECUPERER_TRESOR, "Récupérer le trésor de la tuile courante") ;
         panelBoutons_ligne2.add(btnPrendre);
 
@@ -140,7 +140,7 @@ public class VueAventurier {
 
         this.window.setVisible(true);
         mainPanel.repaint();
-    }  
+    }
 
     public void activerBoutons(Boolean activerMove, Boolean activerDry, Boolean activerDonner, Boolean activerRecuperer, Boolean activerRecevoir, Boolean activerDeplacer, Boolean activerTerminer) {
         if (Parameters.LOGS) {
@@ -152,28 +152,28 @@ public class VueAventurier {
                 btnAller.setForeground(Color.BLACK);
             }
         }
-        
+
         if (activerDry != null) {
             btnAssecher.setEnabled(activerDry);
             if (!activerDry) {
                 btnAssecher.setForeground(Color.BLACK);
             }
         }
-        
+
         if (activerDonner != null) {
             btnDonner.setEnabled(activerDonner);
             if (!activerDonner) {
                 btnDonner.setForeground(Color.BLACK);
             }
         }
-        
+
         if (activerRecuperer != null) {
             btnPrendre.setEnabled(activerRecuperer);
             if (!activerRecuperer) {
                 btnPrendre.setForeground(Color.BLACK);
             }
         }
-        
+
         if (activerRecevoir != null) {
             if (Parameters.LOGS) {
                 System.out.println("VueAventurier_nopic.activerBoutons.activerRecevoir = " + activerRecevoir);
@@ -182,14 +182,14 @@ public class VueAventurier {
             labelTitre.setCursor(new Cursor((activerRecevoir ? Cursor.HAND_CURSOR : Cursor.DEFAULT_CURSOR)));
             labelTitre.setToolTipText(activerRecevoir ? "Recevoir la carte d'un autre joueur" : "");
         }
-        
+
         if (activerDeplacer != null) {
             btnDeplacer.setEnabled(activerDeplacer);
             if (!activerDeplacer) {
                 btnDeplacer.setForeground(Color.BLACK);
             }
         }
-        
+
         if (activerTerminer != null) {
             btnTerminer.setEnabled(activerTerminer);
             if (!activerTerminer) {
@@ -216,7 +216,7 @@ public class VueAventurier {
     }
 
     // ====================================================== Getters et Setters
-    
+
     private JButton creerBouton(Integer numBouton, String libelle, Utils.Commandes commande, String tooltip) {
         JButton bouton = new JButton();
         bouton.setOpaque(false);
@@ -260,21 +260,21 @@ public class VueAventurier {
                 btn.setFont(btn.getFont().deriveFont(Font.PLAIN));
             }
         });
-        return bouton; 
+        return bouton;
     }
 
 
     // ====================================================== Utils
     public String getTitle(Color color, Color backgroundColor) {
-        return "<html>" + 
+        return "<html>" +
                     "<h1 style=\"text-align:center; margin : 0 ; color:" + Utils.toRGB(color) + "; " +
                             (backgroundColor == null ? "" :  "background-color:" + Utils.toRGB(backgroundColor) + "; ") +
-                            "font-size:120%;\">" + 
+                            "font-size:120%;\">" +
                         this.nomAventurier +
                     "</h1>" +
                     "<h2 style=\"text-align:center; margin : 0 ; color:" + Utils.toRGB(color) + "; " +
                             (backgroundColor == null ? "" :  "background-color:" + Utils.toRGB(backgroundColor) + "; ") +
-                            "font-size:90%;\">" + 
+                            "font-size:90%;\">" +
                         this.nomJoueur +
                     "</h2>" +
                 "</html>" ;

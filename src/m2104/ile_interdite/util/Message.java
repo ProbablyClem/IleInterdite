@@ -13,7 +13,7 @@ public class Message implements Serializable {
     private final Integer idCarte ;
     private final  Utils.Tresor tresor ;
     private final Integer idTuile ;
-    
+
     public Message(Utils.Commandes commande, Integer idAventurier, Integer idCarte,  Utils.Tresor tresor, Integer idTuile) {
         this.commande = commande ;
         this.idAventurier = idAventurier ;
@@ -71,7 +71,7 @@ public class Message implements Serializable {
     public Integer getIdTuile() {
         return idTuile;
     }
-    
+
     @Override
     public String toString() {
         String txt = "" ;

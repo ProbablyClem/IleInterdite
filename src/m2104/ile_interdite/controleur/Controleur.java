@@ -14,12 +14,12 @@ public class Controleur implements Observateur<Message> {
 
     private final IleInterdite ileInterdite;
     private final IHM ihm;
-    
+
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
         this.ihm = new IHM(this);
     }
-    
+
     @Override
     public void traiterMessage(Message msg) {
         if (Parameters.LOGS) {
@@ -28,8 +28,12 @@ public class Controleur implements Observateur<Message> {
 
         switch (msg.getCommande()) {
             case VALIDER_JOUEURS:
-                this.ileInterdite.inscrireJoueurs(new String[] {"Toto"});
-                this.ihm.creerVuesAventuriers();
+                // XXX: à remplacer par le retour de la vue inscription
+                String[] nomJoueurs = new String[] {"Toto"};
+
+                String[] nomAventuriers;
+                nomAventuriers = this.ileInterdite.inscrireJoueurs(nomJoueurs);
+                this.ihm.creerVuesAventuriers(nomAventuriers);
                 break;
             default:
                 if (Parameters.LOGS) {
@@ -38,7 +42,7 @@ public class Controleur implements Observateur<Message> {
         }
     }
 
-        public static void main(String[] args) {   
+        public static void main(String[] args) {
             new Controleur();
         }
 }

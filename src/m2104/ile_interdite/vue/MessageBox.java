@@ -28,7 +28,7 @@ public class MessageBox {
     private final JPanel panelCalice;
     private final JPanel panelCristal;
     private final JPanel panelPierre;
-    
+
     public MessageBox() {
         window = new JFrame() ;
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -36,57 +36,57 @@ public class MessageBox {
         window.setSize(310, Parameters.HAUTEUR_AUTRES_VUES);
         window.setUndecorated(Parameters.UNDECORATED);
         window.setResizable(Parameters.RESIZABLE);
-        
+
         JPanel mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel);
-        
+
         JPanel panelTresors = new JPanel(new GridLayout(1,4));
         mainPanel.add(panelTresors, BorderLayout.NORTH);
-        
+
         this.panelZephyr = new JPanel();
         panelZephyr.setBackground(Utils.Tresor.ZEPHYR.getBgColor());
         panelZephyr.add(new JLabel(Utils.Tresor.ZEPHYR.name(), JLabel.CENTER));
         panelTresors.add(panelZephyr);
         panelZephyr.setVisible(false);
-        
+
         this.panelCalice = new JPanel();
         panelCalice.setBackground(Utils.Tresor.CALICE.getBgColor());
         panelCalice.add(new JLabel(Utils.Tresor.CALICE.name(), JLabel.CENTER));
         panelTresors.add(panelCalice);
         panelCalice.setVisible(false);
-        
+
         this.panelCristal = new JPanel();
         panelCristal.setBackground(Utils.Tresor.CRISTAL.getBgColor());
         panelCristal.add(new JLabel(Utils.Tresor.CRISTAL.name(), JLabel.CENTER));
         panelTresors.add(panelCristal);
         panelCristal.setVisible(false);
-        
+
         this.panelPierre = new JPanel();
         panelPierre.setBackground(Utils.Tresor.PIERRE.getBgColor());
         panelPierre.add(new JLabel(Utils.Tresor.PIERRE.name(), JLabel.CENTER));
         panelTresors.add(panelPierre);
         panelPierre.setVisible(false);
-        
+
         html = new JEditorPane();
         html.setContentType("text/html");
         scrollPane = new JScrollPane(html);
         this.scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
-        
+
         html.setMinimumSize(new Dimension(180, 280));
         html.setPreferredSize(new Dimension(180, 280));
         scrollPane.setPreferredSize(new Dimension(180, 280));
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setMinimumSize(new Dimension(180, 280));
-        
+
         html.setText("<html><h1 style=\"text-align:center; color:blue;\">Bienvenue dans<br>l'Île Interdite</h1></html>");
         mainPanel.add(scrollPane, BorderLayout.CENTER) ;
-        
+
         window.setVisible(true);
-        
+
         this.texte = "" ;
     }
-    
+
     public void displayMessage(String texte, Color couleur, Boolean precederDunTrait, Boolean garderCouleur) {
         html.setText("<html>" + (precederDunTrait ? "<hr>" : "") + this.texte + "<div style=\"color : " + toRGB(couleur) + "\">"+ texte + "</div></html>");
         if (garderCouleur) {
@@ -95,12 +95,12 @@ public class MessageBox {
             this.texte += "<div>" + (precederDunTrait ? "<hr>" : "") + texte + "</div>" ;
         }
     }
-    
+
     public void displayAlerte(String texte) {
         this.texte += "<div style=\"color : " + toRGB(Color.RED) + "\"><b>" + texte + "</b></div>" ;
         html.setText("<html>" + this.texte +  "</html>");
     }
-    
+
     public String toRGB(Color couleur) {
         return "#"+Integer.toHexString(couleur.getRGB()).substring(2);
     }
@@ -142,7 +142,7 @@ public class MessageBox {
         }
     }
 
-    public static void main(String[] args) {   
+    public static void main(String[] args) {
         MessageBox messageBox = new MessageBox();
         Scanner scanner = new Scanner(System.in);
 

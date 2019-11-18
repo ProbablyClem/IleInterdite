@@ -16,49 +16,49 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import m2104.ile_interdite.util.Parameters;
- 
+
 public class VueNiveau {
-    
+
     private Integer niveau ;
     private final JFrame window ;
     private final HashMap<Integer, JPanel> panelsGauches ;
     private final Integer cellWidth = 50 ;
     private final Integer cellHeight = (Parameters.HAUTEUR_AUTRES_VUES - 25 - (Parameters.UNDECORATED ? 0 : Parameters.DECORATION_HEIGHT)) / 10 ;
     private final JPanel mainPanel;
-        
+
     public VueNiveau(Integer niveauInitial) {
         this.niveau = niveauInitial;
         panelsGauches = new HashMap<>();
 
         window = new JFrame() ;
-        window.setSize(cellWidth*2+Parameters.SWING_BORDERS_HEIGHT, Parameters.HAUTEUR_AUTRES_VUES);        
+        window.setSize(cellWidth*2+Parameters.SWING_BORDERS_HEIGHT, Parameters.HAUTEUR_AUTRES_VUES);
         window.setLocation(30, Parameters.TOP_AUTRES_VUES);
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        
+
         window.setUndecorated(Parameters.UNDECORATED);
         window.setResizable(Parameters.RESIZABLE);
-        
+
         this.mainPanel = new JPanel() ;
         this.window.add(mainPanel);
         this.mainPanel.setLayout(new BorderLayout());
         this.mainPanel.setBackground(Color.WHITE);
         this.mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
-        
+
         JLabel labelTitre = new JLabel("Niveau", JLabel.CENTER);
         this.mainPanel.add(labelTitre, BorderLayout.NORTH);
         // labelTitre.setFont(labelTitre.getFont().deriveFont(Font.BOLD));
         labelTitre.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
-        
+
         JPanel panelNiveaux = new JPanel(new GridBagLayout());
         panelNiveaux.setOpaque(false);
         mainPanel.add(panelNiveaux, BorderLayout.CENTER);
-        
+
         GridBagConstraints c = new GridBagConstraints();
         c.weightx = 2 ;
         c.weighty = 10 ;
         c.insets = new Insets(0, 0, 0, 0);
         c.fill = GridBagConstraints.VERTICAL ;
-        
+
         // Insertion de la cellule gauche de niveauInitial 10
         for (int i=0; i < 10; i++) {
             c.gridx = 0 ;
@@ -83,7 +83,7 @@ public class VueNiveau {
             panelGauche.add(labelGauche);
             panelsGauches.put((10-i), panelGauche) ;
         }
-            
+
         // Insertion de la cellule droite de niveauInitial 10
         for (int iPanel=0; iPanel < 4; iPanel++) {
             c.gridx = 1 ;
@@ -158,32 +158,32 @@ public class VueNiveau {
 
     private String getLibelle(int i) {
         switch (i) {
-            case 1 : 
+            case 1 :
                 return " novice" ;
-            case 2 : 
+            case 2 :
                 return " normal" ;
-            case 3 : 
+            case 3 :
                 return " élite" ;
-            case 4 : 
+            case 4 :
                 return " légendaire" ;
-            case 10 : 
+            case 10 :
                 return " mortel" ;
             default :
                 return "" ;
         }
     }
-    
-    public static void main(String[] args) {   
+
+    public static void main(String[] args) {
         VueNiveau vueNiveau = new VueNiveau(1);
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Pour passer au niveau 5, appuyer sur entrée");
-        String suite = scanner.nextLine();        
+        scanner.nextLine();
         vueNiveau.setNiveau(5);
 
         System.out.println("Pour passer au niveau 5, appuyer sur entrée");
-        suite = scanner.nextLine();
+        scanner.nextLine();
         vueNiveau.setNiveau(10);
-    }    
+    }
 }

@@ -13,8 +13,11 @@ public class IleInterdite extends Observable<Message> {
     public IleInterdite(Observateur<Message> observateur) {
         this.addObservateur(observateur);
     }
-    
-    public void inscrireJoueurs(String[] nomJoueurs) {
-        // TODO: à remplir
+
+    public String[] inscrireJoueurs(String[] nomJoueurs) {
+        // TODO: à remplacer par une réelle assignation des types d'aventuriers
+        String[] nomAventuriers = new String[nomJoueurs.length];
+        Arrays.fill(nomAventuriers, "Aventurier");
+        return nomAventuriers;
     }
 }

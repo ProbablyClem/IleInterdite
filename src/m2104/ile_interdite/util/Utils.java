@@ -12,7 +12,7 @@ import m2104.ile_interdite.modele.Aventurier;
  * @author IUT2-Dept Info
  */
 public class Utils {
-    
+
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
         BOUGER("Déplacer son pion"),
@@ -20,9 +20,9 @@ public class Utils {
         DONNER("Donner une carte à un autre joueur"),
         RECUPERER_TRESOR("Récupérer le trésor de la tuile"),
         TERMINER("Terminer son tour"),
-        RECEVOIR("Recevoir la carte donnée par un autre joueur"), 
+        RECEVOIR("Recevoir la carte donnée par un autre joueur"),
         CHOISIR_CARTE("Utiliser une carte trésor"),
-        CHOISIR_TUILE("Sélectionner une tuile"), 
+        CHOISIR_TUILE("Sélectionner une tuile"),
         DEPLACER("Déplacer un autre joueur"),
         VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage");
 
@@ -39,12 +39,12 @@ public class Utils {
     }
 
     public static enum EtatTuile {
-        ASSECHEE("Asséchée"), 
+        ASSECHEE("Asséchée"),
         INONDEE("Inondée"),
         COULEE("Coulée");
 
         private final String libelle ;
-        
+
         EtatTuile(String libelle) {
             this.libelle = libelle ;
         }
@@ -85,11 +85,11 @@ public class Utils {
         public Color getTextColor() {
             return this.textColor ;
         }
-        
+
         public String getPathPicture() {
             return this.pathPicture ;
         }
-        
+
         public static Tresor getFromName(String name) {
             for (Tresor tresor: Tresor.values()) {
                 if (tresor.name().equals(name)) {
@@ -106,7 +106,7 @@ public class Utils {
         BLEU("Bleu", new Color(55,194,198), new Color(100,153,154), new Color(175,221,221), new Color(202,219,219), "pionBleu.png"),
         ORANGE("Orange", new Color(255, 148, 0), new Color(176, 135, 79), new Color(255, 199, 127), new Color(246,198,135), "pionBronze.png"),
         VIOLET("Violet", new Color(204, 94, 255), new Color(146, 115, 176), new Color(211, 164, 234), new Color(202,176,214), "pionViolet.png"),
-        JAUNE("Jaune", new Color(255, 255, 0), new Color(176, 176, 79), new Color(255, 255, 140), new Color(245,245,148), "pionJaune.png") ;    
+        JAUNE("Jaune", new Color(255, 255, 0), new Color(176, 176, 79), new Color(255, 255, 140), new Color(245,245,148), "pionJaune.png") ;
 
         private final String libelle ;
         private final Color couleur ;
@@ -148,7 +148,7 @@ public class Utils {
         public String getPath() {
             return this.picturePath ;
         }
-        
+
         public static Pion getFromName(String name) {
             for (Pion pion: Pion.values()) {
                 if (pion.name().equals(name)) {
@@ -164,21 +164,21 @@ public class Utils {
     public static String toRGB(Color couleur) {
         return "#"+Integer.toHexString(couleur.getRGB()).substring(2);
     }
-    
+
     public static ArrayList<Aventurier> melangerAventuriers(ArrayList<Aventurier> arrayList) {
         if (Parameters.ALEAS) {
             Collections.shuffle(arrayList);
         }
         return arrayList ;
     }
-    
+
     public static Integer[] melangerPositions(Integer[] tableau) {
         if (Parameters.ALEAS) {
             Collections.shuffle(Arrays.asList(tableau));
         }
         return tableau ;
     }
-    
+
     /**
      * Permet de poser une question à laquelle l'utilisateur répond par oui ou non
      * @param question texte à afficher
@@ -189,11 +189,11 @@ public class Utils {
         int reponse = JOptionPane.showConfirmDialog (null, question, "", JOptionPane.YES_NO_OPTION) ;
         System.out.println("\tréponse : " + (reponse == JOptionPane.YES_OPTION ? "Oui" : "Non"));
         return reponse == JOptionPane.YES_OPTION;
-    }    
-    
+    }
+
     /**
      * Permet d'afficher un message d'information avec un bouton OK
-     * @param message Message à afficher 
+     * @param message Message à afficher
      */
     public static void afficherInformation(String message) {
         JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.OK_OPTION);
