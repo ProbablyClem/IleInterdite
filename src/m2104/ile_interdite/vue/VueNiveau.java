@@ -1,4 +1,4 @@
-package view;
+package m2104.ile_interdite.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
-import util.Parameters;
+import m2104.ile_interdite.util.Parameters;
  
 public class VueNiveau {
     

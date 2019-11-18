@@ -1,11 +1,11 @@
-package util;
+package m2104.ile_interdite.util;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import javax.swing.JOptionPane;
-import model.Aventurier;
+import m2104.ile_interdite.modele.Aventurier;
 
 /**
  *

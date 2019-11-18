@@ -1,16 +1,16 @@
-package controller;
+package m2104.ile_interdite.controleur;
 
-import fr.iut2.patterns.observer.Observer;
-import model.IleInterdite;
-import util.Message;
-import util.Parameters;
-import view.IHM;
+import m2104.ile_interdite.modele.IleInterdite;
+import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Parameters;
+import m2104.ile_interdite.vue.IHM;
+import patterns.observateur.Observateur;
 
 /**
  *
  * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
  */
-public class Controleur implements Observer<Message> {
+public class Controleur implements Observateur<Message> {
 
     private final IleInterdite ileInterdite;
     private final IHM ihm;
@@ -18,13 +18,12 @@ public class Controleur implements Observer<Message> {
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
         this.ihm = new IHM(this);
-
     }
     
     @Override
-    public void processMessage(Message msg) {
+    public void traiterMessage(Message msg) {
         if (Parameters.LOGS) {
-            System.out.println("Controleur.processMessage" + msg);
+            System.out.println("Controleur.traiterMessage" + msg);
         }
 
         switch (msg.getCommande()) {

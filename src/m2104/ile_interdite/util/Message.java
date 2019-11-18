@@ -1,4 +1,4 @@
-package util;
+package m2104.ile_interdite.util;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package view;
+package m2104.ile_interdite.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import util.Parameters;
-import util.Utils;
+import m2104.ile_interdite.util.Parameters;
+import m2104.ile_interdite.util.Utils;
 
 /**
  *

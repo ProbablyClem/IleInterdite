@@ -1,4 +1,4 @@
-package view;
+package m2104.ile_interdite.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,14 +15,12 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
-import util.Parameters;
-import util.Utils;
-import util.Message;
+import m2104.ile_interdite.util.Parameters;
+import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Message;
 
 
 public class VueAventurier {
-    private static final long serialVersionUID = 1L;
-    
     private final IHM ihm;
     protected final Integer idAventurier ;
     protected final String power ;
@@ -87,7 +85,7 @@ public class VueAventurier {
                 if (titreCliquable) {
                     Message message = new Message(Utils.Commandes.RECEVOIR, idAventurier, null, null, null);
                     System.out.println(message);
-                    ihm.notifyObservers(message);
+                    ihm.notifierObservateurs(message);
                 }
             }
 
@@ -239,7 +237,7 @@ public class VueAventurier {
                 if (btnClique == btnAller || btnClique == btnAssecher || btnClique == btnDonner || btnClique == btnPrendre) {
                     btnClique.setForeground(couleurActive);
                 }
-                ihm.notifyObservers(new Message(commande, idAventurier, null, null, null));
+                ihm.notifierObservateurs(new Message(commande, idAventurier, null, null, null));
             }
 
             @Override
