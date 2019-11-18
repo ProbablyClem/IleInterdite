@@ -41,8 +41,4 @@ public class Controleur implements Observateur<Message> {
                 }
         }
     }
-
-        public static void main(String[] args) {
-            new Controleur();
-        }
 }
