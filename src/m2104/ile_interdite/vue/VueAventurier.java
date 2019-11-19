@@ -83,7 +83,7 @@ public class VueAventurier {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (titreCliquable) {
-                    Message message = new Message(Utils.Commandes.RECEVOIR, idAventurier, null, null, null);
+                    Message message = Message.recevoir(idAventurier);
                     System.out.println(message);
                     ihm.notifierObservateurs(message);
                 }
@@ -237,7 +237,26 @@ public class VueAventurier {
                 if (btnClique == btnAller || btnClique == btnAssecher || btnClique == btnDonner || btnClique == btnPrendre) {
                     btnClique.setForeground(couleurActive);
                 }
-                ihm.notifierObservateurs(new Message(commande, idAventurier, null, null, null));
+                switch (commande) {
+                    case BOUGER:
+                        ihm.notifierObservateurs(Message.bouger(idAventurier));
+                        break;
+                    case ASSECHER:
+                        ihm.notifierObservateurs(Message.assecher(idAventurier));
+                        break;
+                    case DONNER:
+                        ihm.notifierObservateurs(Message.donner(idAventurier));
+                        break;
+                    case RECUPERER_TRESOR:
+                        ihm.notifierObservateurs(Message.recupererTresor(idAventurier));
+                        break;
+                    case DEPLACER:
+                        ihm.notifierObservateurs(Message.deplacer(idAventurier));
+                        break;
+                    case TERMINER:
+                        ihm.notifierObservateurs(Message.terminer(idAventurier));
+                        break;
+                }
             }
 
             @Override

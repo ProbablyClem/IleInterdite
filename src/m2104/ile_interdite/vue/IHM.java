@@ -22,7 +22,7 @@ public class IHM extends Observable<Message> {
 
         // démarrage à la main
         // TODO: à remplacer par une interaction correcte pendant l'initialisation
-        this.notifierObservateurs(new Message(Utils.Commandes.VALIDER_JOUEURS, null, null, null, null));
+        this.notifierObservateurs(Message.validerJoueurs(1));
     }
 
     public void creerVuesAventuriers(String[] nomAventuriers) {
