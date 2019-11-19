@@ -3,7 +3,6 @@ package m2104.ile_interdite.vue;
 import java.awt.Color;
 import java.util.HashMap;
 import m2104.ile_interdite.util.Message;
-import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -13,28 +12,26 @@ import patterns.observateur.Observateur;
  */
 public class IHM extends Observable<Message> {
 
-//    private final VueInscription vueInscription;
+    private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Integer, VueAventurier> vueAventuriers;
 
     public IHM(Observateur<Message> observateur) {
         this.addObservateur(observateur);
         this.vueAventuriers = new HashMap<>();
-
-        // démarrage à la main
-        // TODO: à remplacer par une interaction correcte pendant l'initialisation
-        this.notifierObservateurs(Message.validerJoueurs(1));
+        this.vueInscription = new VueInscriptionJoueurs(this);
     }
 
     public void creerVuesAventuriers(String[] nomAventuriers) {
-        // - le vrai nom du joueur est disponible dans la vue inscription
         // - le pouvoir est disponible dans le modèle
+        String[] nomsJoueurs = this.vueInscription.getNomJoueurs();
+        assert nomsJoueurs.length == nomAventuriers.length;
         for (int id = 0; id < nomAventuriers.length; ++id) {
             this.vueAventuriers.put(
                     id,
                     new VueAventurier(
                             this,
                             id,
-                            "XXX",  // TODO: à remplacer par le vrai nom du joueur
+                            nomsJoueurs[id],
                             nomAventuriers[id],
                             "YYY",  // TODO: à remplacer par le bon pouvoir
                             id,

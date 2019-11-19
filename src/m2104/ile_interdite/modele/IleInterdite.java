@@ -14,9 +14,9 @@ public class IleInterdite extends Observable<Message> {
         this.addObservateur(observateur);
     }
 
-    public String[] inscrireJoueurs(String[] nomJoueurs) {
+    public String[] inscrireJoueurs(int nbJoueurs) {
         // TODO: à remplacer par une réelle assignation des types d'aventuriers
-        String[] nomAventuriers = new String[nomJoueurs.length];
+        String[] nomAventuriers = new String[nbJoueurs];
         Arrays.fill(nomAventuriers, "Aventurier");
         return nomAventuriers;
     }

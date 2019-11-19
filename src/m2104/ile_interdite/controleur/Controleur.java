@@ -28,11 +28,9 @@ public class Controleur implements Observateur<Message> {
 
         switch (msg.getCommande()) {
             case VALIDER_JOUEURS:
-                // XXX: à remplacer par le retour de la vue inscription
-                String[] nomJoueurs = new String[] {"Toto"};
-
-                String[] nomAventuriers;
-                nomAventuriers = this.ileInterdite.inscrireJoueurs(nomJoueurs);
+                assert msg.hasNbJoueurs();
+                String[] nomAventuriers =
+                        this.ileInterdite.inscrireJoueurs(msg.getNbJoueurs());
                 this.ihm.creerVuesAventuriers(nomAventuriers);
                 break;
             default:
