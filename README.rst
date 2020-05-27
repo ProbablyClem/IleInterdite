@@ -4,9 +4,9 @@ Projet Île Interdite
 
 **TODO: remplir votre cartouche d'identification**
 
-:**Équipe**: team-42
-:**Membres**: NOM Prénom, NOM Prénom, NOM Prénom, NOM Prénom, …
-:**Chef de projet**: NOM Prénom
+:**Équipe**: e.k.i.p
+:**Membres**: GUITON Clément, DAIKH Nassim, DELHOMME Baptiste, DUPLESSIS Thomas, …
+:**Chef de projet**: GUITON Clément
 
 
 Description du projet
