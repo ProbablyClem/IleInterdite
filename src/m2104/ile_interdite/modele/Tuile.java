@@ -1,20 +1,20 @@
 package m2104.ile_interdite.modele;
 
+import m2104.ile_interdite.util.Utils;
+
 public class Tuile {
 
     private String nom;
-    private byte etat;
-    private byte tresor;
+    private Utils.EtatTuile etat;
+    private Utils.Tresor tresor;
 
     Tuile (String nom) {
         this.nom = nom;
-        this.etat = 0;
-        this.tresor = 0;
+        this.etat = Utils.EtatTuile.ASSECHEE;
     }
 
-    Tuile (String nom, byte tresor) {
-        this.nom = nom;
-        this.etat = 0;
+    Tuile (String nom, Utils.Tresor tresor) {
+        this(nom);
         this.tresor = tresor;
     }
 
@@ -22,16 +22,16 @@ public class Tuile {
         return this.nom;
     }
 
-    public byte getEtat() {
+    public Utils.EtatTuile getEtat() {
         return this.etat;
     }
 
-    public byte getTresor() {
+    public Utils.Tresor getTresor() {
         return this.tresor;
     }
 
 
-    public void setEtat(byte etat) {
+    public void setEtat(Utils.EtatTuile etat) {
         this.etat = etat;
     }
 
