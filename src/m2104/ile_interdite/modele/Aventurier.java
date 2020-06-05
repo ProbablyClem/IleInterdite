@@ -16,13 +16,15 @@ public abstract class Aventurier {
     private Carte[] cartes;
     private byte indCarte;
     private Tuile emplacement;
+    private ArrayList<Utils.Tresor> tresors;
 
     Aventurier (int id, String role, Utils.Pion pion) {
         this.id = id;
         this.role = role;
         this.pion = pion;
-        cartes = new Carte[5];
-        indCarte = 0;
+        this.cartes = new Carte[5];
+        this.indCarte = 0;
+        this.tresors = new ArrayList<>();
     }
 
     public String getRole() {
