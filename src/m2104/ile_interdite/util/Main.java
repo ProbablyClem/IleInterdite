@@ -14,29 +14,76 @@ public class Main {
 
     public static void main(String[] args) {
         //new Controleur();
-        ArrayList<Aventurier> allAventuriers = new ArrayList<>();
-        allAventuriers.add(new Explorateur(0));
-        allAventuriers.add(new Ingenieur(1));
-        allAventuriers.add(new Messager(2));
-        allAventuriers.add(new Navigateur(3));
-        allAventuriers.add(new Pilote(4));
-        allAventuriers.add(new Plongeur(5));
 
-        Utils.melangerAventuriers(allAventuriers);
+        Aventurier[] aventuriers = Aventurier.getRandomAventuriers(4);
 
-        Aventurier[] aventuriers = new Aventurier[4];
-
-        for (int i = 0; i < 4; i++) {
-            aventuriers[i] = allAventuriers.remove(0);
-        }
-
-        Grille grille = new Grille();
-        System.out.println("Grille :");
-        grille.showGrille();
         System.out.println("\nPersonnages :");
         for (Aventurier A: aventuriers) {
             System.out.println("\t" + A.getRole());
         }
+
+        Grille grille = new Grille();
+
+
+        for (Aventurier A: aventuriers) {
+            for (Tuile[] T: grille.getTuiles()) {
+                for (Tuile t: T) {
+                    if (t != null) {
+                        if (t.getDepartPion() != null) {
+                            if (t.getDepartPion().equals(A.getPion())) {
+                                A.setEmplacement(t);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        ArrayList<CarteSpeciale> cartesSpeciales = CarteSpeciale.getAllCartesSpeciale(grille);
+        Collections.shuffle(cartesSpeciales);
+
+        System.out.println("Cartes Spéciales :");
+
+        for (Aventurier A: aventuriers) {
+            System.out.println("\t" + A.getRole() + ": " + A.getEmplacement().getNom());
+            for (int i = 0; i < 2; i++) {
+                while (cartesSpeciales.get(0).getClass().getSimpleName().equals("CarteMonteeDesEaux")) {
+                    cartesSpeciales.add(cartesSpeciales.remove(0));
+                }
+
+                System.out.println("\t\t" + cartesSpeciales.get(0).getNom());
+                A.donnerCarte(cartesSpeciales.remove(0));
+            }
+        }
+
+        Collections.shuffle(cartesSpeciales); // on évite ici que les cartes montée des eaux se retrouvent toutes à la fin
+        System.out.println("\tAutre");
+        for (CarteSpeciale C: cartesSpeciales) {
+            System.out.println("\t\t" + C.getNom());
+        }
+
+        ArrayList<CarteInondation> cartesInondation = CarteInondation.getAllCartesInondation(grille);
+        ArrayList<CarteInondation> defausseInondation = new ArrayList<>();
+        Collections.shuffle(cartesInondation);
+
+        for (int i = 0; i < 6; i++) {
+            cartesInondation.get(0).utiliser();
+            defausseInondation.add(cartesInondation.remove(0));
+        }
+
+        System.out.println("Cartes Inondation:");
+        for (Carte C: cartesInondation) {
+            System.out.println("\t" + C.getNom());
+        }
+
+        System.out.println("Défausse Cartes Inondation:");
+        for (Carte C: defausseInondation) {
+            System.out.println("\t" + C.getNom());
+        }
+
+        System.out.println("Grille :");
+        grille.showGrille();
+
     }
 
 }

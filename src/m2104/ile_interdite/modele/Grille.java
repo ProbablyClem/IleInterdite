@@ -4,13 +4,17 @@ import m2104.ile_interdite.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Grille {
 
     private Tuile[][] tuiles = new Tuile[6][6];
 
+    private byte niveauEau;
+
     public Grille() {
-        ArrayList<Tuile> listTuiles = getAllTuiles();
+
+        ArrayList<Tuile> listTuiles = Tuile.getAllTuiles();
         Collections.shuffle(listTuiles);
         for (int i = 1; i <= tuiles.length; i++) {
             for (int j = 1; j <= tuiles[0].length; j++) {
@@ -21,46 +25,26 @@ public class Grille {
         }
     }
 
-    public ArrayList<Tuile> getAllTuiles() {
-        ArrayList<Tuile> allTuiles = new ArrayList<>();
-        allTuiles.add(new Tuile("La Caverne des Ombres", Utils.Tresor.CRISTAL));
-        allTuiles.add(new Tuile("La Caverne du Brasier", Utils.Tresor.CRISTAL));
-        allTuiles.add(new Tuile("Les Dunes de l'Illusion"));
-        allTuiles.add(new Tuile("Les Falaises de l'Oubli"));
-        allTuiles.add(new Tuile("La Forêt Pourpre"));
-        allTuiles.add(new Tuile("L'Héliport"));
-        allTuiles.add(new Tuile("Le Jardin des Hurlements", Utils.Tresor.ZEPHYR));
-        allTuiles.add(new Tuile("Le Jardin des Murmures", Utils.Tresor.ZEPHYR));
-        allTuiles.add(new Tuile("Le Lagon Perdu"));
-        allTuiles.add(new Tuile("Le Marais Brumeux"));
-        allTuiles.add(new Tuile("L'Observatoire"));
-        allTuiles.add(new Tuile("Le Palais de Corail", Utils.Tresor.CALICE));
-        allTuiles.add(new Tuile("Le Palais des Marées", Utils.Tresor.CALICE));
-        allTuiles.add(new Tuile("Le Pont des Abîmes"));
-        allTuiles.add(new Tuile("La Porte d'Argent"));
-        allTuiles.add(new Tuile("La Porte de Bronze"));
-        allTuiles.add(new Tuile("La Porte de Cuivre"));
-        allTuiles.add(new Tuile("La Porte de Fer"));
-        allTuiles.add(new Tuile("La Porte d'Or"));
-        allTuiles.add(new Tuile("Le Rocher Fantôme"));
-        allTuiles.add(new Tuile("Le Temple de la Lune", Utils.Tresor.PIERRE));
-        allTuiles.add(new Tuile("Le Temple du Soleil", Utils.Tresor.PIERRE));
-        allTuiles.add(new Tuile("La Tour de Guet"));
-        allTuiles.add(new Tuile("Le Val du Crépuscule"));
-
-        return allTuiles;
+    public Tuile[][] getTuiles() {
+        return this.tuiles;
     }
 
     public void showGrille() {
         for (int i = 0; i < tuiles.length; i++) {
             for (int j = 0; j < tuiles[0].length; j++) {
                 try {
-                    System.out.print(" [" + this.tuiles[i][j].getNom().substring(0, 10) + "] ");
+                    if (tuiles[i][j].getEtat().equals(Utils.EtatTuile.ASSECHEE)) {
+                        System.out.print(" [" + this.tuiles[i][j].getNom().substring(0, 10) + "] ");
+                    } else if (tuiles[i][j].getEtat().equals(Utils.EtatTuile.INONDEE)) {
+                        System.out.print(" ~" + this.tuiles[i][j].getNom().substring(0, 10) + "~ ");
+                    } else {
+                        System.out.print(" #" + this.tuiles[i][j].getNom().substring(0, 10) + "# ");
+                    }
                 } catch (NullPointerException e) {
                     System.out.print("              ");
                 }
             }
-            System.out.printf("\n");
+            System.out.print("\n");
         }
     }
 }
