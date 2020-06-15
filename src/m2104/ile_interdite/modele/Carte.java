@@ -1,5 +1,6 @@
 package m2104.ile_interdite.modele;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public abstract class Carte {
@@ -21,4 +22,6 @@ public abstract class Carte {
     public abstract String getNom();
 
     public abstract void utiliser();
+    
+    public abstract String getImage();
 }
