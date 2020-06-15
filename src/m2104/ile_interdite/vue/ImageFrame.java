@@ -21,6 +21,13 @@ public class ImageFrame extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+
+        if (image.getHeight() > image.getWidth() || this.getWidth() > this.getHeight()) {
+            g.drawImage(image, Math.abs(this.getWidth() - image.getWidth() * this.getHeight() / image.getHeight()) / 2 , 0, image.getWidth() * this.getHeight() / image.getHeight(), this.getHeight(), null);
+        } else if (image.getHeight() < image.getWidth() || this.getWidth() < this.getHeight()) {
+            g.drawImage(image, 0, Math.abs(this.getHeight() - image.getHeight() * this.getWidth() / image.getWidth()) / 2, this.getWidth(), image.getHeight() * this.getWidth() / image.getWidth(), null);
+        } else {
+            g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+        }
     }
 }

@@ -7,35 +7,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
-public class VueGrille {
+public class VueGrille extends JPanel {
 
     private final IHM ihm;
     private final Grille grille;
-    private final JPanel mainPanel;
-
-    private final JPanel topPanel;
-    private final JPanel grillePanel;
-    private final JPanel bottomPanel;
+    private ArrayList<JComponent> components;
 
     public VueGrille(IHM ihm, Grille grille) {
         this.ihm = ihm;
         this.grille = grille;
-        this.mainPanel = new JPanel(new BorderLayout());
+        components = new ArrayList<>();
 
-        this.topPanel = new JPanel(new BorderLayout());
-        this.grillePanel = new JPanel(new GridLayout(6, 6));
-        this.bottomPanel = new JPanel(new BorderLayout());
-
-        mainPanel.add(topPanel, BorderLayout.NORTH);
-        mainPanel.add(grillePanel, BorderLayout.CENTER);
-        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+        this.setLayout(new GridLayout(6, 6));
 
         for (Tuile[] T: this.grille.getTuiles()) {
             for (Tuile t: T) {
                 try {
                     JPanel panel = t.getImage();
-                    grillePanel.add(panel);
+                    this.add(panel);
+                    components.add(panel);
                     panel.addMouseListener(new MouseListener() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
@@ -63,19 +55,21 @@ public class VueGrille {
                         }
                     });
                 } catch (NullPointerException e) {
-                    grillePanel.add(new JPanel());
+                    JPanel panel = new JPanel(new BorderLayout());
+                    this.add(panel);
+                    components.add(panel);
                 }
             }
         }
 
-        topPanel.add(new ImageFrame(Utils.Tresor.CRISTAL.getPathPicture()), BorderLayout.WEST);
-        topPanel.add(new ImageFrame(Utils.Tresor.CALICE.getPathPicture()), BorderLayout.EAST);
-        bottomPanel.add(new ImageFrame(Utils.Tresor.PIERRE.getPathPicture()), BorderLayout.WEST);
-        bottomPanel.add(new ImageFrame(Utils.Tresor.ZEPHYR.getPathPicture()), BorderLayout.EAST);
+        components.get(0).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CRISTAL.getPathPicture()), BorderLayout.CENTER);
+        components.get(5).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CALICE.getPathPicture()), BorderLayout.CENTER);
+        components.get(30).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture()), BorderLayout.CENTER);
+        components.get(35).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture()), BorderLayout.CENTER);
 
         JFrame testFrame = new JFrame();
-        testFrame.add(mainPanel);
-        testFrame.setSize(800, 800);
+        testFrame.add(this);
+        testFrame.setSize(1600, 800);
         testFrame.setVisible(true);
     }
 

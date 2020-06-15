@@ -70,6 +70,7 @@ public class IleInterdite extends Observable<Message> {
         Collections.shuffle(deckInondation);
 
         for (int i = 0; i < 6; i++) {
+            deckInondation.get(0).utiliser();
             defausseInondation.add(deckInondation.remove(0));
         }
 

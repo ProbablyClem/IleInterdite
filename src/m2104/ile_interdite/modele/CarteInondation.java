@@ -1,5 +1,6 @@
 package m2104.ile_interdite.modele;
 
+import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.vue.ImageFrame;
 
 import java.util.ArrayList;
@@ -8,12 +9,6 @@ public class CarteInondation extends Carte {
 
     private Tuile tuile;
     private ImageFrame image;
-
-
-    public CarteInondation(String nom, ImageFrame image) {
-        super(nom);
-        this.image = image;
-    }
 
     public CarteInondation(String nom, ImageFrame image, Tuile tuile) {
         super(nom);
@@ -35,6 +30,14 @@ public class CarteInondation extends Carte {
         }
 
         return cartes;
+    }
+
+    public void utiliser() {
+        if (this.tuile.getEtat().equals(Utils.EtatTuile.ASSECHEE)) {
+            this.tuile.setEtat(Utils.EtatTuile.INONDEE);
+        } else {
+            this.tuile.setEtat(Utils.EtatTuile.COULEE);
+        }
     }
 
     @Override
