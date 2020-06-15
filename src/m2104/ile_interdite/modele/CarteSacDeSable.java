@@ -5,6 +5,12 @@ import m2104.ile_interdite.util.Utils;
 import java.util.ArrayList;
 
 public class CarteSacDeSable extends CarteSpeciale {
+    
+    private String ChmnAccès;
+
+    public CarteSacDeSable() {
+        this.ChmnAccès = "\\ileInterditeSprites\\carteSacSables";
+    }
 
     @Override
     public String getNom() {
@@ -34,4 +40,9 @@ public class CarteSacDeSable extends CarteSpeciale {
 
         return cartes;
     }
+    @Override
+    public String getImage(){
+        return ChmnAccès;
+        
+}
 }
