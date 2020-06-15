@@ -12,10 +12,6 @@ public class CarteSacDeSable extends CarteSpeciale {
         super("Sac Sable", "src/images/tresors/SacsDeSable.png");
     }
 
-    @Override
-    public String getNom() {
-        return "Carte Sac de Sable";
-    }
 
 
     public void assecher(Tuile tuile) {

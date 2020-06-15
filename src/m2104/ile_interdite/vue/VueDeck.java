@@ -20,9 +20,6 @@ public abstract class VueDeck extends JPanel {
         return iledeck;
     }
 
-
-
-
     public VueDeck() {
         nomdeck= new JLabel("FOSSE");
         retour= new JButton("RETOUR");
@@ -34,11 +31,24 @@ public abstract class VueDeck extends JPanel {
         panelhaut.add(retour);
         panelhaut.add(nomdeck);
         panelhaut.add(retour);
-        mainpanel.setLayout(new BorderLayout());
-        mainpanel.add(panelhaut,BorderLayout.NORTH);
-        mainpanel.add(cardisplay);
+        this.setLayout(new BorderLayout());
+        this.add(panelhaut,BorderLayout.NORTH);
+        this.add(cardisplay);
+        this.add(mainpanel);
     }
 
+    public JLabel getNomdeck() {
+        return nomdeck;
+    }
+
+    public static void main(String[] args) {
+         VueCartesInondation vueDeck= new VueCartesInondation();
+         JFrame w = new JFrame();
+         w.add(vueDeck);
+         w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         w.setTitle("Vueflex");
+         w.setVisible(true);
+    }
     public abstract void decksize(JPanel cardisplay);
     public abstract void deckname(JLabel nomdeck);
 
