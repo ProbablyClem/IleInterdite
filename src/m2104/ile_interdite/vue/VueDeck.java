@@ -14,33 +14,29 @@ public abstract class VueDeck extends JPanel {
     private JPanel mainpanel;
     private JPanel panelhaut;
     private JPanel cardisplay;
+    private IleInterdite iledeck;
 
     public IleInterdite getIledeck() {
         return iledeck;
     }
 
-    private IleInterdite iledeck;
 
 
 
-
-    public VueDeck(IHM ihm){
-        this.vueIHM=ihm;
+    public VueDeck() {
+        nomdeck= new JLabel("FOSSE");
         retour= new JButton("RETOUR");
         retour.setBackground(Color.RED);
+        panelhaut= new JPanel();
+        mainpanel= new JPanel();
+        cardisplay=new JPanel();
+        retour=new JButton();
+        panelhaut.add(retour);
         panelhaut.add(nomdeck);
+        panelhaut.add(retour);
         mainpanel.setLayout(new BorderLayout());
         mainpanel.add(panelhaut,BorderLayout.NORTH);
-    }
-
-    public VueDeck(IHM vueIHM, JLabel nomdeck, JButton retour, JPanel mainpanel, JPanel panelhaut, JPanel cardisplay, IleInterdite iledeck) {
-        this.vueIHM = vueIHM;
-        this.nomdeck = nomdeck;
-        this.retour = retour;
-        this.mainpanel = mainpanel;
-        this.panelhaut = panelhaut;
-        this.cardisplay = cardisplay;
-        this.iledeck = iledeck;
+        mainpanel.add(cardisplay);
     }
 
     public abstract void decksize(JPanel cardisplay);

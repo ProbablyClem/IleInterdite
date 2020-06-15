@@ -7,13 +7,7 @@ import java.awt.*;
 
 public class VueDefausseInondation extends VueDeck {
 
-    public VueDefausseInondation(IHM ihm) {
-        super(ihm);
-    }
 
-    public VueDefausseInondation(IHM vueIHM, JLabel nomdeck, JButton retour, JPanel mainpanel, JPanel panelhaut, JPanel cardisplay, IleInterdite iledeck) {
-        super(vueIHM, nomdeck, retour, mainpanel, panelhaut, cardisplay, iledeck);
-    }
 
     @Override
     public void decksize(JPanel cardisplay) {
