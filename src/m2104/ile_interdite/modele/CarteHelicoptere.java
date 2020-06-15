@@ -6,21 +6,11 @@ import java.util.ArrayList;
 
 public class CarteHelicoptere extends CarteSpeciale {
 
-    private String ChmnAccès;
-
-    public CarteHelicoptere() {
-        this.ChmnAccès = "\\ileInterditeSprites\\carteHélico";
-    }
-    
-    @Override
-    public String getNom() {
-        return "Carte Hélicoptère";
+    public CarteHelicoptere(){
+        super("Carte helicoptere", "src/images/Helicoptere.png");
     }
 
-    @Override
-    public void utiliser() {
-        System.out.println("Utilisation de la " + this.getNom());
-    }
+
 
     public static ArrayList<CarteHelicoptere> getAllCartes() {
         ArrayList<CarteHelicoptere> cartes = new ArrayList<>();
@@ -31,13 +21,5 @@ public class CarteHelicoptere extends CarteSpeciale {
 
         return cartes;
     }
-
-    
-    
-    @Override
-    public String getImage(){
-        return ChmnAccès;
-        
-}
 
 }

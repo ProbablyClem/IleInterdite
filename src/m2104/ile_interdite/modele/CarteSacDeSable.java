@@ -5,11 +5,11 @@ import m2104.ile_interdite.util.Utils;
 import java.util.ArrayList;
 
 public class CarteSacDeSable extends CarteSpeciale {
-    
-    private String ChmnAccès;
+
+
 
     public CarteSacDeSable() {
-        this.ChmnAccès = "\\ileInterditeSprites\\carteSacSables";
+        super("Sac Sable", "src/images/tresors/SacsDeSable.png");
     }
 
     @Override
@@ -17,11 +17,6 @@ public class CarteSacDeSable extends CarteSpeciale {
         return "Carte Sac de Sable";
     }
 
-    @Override
-    public void utiliser() {
-        System.out.println("Ici la tuile devrait être selectionnée");
-        // assecher(tuile);
-    }
 
     public void assecher(Tuile tuile) {
         if (tuile.getEtat() == Utils.EtatTuile.INONDEE) {
@@ -40,9 +35,4 @@ public class CarteSacDeSable extends CarteSpeciale {
 
         return cartes;
     }
-    @Override
-    public String getImage(){
-        return ChmnAccès;
-        
-}
 }

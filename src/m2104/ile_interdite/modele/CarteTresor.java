@@ -4,39 +4,27 @@ import m2104.ile_interdite.util.Utils;
 
 import java.util.ArrayList;
 
-public class CarteTresor extends CarteSpeciale {
+public class CarteTresor extends Carte {
     
     private Utils.Tresor tresor;
 
-    CarteTresor(Utils.Tresor tresor) {
+
+    public CarteTresor(String image, String nom, Utils.Tresor tresor) {
+        super(image, nom);
         this.tresor = tresor;
     }
 
-    @Override
-    public String getNom() {
-        return ("Carte trésor " + this.tresor.name());
-    }
 
-    @Override
-    public void utiliser() {
-        System.out.println("Utilisation de " + this.getNom());
-    }
-
-    public static ArrayList<CarteTresor> getAllCartes() {
-        ArrayList<CarteTresor> cartes = new ArrayList<>();
+    public static ArrayList<Carte> getAllCartes() {
+        ArrayList<Carte> cartes = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
-            cartes.add(new CarteTresor(Utils.Tresor.CALICE));
-            cartes.add(new CarteTresor(Utils.Tresor.PIERRE));
-            cartes.add(new CarteTresor(Utils.Tresor.ZEPHYR));
-            cartes.add(new CarteTresor(Utils.Tresor.CRISTAL));
+            cartes.add(new CarteTresor("Calice","src/images/Calice.png", Utils.Tresor.CALICE));
+            cartes.add(new CarteTresor("Pierre", "src/images/Pierre.png", Utils.Tresor.PIERRE));
+            cartes.add(new CarteTresor("Zephyr", "src/images/Zephyr.png", Utils.Tresor.ZEPHYR));
+            cartes.add(new CarteTresor("Cristal", "src/images/Cristal.png", Utils.Tresor.CRISTAL));
         }
 
         return cartes;
     }
-    @Override
-    public String getImage(){
-        return null;
-        
-}
 }

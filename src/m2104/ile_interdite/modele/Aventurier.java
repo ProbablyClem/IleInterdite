@@ -14,8 +14,7 @@ public abstract class Aventurier {
     private String role;
     private String nom;
     private Utils.Pion pion;
-    private Carte[] cartes;
-    private byte indCarte;
+    private ArrayList<Carte> cartes;
     private Tuile emplacement;
     private ArrayList<Utils.Tresor> tresors;
 
@@ -23,8 +22,7 @@ public abstract class Aventurier {
         this.id = id;
         this.role = role;
         this.pion = pion;
-        this.cartes = new Carte[5];
-        this.indCarte = 0;
+        this.cartes = new ArrayList<>();;
         this.tresors = new ArrayList<>();
     }
 
@@ -68,13 +66,8 @@ public abstract class Aventurier {
         // TODO: function core
     }
 
-    public void donnerCarte(CarteSpeciale carte) {
-        if (this.indCarte < 5) {
-            this.cartes[indCarte] = carte;
-            this.indCarte++;
-        } else {
-            System.out.println("Le joueur a trop de carte");
-        }
+    public void donnerCarte(Carte carte) {
+            this.cartes.add(carte);
     }
 
     public void prendreTresor() {
@@ -87,6 +80,9 @@ public abstract class Aventurier {
 
     public abstract void actionSpeciale();
 
+    public ArrayList<Carte> getCartes() {
+        return cartes;
+    }
 
     public static Aventurier[] getRandomAventuriers(int nb) {
 

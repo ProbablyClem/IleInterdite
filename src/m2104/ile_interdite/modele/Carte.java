@@ -1,27 +1,33 @@
 package m2104.ile_interdite.modele;
 
-import java.io.File;
-import java.util.ArrayList;
+import m2104.ile_interdite.vue.ImageFrame;
 
 public abstract class Carte {
+    private String image;
+    private String nom;
 
-    Aventurier joueur;
-
-    public void setJoueur(Aventurier joueur) {
-        this.joueur = joueur;
+    public Carte(String nom) {
+        this.nom = nom;
     }
 
-    public Aventurier getJoueur() {
-        return this.joueur;
+    public Carte(String image, String nom) {
+        this.image = image;
+        this.nom = nom;
     }
 
-    public void rmvJoueur() {
-        this.joueur = null;
+    public ImageFrame getImage() {
+        return new ImageFrame(image);
     }
 
-    public abstract String getNom();
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-    public abstract void utiliser();
-    
-    public abstract String getImage();
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }

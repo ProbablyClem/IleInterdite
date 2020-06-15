@@ -3,22 +3,13 @@ package m2104.ile_interdite.modele;
 import java.util.ArrayList;
 
 public class CarteMonteeDesEaux extends CarteSpeciale {
-    
-    private String ChmnAccès;
 
-    public CarteMonteeDesEaux() {
-        this.ChmnAccès = "\\ileInterditeSprites\\cartesMontéeEaux";
+
+    public CarteMonteeDesEaux(){
+        super("Carte montée des eaux", "src/images/MonteeDesEaux.png");
     }
 
-    @Override
-    public String getNom() {
-        return "Carte Montée des Eaux";
-    }
 
-    @Override
-    public void utiliser() {
-        System.out.println("Utilisation de Montée des Eaux !");
-    }
 
     public static ArrayList<CarteMonteeDesEaux> getAllCartes() {
         ArrayList<CarteMonteeDesEaux> cartes = new ArrayList<>();
@@ -29,9 +20,4 @@ public class CarteMonteeDesEaux extends CarteSpeciale {
 
         return cartes;
     }
-    @Override
-    public String getImage(){
-        return ChmnAccès;
-        
-}
 }

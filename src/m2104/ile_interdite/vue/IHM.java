@@ -1,10 +1,11 @@
 package m2104.ile_interdite.vue;
 
-import java.awt.Color;
-import java.util.HashMap;
 import m2104.ile_interdite.util.Message;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
+
+import java.awt.*;
+import java.util.HashMap;
 
 /**
  *
@@ -13,7 +14,7 @@ import patterns.observateur.Observateur;
 public class IHM extends Observable<Message> {
 
     private final VueInscriptionJoueurs vueInscription;
-    private final HashMap<Integer, VueAventurier> vueAventuriers;
+    private final HashMap<Integer, oldVueAventurier> vueAventuriers;
 
     public IHM(Observateur<Message> observateur) {
         this.addObservateur(observateur);
@@ -28,7 +29,7 @@ public class IHM extends Observable<Message> {
         for (int id = 0; id < nomAventuriers.length; ++id) {
             this.vueAventuriers.put(
                     id,
-                    new VueAventurier(
+                    new oldVueAventurier(
                             this,
                             id,
                             nomsJoueurs[id],

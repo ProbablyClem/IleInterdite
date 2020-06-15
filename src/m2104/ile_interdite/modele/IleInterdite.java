@@ -1,12 +1,11 @@
 package m2104.ile_interdite.modele;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 import m2104.ile_interdite.util.Message;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -16,8 +15,8 @@ public class IleInterdite extends Observable<Message> {
 
     private Aventurier[] aventuriers;
     Grille grille;
-    ArrayList<CarteSpeciale> deckTresor;
-    ArrayList<CarteSpeciale> defausseTresor;
+    ArrayList<Carte> deckTresor;
+    ArrayList<Carte> defausseTresor;
     ArrayList<CarteInondation> deckInondation;
     ArrayList<CarteInondation> defausseInondation;
 
@@ -27,7 +26,13 @@ public class IleInterdite extends Observable<Message> {
         grille = new Grille();
 
         this.aventuriers = Aventurier.getRandomAventuriers(4);
+
         this.deckTresor = CarteSpeciale.getAllCartesSpeciale();
+
+        for (Carte c: CarteTresor.getAllCartes()) {
+            this.deckTresor.add(c);
+        }
+
         this.defausseTresor = new ArrayList<>();
         this.deckInondation = CarteInondation.getAllCartesInondation(grille);
         this.defausseInondation = new ArrayList<>();
@@ -65,7 +70,6 @@ public class IleInterdite extends Observable<Message> {
         Collections.shuffle(deckInondation);
 
         for (int i = 0; i < 6; i++) {
-            deckInondation.get(0).utiliser();
             defausseInondation.add(deckInondation.remove(0));
         }
 
@@ -82,11 +86,11 @@ public class IleInterdite extends Observable<Message> {
         return grille;
     }
 
-    public ArrayList<CarteSpeciale> getDeckTresor() {
+    public ArrayList<Carte> getDeckTresor() {
         return deckTresor;
     }
 
-    public ArrayList<CarteSpeciale> getDefausseTresor() {
+    public ArrayList<Carte> getDefausseTresor() {
         return defausseTresor;
     }
 
