@@ -12,6 +12,7 @@ public abstract class Aventurier {
     
     int id;
     private String role;
+    private String nom;
     private Utils.Pion pion;
     private Carte[] cartes;
     private byte indCarte;
@@ -25,6 +26,14 @@ public abstract class Aventurier {
         this.cartes = new Carte[5];
         this.indCarte = 0;
         this.tresors = new ArrayList<>();
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public String getRole() {
