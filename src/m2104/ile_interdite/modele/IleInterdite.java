@@ -15,23 +15,25 @@ import patterns.observateur.Observateur;
 public class IleInterdite extends Observable<Message> {
 
     private Aventurier[] aventuriers;
-    ArrayList<CarteSpeciale> cartesSpeciales;
-    ArrayList<CarteInondation> cartesInondation;
+    Grille grille;
+    ArrayList<CarteSpeciale> deckTresor;
+    ArrayList<CarteSpeciale> defausseTresor;
+    ArrayList<CarteInondation> deckInondation;
     ArrayList<CarteInondation> defausseInondation;
 
     public IleInterdite(Observateur<Message> observateur) {
         this.addObservateur(observateur);
 
+        grille = new Grille();
+
         this.aventuriers = Aventurier.getRandomAventuriers(4);
-
-        System.out.println("\nPersonnages :");
-        for (Aventurier A: aventuriers) {
-            System.out.println("\t" + A.getRole());
-        }
-
-        Grille grille = new Grille();
+        this.deckTresor = CarteSpeciale.getAllCartesSpeciale();
+        this.defausseTresor = new ArrayList<>();
+        this.deckInondation = CarteInondation.getAllCartesInondation(grille);
+        this.defausseInondation = new ArrayList<>();
 
 
+        // Placement des aventuriers sur la grille
         for (Aventurier A: aventuriers) {
             for (Tuile[] T: grille.getTuiles()) {
                 for (Tuile t: T) {
@@ -46,51 +48,54 @@ public class IleInterdite extends Observable<Message> {
             }
         }
 
-        cartesSpeciales = CarteSpeciale.getAllCartesSpeciale(grille);
-        Collections.shuffle(cartesSpeciales);
+        Collections.shuffle(deckTresor);
 
-        System.out.println("Cartes Spéciales :");
-
+        // Distribution des cartes
         for (Aventurier A: aventuriers) {
-            System.out.println("\t" + A.getRole() + ": " + A.getEmplacement().getNom());
             for (int i = 0; i < 2; i++) {
-                while (cartesSpeciales.get(0).getClass().getSimpleName().equals("CarteMonteeDesEaux")) {
-                    cartesSpeciales.add(cartesSpeciales.remove(0));
+                while (deckTresor.get(0).getClass().getSimpleName().equals("CarteMonteeDesEaux")) {
+                    deckTresor.add(deckTresor.remove(0));
                 }
-
-                System.out.println("\t\t" + cartesSpeciales.get(0).getNom());
-                A.donnerCarte(cartesSpeciales.remove(0));
+                A.donnerCarte(deckTresor.remove(0));
             }
         }
 
-        Collections.shuffle(cartesSpeciales); // on évite ici que les cartes montée des eaux se retrouvent toutes à la fin
-        System.out.println("\tAutre");
-        for (CarteSpeciale C: cartesSpeciales) {
-            System.out.println("\t\t" + C.getNom());
-        }
+        Collections.shuffle(deckTresor); // on évite ici que les cartes montée des eaux se retrouvent toutes à la fin
 
-        cartesInondation = CarteInondation.getAllCartesInondation(grille);
-        defausseInondation = new ArrayList<>();
-        Collections.shuffle(cartesInondation);
+        Collections.shuffle(deckInondation);
 
         for (int i = 0; i < 6; i++) {
-            cartesInondation.get(0).utiliser();
-            defausseInondation.add(cartesInondation.remove(0));
+            deckInondation.get(0).utiliser();
+            defausseInondation.add(deckInondation.remove(0));
         }
 
-        System.out.println("Cartes Inondation:");
-        for (Carte C: cartesInondation) {
-            System.out.println("\t" + C.getNom());
-        }
-
-        System.out.println("Défausse Cartes Inondation:");
-        for (Carte C: defausseInondation) {
-            System.out.println("\t" + C.getNom());
-        }
-
-        System.out.println("Grille :");
+        // Affichage CLI de la grille
         grille.showGrille();
 
+    }
+
+    public Aventurier[] getAventuriers() {
+        return aventuriers;
+    }
+
+    public Grille getGrille() {
+        return grille;
+    }
+
+    public ArrayList<CarteSpeciale> getDeckTresor() {
+        return deckTresor;
+    }
+
+    public ArrayList<CarteSpeciale> getDefausseTresor() {
+        return defausseTresor;
+    }
+
+    public ArrayList<CarteInondation> getDeckInondation() {
+        return deckInondation;
+    }
+
+    public ArrayList<CarteInondation> getDefausseInondation() {
+        return defausseInondation;
     }
 
     public String[] inscrireJoueurs(int nbJoueurs) {

@@ -4,12 +4,6 @@ import java.util.ArrayList;
 
 public class CarteMonteeDesEaux extends CarteSpeciale {
 
-    private Grille grille;
-
-    CarteMonteeDesEaux (Grille grille) {
-        this.grille = grille;
-    }
-
     @Override
     public String getNom() {
         return "Carte Montée des Eaux";
@@ -20,11 +14,11 @@ public class CarteMonteeDesEaux extends CarteSpeciale {
         System.out.println("Utilisation de Montée des Eaux !");
     }
 
-    public static ArrayList<CarteMonteeDesEaux> getAllCartes(Grille grille) {
+    public static ArrayList<CarteMonteeDesEaux> getAllCartes() {
         ArrayList<CarteMonteeDesEaux> cartes = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            cartes.add(new CarteMonteeDesEaux(grille));
+            cartes.add(new CarteMonteeDesEaux());
         }
 
         return cartes;

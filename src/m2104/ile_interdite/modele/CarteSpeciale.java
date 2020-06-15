@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public abstract class CarteSpeciale extends Carte {
 
-    public static ArrayList<CarteSpeciale> getAllCartesSpeciale(Grille grille) {
+    public static ArrayList<CarteSpeciale> getAllCartesSpeciale() {
         ArrayList<CarteSpeciale> cartes = new ArrayList<>();
 
-        cartes.addAll(CarteMonteeDesEaux.getAllCartes(grille));
+        cartes.addAll(CarteMonteeDesEaux.getAllCartes());
         cartes.addAll(CarteSacDeSable.getAllCartes());
         cartes.addAll(CarteTresor.getAllCartes());
         cartes.addAll(CarteHelicoptere.getAllCartes());
