@@ -4,6 +4,7 @@ import m2104.ile_interdite.modele.*;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.vue.IHM;
+import m2104.ile_interdite.vue.VueFinPartie;
 import m2104.ile_interdite.vue.VueNiveau;
 import patterns.observateur.Observateur;
 
@@ -24,6 +25,8 @@ public class Controleur implements Observateur<Message> {
         this.ihm = new IHM(this);
 
         new VueNiveau(1);
+        new VueFinPartie(ihm);
+        
     }
 
     @Override
