@@ -12,11 +12,13 @@ public class CarteInondation extends Carte {
 
     public CarteInondation(String nom, ImageFrame image) {
         super(nom);
+        this.image = image;
     }
 
     public CarteInondation(String nom, ImageFrame image, Tuile tuile) {
         super(nom);
         this.tuile = tuile;
+        this.image = image;
     }
 
 
