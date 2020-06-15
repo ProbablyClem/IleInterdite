@@ -5,7 +5,7 @@ import m2104.ile_interdite.util.Utils;
 import java.util.ArrayList;
 
 public class CarteTresor extends CarteSpeciale {
-
+    
     private Utils.Tresor tresor;
 
     CarteTresor(Utils.Tresor tresor) {
@@ -34,4 +34,9 @@ public class CarteTresor extends CarteSpeciale {
 
         return cartes;
     }
+    @Override
+    public String getImage(){
+        return null;
+        
+}
 }
