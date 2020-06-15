@@ -7,6 +7,12 @@ import java.util.ArrayList;
 public class CarteInondation extends Carte {
 
     private Tuile tuile;
+    
+    private String ChmnAccès;
+
+    public CarteInondation() {
+        this.ChmnAccès = "\\ileInterditeSprites\\tuilesVerso";
+    }
 
     CarteInondation (Tuile tuile) {
         this.tuile = tuile;
@@ -17,6 +23,8 @@ public class CarteInondation extends Carte {
         return ("Carte Inondation de " + this.tuile.getNom());
     }
 
+    
+    @Override
     public void utiliser() {
         if (this.tuile.getEtat() == Utils.EtatTuile.ASSECHEE) {
             this.tuile.setEtat(Utils.EtatTuile.INONDEE);
@@ -39,4 +47,9 @@ public class CarteInondation extends Carte {
 
         return cartes;
     }
+    @Override
+    public String getImage(){
+        return ChmnAccès;
+        
+}
 }
