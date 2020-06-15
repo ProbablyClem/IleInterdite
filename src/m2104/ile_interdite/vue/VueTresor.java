@@ -14,13 +14,13 @@ public class VueTresor extends VueDeck {
         if (getIledeck().getDeckTresor().size()<=4) {
             cardisplay.setLayout(new GridLayout(2,2));
             for(int i = 0;i<getIledeck().getDeckInondation().size();i++ ){
-                cardisplay.add(getIledeck().getDeckInondation().get(i).getImage());
+                cardisplay.add(getIledeck().getDeckTresor().get(i).getImage());
             }
         }
         else if (getIledeck().getDeckTresor().size()<=8){
             cardisplay.setLayout(new GridLayout(6,4));
             for(int i = 0;i<getIledeck().getDeckInondation().size();i++ ){
-                cardisplay.add(getIledeck().getDeckInondation().get(i).getImage());
+                cardisplay.add(getIledeck().getDeckTresor().get(i).getImage());
             }
         }
     }
