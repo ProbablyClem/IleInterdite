@@ -2,14 +2,17 @@ package m2104.ile_interdite.vue;
 
 import m2104.ile_interdite.modele.Aventurier;
 import m2104.ile_interdite.modele.CarteTresor;
+import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Messager;
 import m2104.ile_interdite.util.Utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class VueAventurier extends JPanel {
-    private IHM ihm;
+public class VueAventurier extends JPanel implements ActionListener {
+    private IleInterdite ileInterdite;
     private Aventurier aventurier;
     private JLabel nomAventurier;
     private JLabel nbActionsLabel;
@@ -26,8 +29,8 @@ public class VueAventurier extends JPanel {
     private JButton cartesInondation;
     private int nbActions;
 
-    public VueAventurier(Aventurier aventurier, IHM ihm){
-        this.ihm = ihm;
+    public VueAventurier(Aventurier aventurier, IleInterdite ileInterdite){
+        this.ileInterdite = ileInterdite;
         this.aventurier = aventurier;
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -71,15 +74,19 @@ public class VueAventurier extends JPanel {
 
         JPanel decks = new JPanel(new GridLayout(0, 4));
         cartesTresor = new JButton("Carte Tresor");
+        cartesTresor.addActionListener(this);
         decks.add(cartesTresor);
 
         deffauseeTresor = new JButton("Deffausse Carte Tresor");
+        deffauseeTresor.addActionListener(this);
         decks.add(deffauseeTresor);
 
         deffauseInondation = new JButton("Deffausse Carte Innondation");
+        deffauseInondation.addActionListener(this);
         decks.add(deffauseInondation);
 
         cartesInondation = new JButton("Carte Inondation");
+        cartesInondation.addActionListener(this);
         decks.add(cartesInondation);
 
         this.add(decks);
@@ -105,4 +112,23 @@ public class VueAventurier extends JPanel {
         w.setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == cartesTresor){
+            VueDeck v = new VueDeck("Deck Cartes Tresor", ileInterdite.getDeckTresor());
+            v.afficher();
+        }
+        else if (e.getSource() == deffauseeTresor){
+            VueDeck v = new VueDeck("Deffausse Cartes Tresor", ileInterdite.getDeckTresor());
+            v.afficher();
+        }
+        else if (e.getSource() == deffauseInondation){
+            VueDeck v = new VueDeck("Deffause Cartes Inondation", ileInterdite.getDeckTresor());
+            v.afficher();
+        }
+        else if (e.getSource() == cartesInondation){
+            VueDeck v = new VueDeck("Deck Cartes Inondation", ileInterdite.getDeckTresor());
+            v.afficher();
+        }
+    }
 }

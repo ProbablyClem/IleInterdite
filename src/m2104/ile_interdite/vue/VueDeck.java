@@ -49,12 +49,21 @@ public class VueDeck extends JPanel {
         CarteTresor cartee = new CarteTresor("src/images/ocean.jpg", "Carte", null);
         c.add(carte);
         c.add(cartee);
-         VueDeck vueDeck= new VueDeck("Deck", c);
-         JFrame w = new JFrame();
-         w.add(vueDeck);
-         w.setSize(500, 300);
-         w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         w.setTitle("Vueflex");
-         w.setVisible(true);
+        VueDeck vueDeck= new VueDeck("Deck", c);
+        JFrame w = new JFrame();
+        w.add(vueDeck);
+        w.setSize(500, 300);
+        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        w.setTitle("Vueflex");
+        w.setVisible(true);
+    }
+
+    public void afficher(){
+        JFrame w = new JFrame();
+        w.add(this);
+        w.setSize(500, 300);
+        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        w.setTitle("Vueflex");
+        w.setVisible(true);
     }
 }
