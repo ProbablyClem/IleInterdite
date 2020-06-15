@@ -26,11 +26,11 @@ public class VueAventurier extends JPanel {
     private JButton cartesInondation;
     private int nbActions;
 
-    public VueAventurier(Aventurier aventurier){
+    public VueAventurier(Aventurier aventurier, IHM ihm){
         this.ihm = ihm;
         this.aventurier = aventurier;
 
-        this.setLayout(new GridLayout(5, 0));
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JPanel header = new JPanel(new BorderLayout());
 
@@ -42,7 +42,7 @@ public class VueAventurier extends JPanel {
 
         this.add(header);
 
-        textField = new JLabel("Choirsir une action");
+        textField = new JLabel("Choisir une action");
         this.add(textField);
 
         JPanel actionsPanel = new JPanel(new GridLayout(2, 3));
@@ -77,7 +77,7 @@ public class VueAventurier extends JPanel {
         decks.add(deffauseeTresor);
 
         deffauseInondation = new JButton("Deffausse Carte Innondation");
-        decks.add(deffauseeTresor);
+        decks.add(deffauseInondation);
 
         cartesInondation = new JButton("Carte Inondation");
         decks.add(cartesInondation);
@@ -90,14 +90,19 @@ public class VueAventurier extends JPanel {
         Aventurier aventurier = new Messager(1);
         aventurier.setNom("Clement");
         aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        VueAventurier v = new VueAventurier(aventurier);
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        VueAventurier v = new VueAventurier(aventurier, null);
         JFrame w = new JFrame();
         w.add(v);
         w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         w.pack();
         w.setTitle("vueAventurier");
         w.setVisible(true);
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
     }
 
 }

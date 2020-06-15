@@ -10,28 +10,50 @@ public class VueMain extends JPanel {
 
     private JLabel titre;
     private ArrayList<Carte> cartes;
-    private JPanel grille;
+    private JPanel lignehaut;
 
     public VueMain(ArrayList<Carte> cartes){
         this.cartes = cartes;
-        titre = new JLabel("Carte Joueur");
-
-        this.setLayout(new BorderLayout());
-        titre = new JLabel("Carte Joueur");
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        titre = new JLabel("Cartes Joueur");
         this.add(titre, BorderLayout.NORTH);
 
-        if (cartes.size() <= 5) {
-            grille = new JPanel(new GridLayout(1, 5));
+        lignehaut = new JPanel();
+
+        if (cartes.size() > 5) {
+            for (int i = 0; i < 5; i++) {
+                ImageFrame imageFrame = cartes.get(i).getImage();
+                imageFrame.setMinimumSize(new Dimension(100, 100));
+                imageFrame.setPreferredSize(new Dimension(150, 150));
+                imageFrame.setMaximumSize(new Dimension(200, 200));
+                lignehaut.add(imageFrame);
+            }
+            JPanel lignebas = new JPanel();
+            for (int i = 5; i < cartes.size(); i++) {
+                ImageFrame imageFrame = cartes.get(i).getImage();
+                imageFrame.setMinimumSize(new Dimension(100, 100));
+                imageFrame.setPreferredSize(new Dimension(150, 150));
+                imageFrame.setMaximumSize(new Dimension(200, 200));
+                lignebas.add(imageFrame);
+            }
+            this.add(lignehaut, BorderLayout.CENTER);
+            this.add(lignebas, BorderLayout.SOUTH);
         }
         else {
-            grille = new JPanel(new GridLayout(2, 5));
+            for (int i = 0; i < cartes.size(); i++) {
+                ImageFrame imageFrame = cartes.get(i).getImage();
+                imageFrame.setMinimumSize(new Dimension(100, 100));
+                imageFrame.setPreferredSize(new Dimension(150, 150));
+                imageFrame.setMaximumSize(new Dimension(200, 200));
+                lignehaut.add(imageFrame);
+            }
+            this.add(lignehaut);
         }
 
-        for (int i = 0; i < cartes.size(); i++) {
-            grille.add(cartes.get(i).getImage());
-        }
-        this.add(grille);
+
+
+
+
 
     }
-
 }
