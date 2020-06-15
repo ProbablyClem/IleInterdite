@@ -14,13 +14,13 @@ public class VueDefausseInondation extends VueDeck {
     if (getIledeck().getDefausseInondation().size()<=4) {
         cardisplay.setLayout(new GridLayout(2,2));
         for(int i = 0;i<getIledeck().getDeckInondation().size();i++ ){
-            cardisplay.add(getIledeck().getDeckInondation().get(i).getImage());
+            cardisplay.add(getIledeck().getDefausseInondation().get(i).getImage());
         }
     }
     else if (getIledeck().getDefausseInondation().size()<=8){
         cardisplay.setLayout(new GridLayout(6,4));
         for(int i = 0;i<getIledeck().getDeckInondation().size();i++ ){
-            cardisplay.add(getIledeck().getDeckInondation().get(i).getImage());
+            cardisplay.add(getIledeck().getDefausseInondation().get(i).getImage());
         }
     }
     }
