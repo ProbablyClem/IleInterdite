@@ -20,6 +20,10 @@ public class ImageFrame extends JPanel {
         }
     }
 
+    public ImageFrame() {
+        this("src/images/empty.png");
+    }
+
     public ImageFrame(String path, Integer margin) {
         this(path);
         this.margin = margin;
