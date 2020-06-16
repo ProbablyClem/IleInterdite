@@ -18,13 +18,14 @@ public class VueFinPartie {
     private final JFrame fenetre;
 
     
-    private JLabel  textFin = new JLabel("<html><body><font color='blue'>A gagner ou pas shepa encore</body></html>");
-    
+    private JLabel  textFin;
+    private String message;
     private final JButton relancer = new JButton("Relancer");
     private final JButton quitter = new JButton("Quitter");
     
-    public VueFinPartie() {
-
+    public VueFinPartie(String message) {
+        this.message = message;
+        textFin = new JLabel("<html><body><font color='blue'>"+ message +"</body></html>");
         fenetre = new JFrame();
         fenetre.setLayout(new BorderLayout());
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

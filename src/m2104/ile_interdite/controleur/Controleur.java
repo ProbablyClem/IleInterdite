@@ -29,7 +29,7 @@ public class Controleur implements Observateur<Message> {
         this.ihm = new IHM(this);
 
         new VueNiveau(1);
-        new VueFinPartie(ihm);
+        new VueFinPartie("hello");
         new VueGrille(ihm, ileInterdite.getGrille());
 
 
