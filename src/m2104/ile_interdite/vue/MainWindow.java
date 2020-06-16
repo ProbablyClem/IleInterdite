@@ -16,14 +16,14 @@ public class MainWindow extends JFrame{
     private VueAventurier aventurierPanel;
     private Grille grille;
 
-    public MainWindow(IHM ihm, Grille grille, VueAventurier v){
+    public MainWindow(IHM ihm, Grille grille, VueAventurier v, int niveau){
 
         this.grille = grille;
         this.ihm = ihm;
 
         this.mainPanel = new JPanel(new BorderLayout());
         this.niveauPanel = new JPanel(new BorderLayout());
-        this.vueNiveau = new VueNiveau(2);
+        this.vueNiveau = new VueNiveau(niveau);
         this.niveauPanel.add(vueNiveau, BorderLayout.SOUTH);
         JButton exit = new Button("Quitter", 0, 35, Color.RED, new Color(255, 120, 120));
         exit.addActionListener(new ActionListener() {

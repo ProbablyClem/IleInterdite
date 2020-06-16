@@ -74,8 +74,8 @@ public class IHM extends Observable<Message> {
         mainWindow.setAventurier(vueAventuriers.get(a));
     }
 
-    public void afficherMainWindow(){
-        mainWindow = new MainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
+    public void afficherMainWindow(int niveau){
+        mainWindow = new MainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)), niveau);
     }
 
 }

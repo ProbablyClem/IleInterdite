@@ -31,7 +31,8 @@ public class Utils {
         DEPLACER("Déplacer un autre joueur"),
         VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage"),
         VOIR_DECK("Voir un deck"),
-        ACTION_SPECIALE("Action spéciale");
+        ACTION_SPECIALE("Action spéciale"),
+        CHOIX_NIVEAU("Choix du niveau de difficulté");
 
         private final String libelle ;
 

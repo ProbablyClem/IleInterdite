@@ -1,25 +1,20 @@
 package m2104.ile_interdite.vue;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import m2104.ile_interdite.util.Message;
 
-import java.awt.Font;
-
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Arrays;
-import javax.swing.*;
-
-import m2104.ile_interdite.util.Message;
 
 /**
  *
  * @author Yann Laurillau <yann.laurillau@iut2.univ-grenoble-alpes.fr>
  */
-public class VueInscriptionJoueurs {
+public class VueInscriptionJoueurs implements ActionListener {
     private final IHM ihm;
     private final JFrame fenetre;
 
@@ -142,40 +137,15 @@ public class VueInscriptionJoueurs {
             }
         });
         
-        retour.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        retour.addActionListener(this);
         
-        novice.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nivEaux.setNiveau(1);
-            }
-        });
+        novice.addActionListener(this);
         
-        intermediaire.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nivEaux.setNiveau(2);
-            }
-        });
+        intermediaire.addActionListener(this);
         
-        elite.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nivEaux.setNiveau(3);
-            }
-        });
+        elite.addActionListener(this);
         
-        legendaire.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nivEaux.setNiveau(4);
-            }
-        });
+        legendaire.addActionListener(this);
 
         fenetre.setVisible(true);
     }
@@ -183,6 +153,21 @@ public class VueInscriptionJoueurs {
     public String[] getNomJoueurs() {
         return Arrays.copyOf(this.nomJoueurs, this.nomJoueurs.length);
     }
-    
-    
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == novice){
+            ihm.notifierObservateurs(Message.niveau(2));
+        }
+        else if(e.getSource() == intermediaire){
+            ihm.notifierObservateurs(Message.niveau(3));
+        }
+        else if (e.getSource() == elite){
+            ihm.notifierObservateurs(Message.niveau(3));
+        }
+        else if (e.getSource() == legendaire){
+            ihm.notifierObservateurs(Message.niveau(4));
+        }
+    }
 }
