@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ExempleFrame extends TitleFrame{
+public class ExempleFrame extends TitleFrame {
 
     ExempleFrame() {
         super("Titre de la fenetre");

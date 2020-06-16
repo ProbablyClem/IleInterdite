@@ -19,7 +19,6 @@ import m2104.ile_interdite.util.Message;
  */
 public class VueInscriptionJoueurs extends TitleFrame implements ActionListener {
     private final IHM ihm;
-    private final JFrame fenetre;
 
     private JComboBox<Integer> choixNbJoueurs;
     private JLabel [] labelNomJoueurs = new JLabel[4];

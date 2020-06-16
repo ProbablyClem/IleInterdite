@@ -18,12 +18,11 @@ public class MainWindow extends TitleFrame{
 
     public MainWindow(IHM ihm, Grille grille, VueAventurier v, int niveau){
         super("L'île Interdite");
-        this.setSize(1750, 800);
 
         this.grille = grille;
         this.ihm = ihm;
+        main.setLayout(new BorderLayout());
 
-        this.mainPanel = new JPanel(new BorderLayout());
         this.niveauPanel = new JPanel(new BorderLayout());
         this.vueNiveau = new VueNiveau(niveau);
         this.niveauPanel.add(vueNiveau, BorderLayout.SOUTH);
@@ -39,13 +38,12 @@ public class MainWindow extends TitleFrame{
         this.grillePanel = new VueGrille(grille, ihm);
         this.aventurierPanel = v;
 
-        main.add(mainPanel);
-
-        mainPanel.add(niveauPanel, BorderLayout.WEST);
-        mainPanel.add(grillePanel, BorderLayout.CENTER);
-        mainPanel.add(aventurierPanel, BorderLayout.EAST);
+        main.add(niveauPanel, BorderLayout.WEST);
+        main.add(grillePanel, BorderLayout.CENTER);
+        main.add(aventurierPanel, BorderLayout.EAST);
 
         this.setVisible(true);
+        this.setSize(1580, 800);
         this.centrer();
     }
 
