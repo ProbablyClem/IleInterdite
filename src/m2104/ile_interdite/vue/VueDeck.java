@@ -80,7 +80,7 @@ public class VueDeck extends JPanel {
         JFrame w = new JFrame();
         w.add(this);
         w.setSize(500, 300);
-        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        w.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         w.setTitle("Vueflex");
         w.setVisible(true);
     }

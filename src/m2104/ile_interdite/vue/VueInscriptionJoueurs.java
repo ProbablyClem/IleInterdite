@@ -9,14 +9,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Arrays;
+import javax.swing.*;
+
+import m2104.ile_interdite.util.Message;
 
 /**
  *
  * @author Yann Laurillau <yann.laurillau@iut2.univ-grenoble-alpes.fr>
  */
-public class VueInscriptionJoueurs implements ActionListener {
+public class VueInscriptionJoueurs extends TitleFrame implements ActionListener {
     private final IHM ihm;
-    private final JFrame fenetre;
 
     private JComboBox<Integer> choixNbJoueurs;
     private JLabel [] labelNomJoueurs = new JLabel[4];
@@ -37,14 +39,12 @@ public class VueInscriptionJoueurs implements ActionListener {
     private String[] nomJoueurs;
 
     public VueInscriptionJoueurs(IHM ihm) {
+        super("L'île Interdite");
+        this.setSize(500, 300);
+
         this.ihm = ihm;
         
         nivEaux = new VueNiveau(1);
-        fenetre = new JFrame();
-        fenetre.setLayout(new BorderLayout());
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(500, 300);
-        fenetre.setLocationRelativeTo(null);
 
 
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -69,16 +69,10 @@ public class VueInscriptionJoueurs implements ActionListener {
             labelNomJoueurs[i].setEnabled(i < 2);
             saisieNomJoueurs[i].setEnabled(i < 2);
         }
-        
-
-        
-        textNomJ.setHorizontalAlignment(JLabel.CENTER);
-        textNomJ.setFont(new Font("Roboto",Font.BOLD,20));
 
 
         JPanel panelLvl = new JPanel(new GridLayout(1, 4));
 
-        panelTop.add(textNomJ, BorderLayout.NORTH);
         panelTop.add(niv, BorderLayout.CENTER);
         panelTop.add(panelLvl, BorderLayout.SOUTH);
 
@@ -101,11 +95,12 @@ public class VueInscriptionJoueurs implements ActionListener {
 
         inscrire = new Button("Jouer", 150, 35, Color.GREEN, new Color(120, 255, 120));
         panelBas.add(inscrire, BorderLayout.EAST);
-        
-        mainPanel.add(panelTop, BorderLayout.NORTH);
-        mainPanel.add(panelChoix, BorderLayout.CENTER);
-        mainPanel.add(panelBas, BorderLayout.SOUTH);
-        fenetre.add(mainPanel);
+
+        main.setLayout(new BorderLayout());
+
+        main.add(panelTop, BorderLayout.NORTH);
+        main.add(panelChoix, BorderLayout.CENTER);
+        main.add(panelBas, BorderLayout.SOUTH);
 
         // Choix du nombre de joueurs
         choixNbJoueurs.addItemListener(new ItemListener() {
@@ -122,6 +117,7 @@ public class VueInscriptionJoueurs implements ActionListener {
 
         // Inscription des joueurs
         inscrire.addActionListener(this);
+
         
         retour.addActionListener(this);
         
@@ -133,7 +129,12 @@ public class VueInscriptionJoueurs implements ActionListener {
         
         legendaire.addActionListener(this);
 
-        fenetre.setVisible(true);
+        this.centrer();
+        this.setVisible(true);
+    }
+
+    public VueInscriptionJoueurs getThis() {
+        return this;
     }
 
     public String[] getNomJoueurs() {
@@ -165,7 +166,7 @@ public class VueInscriptionJoueurs implements ActionListener {
             }
 
             ihm.notifierObservateurs(Message.validerJoueurs(nbJoueurs));
-            fenetre.dispose();
+            getThis().dispose();
         }
     }
 }
