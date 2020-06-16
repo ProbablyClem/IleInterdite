@@ -21,13 +21,12 @@ public class Controleur implements Observateur<Message> {
     private Aventurier aventurierActuel;
     private Utils.Etat etat;
     private Grille grille;
-    private int niveau;
+    private int niveau = 2;
+
     public Controleur() {
         this.grille = new Grille();
         this.ihm = new IHM(this, grille);
-
     }
-
 
     @Override
     public void traiterMessage(Message msg) {
@@ -48,6 +47,8 @@ public class Controleur implements Observateur<Message> {
                 break;
             case CHOIX_NIVEAU:
                 this.niveau = msg.getNiveau();
+                System.out.println(msg.getNiveau());
+                break;
             case VOIR_DECK:
                 switch (msg.getDeck()){
                     case DECK_TRESOR:
@@ -56,7 +57,7 @@ public class Controleur implements Observateur<Message> {
                     case DECK_INONDATION:
                         ArrayList<Carte> c = new ArrayList<>();
                         for(CarteInondation carteInondation : ileInterdite.getDeckInondation()){
-                            c.add((Carte)carteInondation);
+                            c.add((Carte) carteInondation);
                         }
                         ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, c);
                         break;
@@ -65,8 +66,8 @@ public class Controleur implements Observateur<Message> {
                         break;
                     case DEFFAUSSE_INONDATION:
                         ArrayList<Carte> cartes = new ArrayList<>();
-                        for(CarteInondation carteInondation : ileInterdite.getDeckInondation()){
-                            cartes.add((Carte)carteInondation);
+                        for(CarteInondation carteInondation : ileInterdite.getDefausseInondation()){
+                            cartes.add((Carte) carteInondation);
                         }
                         ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, cartes);
                         break;

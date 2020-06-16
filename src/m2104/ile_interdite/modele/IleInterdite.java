@@ -29,10 +29,7 @@ public class IleInterdite extends Observable<Message> {
         this.aventuriers = aventuriers;
 
         this.deckTresor = CarteSpeciale.getAllCartesSpeciale();
-
-        for (Carte c: CarteTresor.getAllCartes()) {
-            this.deckTresor.add(c);
-        }
+        this.deckTresor.addAll(CarteTresor.getAllCartes());
 
         this.defausseTresor = new ArrayList<>();
         this.deckInondation = CarteInondation.getAllCartesInondation(grille);

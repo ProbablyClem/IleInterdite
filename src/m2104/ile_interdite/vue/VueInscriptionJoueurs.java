@@ -46,8 +46,6 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
         
         nivEaux = new VueNiveau(1);
 
-
-        JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel panelChoix = new JPanel(new GridLayout(5,2));
 
         JPanel panelBas = new JPanel();
@@ -73,8 +71,8 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
         JPanel panelLvl = new JPanel(new GridLayout(1, 4));
 
-        panelTop.add(niv, BorderLayout.CENTER);
-        panelTop.add(panelLvl, BorderLayout.SOUTH);
+        panelTop.add(niv, BorderLayout.NORTH);
+        panelTop.add(panelLvl, BorderLayout.CENTER);
 
         niv.setFont(new Font("Roboto",Font.BOLD,15));
         
@@ -144,10 +142,11 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == novice){
+
+        if (e.getSource() == novice){
             ihm.notifierObservateurs(Message.niveau(2));
         }
-        else if(e.getSource() == intermediaire){
+        else if (e.getSource() == intermediaire){
             ihm.notifierObservateurs(Message.niveau(3));
         }
         else if (e.getSource() == elite){
@@ -167,6 +166,9 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
             ihm.notifierObservateurs(Message.validerJoueurs(nbJoueurs));
             getThis().dispose();
+        }
+        else if (e.getSource() == retour) {
+            System.exit(0);
         }
     }
 }

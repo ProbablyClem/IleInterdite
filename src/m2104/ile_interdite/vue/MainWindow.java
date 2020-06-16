@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainWindow extends TitleFrame{
+public class MainWindow extends TitleFrame {
     private IHM ihm;
     private JPanel mainPanel;
     private JPanel niveauPanel;
