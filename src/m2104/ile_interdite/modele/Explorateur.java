@@ -4,8 +4,8 @@ import m2104.ile_interdite.util.Utils;
 
 public class Explorateur extends Aventurier {
 
-    public Explorateur(int id) {
-        super(id, "Explorateur", Utils.Pion.VERT);
+    public Explorateur() {
+        super("Explorateur", Utils.Pion.VERT);
     }
 
     @Override

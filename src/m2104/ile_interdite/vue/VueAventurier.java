@@ -28,7 +28,6 @@ public class VueAventurier extends JPanel implements ActionListener {
     private JButton deffauseeTresor;
     private JButton deffauseInondation;
     private JButton cartesInondation;
-    private int nbActions;
 
     public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
         this.aventurier = aventurier;
@@ -42,7 +41,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         nomAventurier.setFont(new Font(nomAventurier.getFont().getFontName(), Font.PLAIN, 30));
         header.add(nomAventurier, BorderLayout.CENTER);
 
-        nbActionsLabel = new JLabel("Actions restantes : " + nbActions + " /3");
+        nbActionsLabel = new JLabel("Actions restantes : " + aventurier.getActions() + " /3");
         nbActionsLabel.setFont(new Font(nbActionsLabel.getFont().getFontName(), Font.PLAIN, 27));
         header.add(nbActionsLabel, BorderLayout.EAST);
 
@@ -120,7 +119,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
     //test
     public static void main(String[] args) {
-        Aventurier aventurier = new Messager(1);
+        Aventurier aventurier = new Messager();
         aventurier.setNom("Clement");
         aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
         aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
@@ -174,6 +173,10 @@ public class VueAventurier extends JPanel implements ActionListener {
         else if(e.getSource() == prendreTresor){
             ihm.notifierObservateurs(Message.recupererTresor(aventurier));
         }
+    }
+
+    public void updateActions(){
+       nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
     }
 
     private static class RoundedBorder implements Border {

@@ -55,6 +55,10 @@ public class mainWindow extends JFrame{
         return grillePanel;
     }
 
+    public VueAventurier getAventurierPanel() {
+        return aventurierPanel;
+    }
+
     public void activerGrille(){
         this.grillePanel.setEnabled(true);
     }

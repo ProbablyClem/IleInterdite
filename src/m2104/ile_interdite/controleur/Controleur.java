@@ -78,7 +78,9 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE:
                 if(etat == Utils.Etat.DEPLACER_JOUEUR){
                     aventurierActuel.setEmplacement(msg.getTuile());
+                    aventurierActuel.setActions(aventurierActuel.getActions()-1);
                     ihm.updateGrille();
+                    ihm.updateActions();
                 }
                 else if(etat == Utils.Etat.ASSECHER_CASE){
                     msg.getTuile().setEtat(Utils.EtatTuile.ASSECHEE);

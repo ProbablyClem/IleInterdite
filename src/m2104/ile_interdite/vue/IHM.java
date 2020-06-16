@@ -66,6 +66,11 @@ public class IHM extends Observable<Message> {
         mainWindow.getGrillePanel().updateUI();
     }
 
+    public void updateActions(){
+        mainWindow.getAventurierPanel().updateActions();
+
+    }
+
     public void setVueAventuriers(Aventurier a){
         mainWindow.setAventurier(vueAventuriers.get(a));
     }

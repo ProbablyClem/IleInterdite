@@ -4,8 +4,8 @@ import m2104.ile_interdite.util.Utils;
 
 public class Messager extends Aventurier {
 
-    public Messager(int id) {
-        super(id, "Messager", Utils.Pion.ORANGE);
+    public Messager() {
+        super("Messager", Utils.Pion.ORANGE);
     }
 
     @Override
