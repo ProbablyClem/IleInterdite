@@ -1,6 +1,7 @@
 package m2104.ile_interdite.controleur;
 
-import m2104.ile_interdite.modele.*;
+import m2104.ile_interdite.modele.Aventurier;
+import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.vue.IHM;
@@ -10,7 +11,6 @@ import m2104.ile_interdite.vue.VueNiveau;
 import patterns.observateur.Observateur;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  *
@@ -39,9 +39,9 @@ public class Controleur implements Observateur<Message> {
         switch (msg.getCommande()) {
             case VALIDER_JOUEURS:
                 assert msg.hasNbJoueurs();
-                String[] nomAventuriers =
-                        this.ileInterdite.inscrireJoueurs(msg.getNbJoueurs());
-                this.ihm.creerVuesAventuriers(nomAventuriers);
+                ArrayList<Aventurier> aventuriers =
+                        Aventurier.getRandomAventuriers(msg.getNbJoueurs());
+                this.ihm.creerVuesAventuriers(aventuriers);
                 break;
             default:
                 if (Parameters.LOGS) {

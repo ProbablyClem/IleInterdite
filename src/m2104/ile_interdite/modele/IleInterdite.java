@@ -13,7 +13,7 @@ import java.util.Collections;
  */
 public class IleInterdite extends Observable<Message> {
 
-    private Aventurier[] aventuriers;
+    private ArrayList<Aventurier> aventuriers;
     Grille grille;
     ArrayList<Carte> deckTresor;
     ArrayList<Carte> defausseTresor;
@@ -79,7 +79,7 @@ public class IleInterdite extends Observable<Message> {
 
     }
 
-    public Aventurier[] getAventuriers() {
+    public ArrayList<Aventurier> getAventuriers() {
         return aventuriers;
     }
 
@@ -107,7 +107,7 @@ public class IleInterdite extends Observable<Message> {
         String[] nomAventuriers = new String[nbJoueurs];
 
         for (int i = 0; i < nbJoueurs; i++) {
-            nomAventuriers[i] = aventuriers[i].getRole();
+            nomAventuriers[i] = aventuriers.get(i).getRole();
         }
         return nomAventuriers;
     }

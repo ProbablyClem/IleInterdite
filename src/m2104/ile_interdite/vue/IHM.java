@@ -1,10 +1,11 @@
 package m2104.ile_interdite.vue;
 
+import m2104.ile_interdite.modele.Aventurier;
 import m2104.ile_interdite.util.Message;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -14,7 +15,7 @@ import java.util.HashMap;
 public class IHM extends Observable<Message> {
 
     private final VueInscriptionJoueurs vueInscription;
-    private final HashMap<Integer, oldVueAventurier> vueAventuriers;
+    private final HashMap<Aventurier, VueAventurier> vueAventuriers;
 
     public IHM(Observateur<Message> observateur) {
         this.addObservateur(observateur);
@@ -22,24 +23,16 @@ public class IHM extends Observable<Message> {
         this.vueInscription = new VueInscriptionJoueurs(this);
     }
 
-    public void creerVuesAventuriers(String[] nomAventuriers) {
+    public void creerVuesAventuriers(ArrayList<Aventurier> aventuriers) {
         // - le pouvoir est disponible dans le modèle
-        String[] nomsJoueurs = this.vueInscription.getNomJoueurs();
-        assert nomsJoueurs.length == nomAventuriers.length;
-        for (int id = 0; id < nomAventuriers.length; ++id) {
+        for (int i = 0; i < this.vueInscription.getNomJoueurs().length; i++) {
+            aventuriers.get(i).setNom(this.vueInscription.getNomJoueurs()[i]);
+        }
+        //assert nomsJoueurs.length == nomAventuriers.length;
+        for (int id = 0; id < aventuriers.size(); ++id) {
             this.vueAventuriers.put(
-                    id,
-                    new oldVueAventurier(
-                            this,
-                            id,
-                            nomsJoueurs[id],
-                            nomAventuriers[id],
-                            "YYY",  // TODO: à remplacer par le bon pouvoir
-                            id,
-                            nomAventuriers.length,
-                            Color.orange,
-                            Color.orange
-                    )
+                    aventuriers.get(id),
+                    new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
             );
         }
     }

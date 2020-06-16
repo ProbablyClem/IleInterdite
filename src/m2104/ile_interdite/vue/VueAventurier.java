@@ -2,7 +2,6 @@ package m2104.ile_interdite.vue;
 
 import m2104.ile_interdite.modele.Aventurier;
 import m2104.ile_interdite.modele.CarteTresor;
-import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Messager;
 import m2104.ile_interdite.util.Utils;
 
@@ -13,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VueAventurier extends JPanel implements ActionListener {
-    private IleInterdite ileInterdite;
     private IHM ihm;
     private Aventurier aventurier;
     private JLabel nomAventurier;
@@ -31,8 +29,7 @@ public class VueAventurier extends JPanel implements ActionListener {
     private JButton cartesInondation;
     private int nbActions;
 
-    public VueAventurier(Aventurier aventurier, IleInterdite ileInterdite, IHM ihm){
-        this.ileInterdite = ileInterdite;
+    public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
         this.aventurier = aventurier;
         this.ihm = ihm;
 
@@ -69,7 +66,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         finirTour.addActionListener(this);
         actionsPanel.add(finirTour);
 
-        actionSpecial = new JButton("Action Special");
+        actionSpecial = new JButton(capaciteSpecial);
         actionSpecial.setBorder(new RoundedBorder(20));
         actionSpecial.addActionListener(this);
         actionsPanel.add(actionSpecial);
@@ -124,7 +121,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
         aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
         aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        VueAventurier v = new VueAventurier(aventurier, null, null);
+        VueAventurier v = new VueAventurier(null, aventurier, "flex");
         JFrame w = new JFrame();
         w.add(v);
         w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,20 +133,20 @@ public class VueAventurier extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cartesTresor){
-            VueDeck v = new VueDeck("Deck Cartes Tresor", ileInterdite.getDeckTresor());
-            v.afficher();
+//            VueDeck v = new VueDeck("Deck Cartes Tresor", ileInterdite.getDeckTresor());
+//            v.afficher();
         }
         else if (e.getSource() == deffauseeTresor){
-            VueDeck v = new VueDeck("Deffausse Cartes Tresor", ileInterdite.getDeckTresor());
-            v.afficher();
+//            VueDeck v = new VueDeck("Deffausse Cartes Tresor", ileInterdite.getDeckTresor());
+//            v.afficher();
         }
         else if (e.getSource() == deffauseInondation){
-            VueDeck v = new VueDeck("Deffause Cartes Inondation", ileInterdite.getDeckTresor());
-            v.afficher();
+//            VueDeck v = new VueDeck("Deffause Cartes Inondation", ileInterdite.getDeckTresor());
+//            v.afficher();
         }
         else if (e.getSource() == cartesInondation){
-            VueDeck v = new VueDeck("Deck Cartes Inondation", ileInterdite.getDeckTresor());
-            v.afficher();
+//            VueDeck v = new VueDeck("Deck Cartes Inondation", ileInterdite.getDeckTresor());
+//            v.afficher();
         }
         else if(e.getSource() == seDeplacer){
 
