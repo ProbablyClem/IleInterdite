@@ -111,6 +111,11 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.add(decks);
     }
 
+    public void setMessage(String message){
+        this.textField.setText(message);
+        this.repaint();
+    }
+
     //test
     public static void main(String[] args) {
         Aventurier aventurier = new Messager(1);

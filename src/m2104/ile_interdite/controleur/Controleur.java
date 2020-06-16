@@ -31,6 +31,8 @@ public class Controleur implements Observateur<Message> {
         new VueNiveau(1);
         new VueFinPartie(ihm);
         new VueGrille(ihm, ileInterdite.getGrille());
+
+
     }
 
     @Override

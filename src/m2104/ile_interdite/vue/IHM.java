@@ -59,4 +59,12 @@ public class IHM extends Observable<Message> {
         aventurierFrame.setVisible(true);
     }
 
+    public void setMessage(Aventurier a, String message){
+        vueAventuriers.get(a).setMessage(message);
+    }
+
+    public void finPartie(String message){
+        VueFinPartie v = new VueFinPartie();
+    }
+
 }
