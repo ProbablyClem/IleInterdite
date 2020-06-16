@@ -22,10 +22,15 @@ public class VueDeck extends JPanel {
 
         panelhaut= new JPanel(new BorderLayout());
 
-        retour= new Button("retour","src/images/icones/iconDone.png","src/images/icones/iconDone_disabled.png");
+        retour= new Button("RETOUR","src/images/button/red_button_active.png","src/images/button/red_button_hover.png");
+        retour.setFont(new Font("Roboto",Font.BOLD,20));
+
         retour.setBackground(Color.RED);
         panelhaut.add(retour, BorderLayout.WEST);
         labelNomDeck = new JLabel(nomDeck);
+        labelNomDeck.setFont(new Font("Roboto",Font.BOLD,30));
+        labelNomDeck.setVerticalAlignment(JLabel.CENTER);
+        labelNomDeck.setHorizontalAlignment(JLabel.CENTER);
         panelhaut.add(labelNomDeck, BorderLayout.CENTER);
 
         this.add(panelhaut,BorderLayout.NORTH);
@@ -49,7 +54,7 @@ public class VueDeck extends JPanel {
         CarteTresor cartee = new CarteTresor("src/images/ocean.jpg", "Carte", null);
         c.add(carte);
         c.add(cartee);
-        VueDeck vueDeck= new VueDeck("Deck", c);
+        VueDeck vueDeck= new VueDeck("DECK", c);
         JFrame w = new JFrame();
         w.add(vueDeck);
         w.setSize(500, 300);
