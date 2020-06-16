@@ -7,7 +7,6 @@ import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
-import m2104.ile_interdite.vue.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
