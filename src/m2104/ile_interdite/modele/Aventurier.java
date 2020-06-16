@@ -3,6 +3,7 @@ package m2104.ile_interdite.modele;
 import m2104.ile_interdite.util.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -88,20 +89,23 @@ public abstract class Aventurier {
 
 
         ArrayList<Aventurier> allAventuriers = new ArrayList<>();
-        allAventuriers.add(new Explorateur(0));
         allAventuriers.add(new Ingenieur(1));
         allAventuriers.add(new Messager(2));
         allAventuriers.add(new Navigateur(3));
-        allAventuriers.add(new Pilote(4));
+        allAventuriers.add(new Explorateur(4));
         allAventuriers.add(new Plongeur(5));
 
         Utils.melangerAventuriers(allAventuriers);
 
         ArrayList<Aventurier> aventuriers = new ArrayList<>();
 
-        for (int i = 0; i < nb; i++) {
+        aventuriers.add(new Pilote(0));
+
+        for (int i = 0; i < nb - 1; i++) {
             aventuriers.add(allAventuriers.remove(0));
         }
+
+        Collections.shuffle(aventuriers);
 
         return aventuriers;
     }

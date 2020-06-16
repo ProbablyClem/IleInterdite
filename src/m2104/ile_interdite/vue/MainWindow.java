@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainWindow extends JFrame{
+public class MainWindow extends TitleFrame{
     private IHM ihm;
     private JPanel mainPanel;
     private JPanel niveauPanel;
@@ -17,6 +17,8 @@ public class MainWindow extends JFrame{
     private Grille grille;
 
     public MainWindow(IHM ihm, Grille grille, VueAventurier v){
+        super("L'île Interdite");
+        this.setSize(1750, 800);
 
         this.grille = grille;
         this.ihm = ihm;
@@ -37,14 +39,14 @@ public class MainWindow extends JFrame{
         this.grillePanel = new VueGrille(grille, ihm);
         this.aventurierPanel = v;
 
+        main.add(mainPanel);
+
         mainPanel.add(niveauPanel, BorderLayout.WEST);
         mainPanel.add(grillePanel, BorderLayout.CENTER);
         mainPanel.add(aventurierPanel, BorderLayout.EAST);
 
-        this.setContentPane(mainPanel);
-        this.setSize(1750, 800);
-        this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.centrer();
     }
 
     public void setAventurier(VueAventurier v) {
