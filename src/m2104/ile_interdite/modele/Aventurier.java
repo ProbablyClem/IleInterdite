@@ -22,7 +22,7 @@ public abstract class Aventurier {
         this.id = id;
         this.role = role;
         this.pion = pion;
-        this.cartes = new ArrayList<>();;
+        this.cartes = new ArrayList<>();
         this.tresors = new ArrayList<>();
     }
 
@@ -78,7 +78,7 @@ public abstract class Aventurier {
         // TODO: function core
     }
 
-    public abstract void actionSpeciale();
+    public abstract String actionSpeciale();
 
     public ArrayList<Carte> getCartes() {
         return cartes;

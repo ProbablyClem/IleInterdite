@@ -10,7 +10,7 @@ public class Ingenieur extends Aventurier {
     }
 
     @Override
-    public void actionSpeciale() {
-        // TODO: function core
+    public String actionSpeciale() {
+        return "assecher";
     }
 }

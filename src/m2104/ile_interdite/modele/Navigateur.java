@@ -9,7 +9,7 @@ public class Navigateur extends Aventurier {
     }
 
     @Override
-    public void actionSpeciale() {
-        // TODO: function core
-    }
+    public String actionSpeciale() {
+    return "bouger un joueur";
+        }
 }

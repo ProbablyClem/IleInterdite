@@ -9,7 +9,7 @@ public class Pilote extends Aventurier {
     }
 
     @Override
-    public void actionSpeciale() {
-        // TODO: function core
+    public String actionSpeciale() {
+return  "s'envoler";//Le Pilote peut aller une fois par tour sur n’importe quelle tuile pour 1 action.
     }
 }

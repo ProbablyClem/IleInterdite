@@ -11,7 +11,7 @@ public class Plongeur extends Aventurier {
     }
 
     @Override
-    public void actionSpeciale() {
-        // TODO: function core
+    public String actionSpeciale() {
+        return "nager";//Le Navigateur peut déplacer d’autres joueurs d’1 ou 2 cases adjacentes par action
     }
 }
