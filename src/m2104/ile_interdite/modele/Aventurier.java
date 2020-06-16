@@ -11,7 +11,7 @@ import java.util.Collections;
  */
 public abstract class Aventurier {
     
-    int id;
+    private int actions = 3;
     private String role;
     private String nom;
     private Utils.Pion pion;
@@ -19,8 +19,7 @@ public abstract class Aventurier {
     private Tuile emplacement;
     private ArrayList<Utils.Tresor> tresors;
 
-    Aventurier (int id, String role, Utils.Pion pion) {
-        this.id = id;
+    Aventurier (String role, Utils.Pion pion) {
         this.role = role;
         this.pion = pion;
         this.cartes = new ArrayList<>();
@@ -41,6 +40,14 @@ public abstract class Aventurier {
 
     public Utils.Pion getPion() {
         return this.pion;
+    }
+
+    public void setActions(int actions) {
+        this.actions = actions;
+    }
+
+    public int getActions() {
+        return actions;
     }
 
     public Tuile getEmplacement() {
@@ -89,17 +96,17 @@ public abstract class Aventurier {
 
 
         ArrayList<Aventurier> allAventuriers = new ArrayList<>();
-        allAventuriers.add(new Ingenieur(1));
-        allAventuriers.add(new Messager(2));
-        allAventuriers.add(new Navigateur(3));
-        allAventuriers.add(new Explorateur(4));
-        allAventuriers.add(new Plongeur(5));
+        allAventuriers.add(new Explorateur());
+        allAventuriers.add(new Ingenieur());
+        allAventuriers.add(new Messager());
+        allAventuriers.add(new Navigateur());
+        allAventuriers.add(new Plongeur());
 
         Utils.melangerAventuriers(allAventuriers);
 
         ArrayList<Aventurier> aventuriers = new ArrayList<>();
 
-        aventuriers.add(new Pilote(0));
+        aventuriers.add(new Pilote());
 
         for (int i = 0; i < nb - 1; i++) {
             aventuriers.add(allAventuriers.remove(0));

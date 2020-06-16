@@ -19,6 +19,7 @@ public class IleInterdite extends Observable<Message> {
     ArrayList<Carte> defausseTresor;
     ArrayList<CarteInondation> deckInondation;
     ArrayList<CarteInondation> defausseInondation;
+    private int niveau = 2;
 
     public IleInterdite(Observateur<Message> observateur, ArrayList<Aventurier> aventuriers, Grille grille) {
         this.addObservateur(observateur);
@@ -110,5 +111,13 @@ public class IleInterdite extends Observable<Message> {
             nomAventuriers[i] = aventuriers.get(i).getRole();
         }
         return nomAventuriers;
+    }
+
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
+    }
+
+    public int getNiveau() {
+        return niveau;
     }
 }

@@ -42,10 +42,12 @@ public class Controleur implements Observateur<Message> {
 
                 this.ihm.creerVuesAventuriers(aventuriers);
                 this.ileInterdite = new IleInterdite(this, aventuriers, grille);
-                this.ihm.afficherMainWindow();
+                this.ihm.afficherMainWindow(ileInterdite.getNiveau());
                 aventurierActuel = aventuriers.get(0);
                 ihm.setMessage(aventurierActuel, "Choisir une action");
                 break;
+            case CHOIX_NIVEAU:
+                ileInterdite.setNiveau(msg.getNiveau());
             case VOIR_DECK:
                 switch (msg.getDeck()){
                     case DECK_TRESOR:
@@ -78,7 +80,9 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE:
                 if(etat == Utils.Etat.DEPLACER_JOUEUR){
                     aventurierActuel.setEmplacement(msg.getTuile());
+                    aventurierActuel.setActions(aventurierActuel.getActions()-1);
                     ihm.updateGrille();
+                    ihm.updateActions();
                 }
                 else if(etat == Utils.Etat.ASSECHER_CASE){
                     msg.getTuile().setEtat(Utils.EtatTuile.ASSECHEE);

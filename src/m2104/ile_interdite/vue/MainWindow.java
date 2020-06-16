@@ -16,7 +16,7 @@ public class MainWindow extends TitleFrame{
     private VueAventurier aventurierPanel;
     private Grille grille;
 
-    public MainWindow(IHM ihm, Grille grille, VueAventurier v){
+    public MainWindow(IHM ihm, Grille grille, VueAventurier v, int niveau){
         super("L'île Interdite");
         this.setSize(1750, 800);
 
@@ -25,7 +25,7 @@ public class MainWindow extends TitleFrame{
 
         this.mainPanel = new JPanel(new BorderLayout());
         this.niveauPanel = new JPanel(new BorderLayout());
-        this.vueNiveau = new VueNiveau(2);
+        this.vueNiveau = new VueNiveau(niveau);
         this.niveauPanel.add(vueNiveau, BorderLayout.SOUTH);
         JButton exit = new Button("Quitter", 0, 35, Color.RED, new Color(255, 120, 120));
         exit.addActionListener(new ActionListener() {
@@ -56,6 +56,10 @@ public class MainWindow extends TitleFrame{
 
     public VueGrille getGrillePanel() {
         return grillePanel;
+    }
+
+    public VueAventurier getAventurierPanel() {
+        return aventurierPanel;
     }
 
     public void activerGrille(){

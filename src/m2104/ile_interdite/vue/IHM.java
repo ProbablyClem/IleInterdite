@@ -7,7 +7,6 @@ import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
-import m2104.ile_interdite.vue.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,12 +65,17 @@ public class IHM extends Observable<Message> {
         mainWindow.getGrillePanel().updateUI();
     }
 
+    public void updateActions(){
+        mainWindow.getAventurierPanel().updateActions();
+
+    }
+
     public void setVueAventuriers(Aventurier a){
         mainWindow.setAventurier(vueAventuriers.get(a));
     }
 
-    public void afficherMainWindow(){
-        mainWindow = new MainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
+    public void afficherMainWindow(int niveau){
+        mainWindow = new MainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)), niveau);
     }
 
 }
