@@ -5,6 +5,8 @@ import m2104.ile_interdite.util.Message;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,11 +18,18 @@ public class IHM extends Observable<Message> {
 
     private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Aventurier, VueAventurier> vueAventuriers;
+    private final JFrame aventurierFrame;
 
     public IHM(Observateur<Message> observateur) {
         this.addObservateur(observateur);
         this.vueAventuriers = new HashMap<>();
         this.vueInscription = new VueInscriptionJoueurs(this);
+
+        this.aventurierFrame = new JFrame();
+
+        aventurierFrame.setVisible(true);
+        aventurierFrame.setSize(600, 800);
+        aventurierFrame.setLocation(1200, 150);
     }
 
     public void creerVuesAventuriers(ArrayList<Aventurier> aventuriers) {
@@ -34,6 +43,13 @@ public class IHM extends Observable<Message> {
                     aventuriers.get(id),
                     new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
             );
+            this.setAventurier(aventuriers.get(id));
         }
+    }
+
+    public void setAventurier(Aventurier A) {
+        aventurierFrame.setContentPane(this.vueAventuriers.get(A));
+        aventurierFrame.setVisible(false);
+        aventurierFrame.setVisible(true);
     }
 }
