@@ -8,33 +8,101 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
 public class Button extends JButton   {
-    private boolean rounded;
-    private boolean backgroundPainted;
-    private boolean linePainted;
-    private boolean entered;
-    private boolean pressed;
+
+    private int w;
+    private int h;
+    private RoundRectangle2D re;
+    private final BasicStroke st = new BasicStroke(2f);
+    private double wRatio = 13;
+    private double hRatio = 2;
+    private Color color1;
+    private Color color2;
+
+    private double arcw;
+    private double arch;
+
+    public Button(String name, int w, int h,Color color1,Color color2) {
+
+        super(name);
+        setContentAreaFilled(false);
+        setPreferredSize(new Dimension(w, h));
+        setFocusable(false);
+        this.color1 = color1;
+        this.color2 = color2;
+    }
+    public Button(String name,int w,int h){
+        super(name);
+        setContentAreaFilled(false);
+        setPreferredSize(new Dimension(w, h));
+        setFocusable(false);
+        this.color1 = Color.GRAY;
+        this.color2 = Color.white;
+    }
+    public void setColor1(Color color1) {
+
+    }
+
+    public void setColor2(Color color2) {
+        this.color2 = color2;
+    }
+
+    public Color getColor1() {
+        return color1;
+    }
+
+    public Color getColor2() {
+        return color2;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        this.w = getWidth();
+        this.h = getHeight();
+        this.arcw = getWidth() / wRatio;
+        this.arch = getHeight() / hRatio;
+        re = new RoundRectangle2D.Double(st.getLineWidth() / 2, st.getLineWidth() / 2, w - (st.getLineWidth() / 0.5), h - (st.getLineWidth() / 0.5), arcw, arch);
+        GradientPaint push = new GradientPaint((w / 2), (h / 2), getColor1(), (w / 2), h, getColor2(), false);
+        GradientPaint up = new GradientPaint((w / 2), (h / 2), getColor2(), (w / 2), h,getColor1(), false);
+
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        if (getModel().isArmed()) {
+            g2.setPaint(push);
+            g2.fill(re);
+        } else {
+            g2.setPaint(up);
+            g2.fill(re);
+        }
+
+        super.paintComponent(g2);
+
+    }
 
 
-    private Color enteredcolor;
-    private Color pressedColor;
-    private Color gradientBackgroundColor;
-    private Color gradientLineColor;
-    private Color lineColor;
+    @Override
+    public void paintBorder(Graphics g) {
 
-    public Button(String txt, String icon, String iconHover) {
-        super(txt);
-        setForeground(Color.WHITE);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.GRAY);
+        g2.setStroke(st);
+        g2.draw(re);
+        g2.dispose();
 
-        setOpaque(false);
-        setContentAreaFilled(false); // On met à false pour empêcher le composant de peindre l'intérieur du JButton.
-        setBorderPainted(false); // De même, on ne veut pas afficher les bordures.
-        setFocusPainted(false); // On n'affiche pas l'effet de focus.
+    }
+    public static void main(String[] args) {
 
-        setHorizontalAlignment(SwingConstants.CENTER);
-        setHorizontalTextPosition(SwingConstants.CENTER);
+        JFrame j = new JFrame();
+        JButton po = new Button("Button",450,40,Color.BLACK,Color.BLUE);
+        JButton pa = new Button("JButton",150,30);
+        j.setLayout(new FlowLayout(FlowLayout.CENTER));
+        j.getContentPane().add(pa);
+        j.getContentPane().add(po);
+        j.getRootPane().setDefaultButton(po);
+        j.setSize(400,400);
+        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        j.setVisible(true);
 
-        setIcon(new ImageIcon(icon));
-        setRolloverIcon(new ImageIcon(iconHover));
     }
 }
 

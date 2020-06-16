@@ -63,4 +63,8 @@ public class IHM extends Observable<Message> {
         mainWindow.getGrillePanel().repaint();
     }
 
+    public void setVueAventuriers(Aventurier a){
+        mainWindow.setAventurier(vueAventuriers.get(a));
+    }
+
 }
