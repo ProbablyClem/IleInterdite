@@ -121,21 +121,7 @@ public class VueInscriptionJoueurs implements ActionListener {
         });
 
         // Inscription des joueurs
-        inscrire.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Remplissage du tableau contenant le nom des joueurs
-                int nbJoueurs = (int) choixNbJoueurs.getSelectedItem();
-
-                nomJoueurs = new String[nbJoueurs];
-                for (int i = 0; i < nbJoueurs; ++i) {
-                    nomJoueurs[i] = saisieNomJoueurs[i].getText();
-                }
-
-                ihm.notifierObservateurs(Message.validerJoueurs(nbJoueurs));
-                fenetre.dispose();
-            }
-        });
+        inscrire.addActionListener(this);
         
         retour.addActionListener(this);
         
@@ -168,6 +154,18 @@ public class VueInscriptionJoueurs implements ActionListener {
         }
         else if (e.getSource() == legendaire){
             ihm.notifierObservateurs(Message.niveau(4));
+        }
+        else if (e.getSource() == inscrire){
+            // Remplissage du tableau contenant le nom des joueurs
+            int nbJoueurs = (int) choixNbJoueurs.getSelectedItem();
+
+            nomJoueurs = new String[nbJoueurs];
+            for (int i = 0; i < nbJoueurs; ++i) {
+                nomJoueurs[i] = saisieNomJoueurs[i].getText();
+            }
+
+            ihm.notifierObservateurs(Message.validerJoueurs(nbJoueurs));
+            fenetre.dispose();
         }
     }
 }

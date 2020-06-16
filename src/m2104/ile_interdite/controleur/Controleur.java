@@ -21,7 +21,7 @@ public class Controleur implements Observateur<Message> {
     private Aventurier aventurierActuel;
     private Utils.Etat etat;
     private Grille grille;
-
+    private int niveau;
     public Controleur() {
         this.grille = new Grille();
         this.ihm = new IHM(this, grille);
@@ -42,12 +42,12 @@ public class Controleur implements Observateur<Message> {
 
                 this.ihm.creerVuesAventuriers(aventuriers);
                 this.ileInterdite = new IleInterdite(this, aventuriers, grille);
-                this.ihm.afficherMainWindow(ileInterdite.getNiveau());
+                this.ihm.afficherMainWindow(niveau);
                 aventurierActuel = aventuriers.get(0);
                 ihm.setMessage(aventurierActuel, "Choisir une action");
                 break;
             case CHOIX_NIVEAU:
-                ileInterdite.setNiveau(msg.getNiveau());
+                this.niveau = msg.getNiveau();
             case VOIR_DECK:
                 switch (msg.getDeck()){
                     case DECK_TRESOR:

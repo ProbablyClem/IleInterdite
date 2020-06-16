@@ -14,11 +14,11 @@ import java.util.Collections;
 public class IleInterdite extends Observable<Message> {
 
     private ArrayList<Aventurier> aventuriers;
-    Grille grille;
-    ArrayList<Carte> deckTresor;
-    ArrayList<Carte> defausseTresor;
-    ArrayList<CarteInondation> deckInondation;
-    ArrayList<CarteInondation> defausseInondation;
+    private Grille grille;
+    private ArrayList<Carte> deckTresor;
+    private ArrayList<Carte> defausseTresor;
+    private ArrayList<CarteInondation> deckInondation;
+    private ArrayList<CarteInondation> defausseInondation;
     private int niveau = 2;
 
     public IleInterdite(Observateur<Message> observateur, ArrayList<Aventurier> aventuriers, Grille grille) {
@@ -113,11 +113,4 @@ public class IleInterdite extends Observable<Message> {
         return nomAventuriers;
     }
 
-    public void setNiveau(int niveau) {
-        this.niveau = niveau;
-    }
-
-    public int getNiveau() {
-        return niveau;
-    }
 }

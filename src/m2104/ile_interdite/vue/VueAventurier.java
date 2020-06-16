@@ -176,7 +176,7 @@ public class VueAventurier extends JPanel implements ActionListener {
     }
 
     public void updateActions(){
-       nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
+        nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
     }
 
     private static class RoundedBorder implements Border {
