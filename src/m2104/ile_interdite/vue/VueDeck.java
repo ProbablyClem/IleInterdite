@@ -3,8 +3,13 @@ package m2104.ile_interdite.vue;
 import m2104.ile_interdite.modele.Carte;
 import m2104.ile_interdite.modele.CarteTresor;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class VueDeck extends JPanel {
@@ -13,6 +18,9 @@ public class VueDeck extends JPanel {
     private JButton retour;
     private JPanel grid;
     private JPanel panelhaut;
+
+
+
     private ArrayList<Carte> cartes;
 
 
@@ -22,24 +30,30 @@ public class VueDeck extends JPanel {
 
         panelhaut= new JPanel(new BorderLayout());
 
-        retour= new Button("RETOUR","src/images/button/red_button_active.png","src/images/button/red_button_hover.png");
+        retour= new Button("RETOUR",200,50);
         retour.setFont(new Font("Roboto",Font.BOLD,20));
 
         retour.setBackground(Color.RED);
         panelhaut.add(retour, BorderLayout.WEST);
         labelNomDeck = new JLabel(nomDeck);
+
         labelNomDeck.setFont(new Font("Roboto",Font.BOLD,30));
+
         labelNomDeck.setVerticalAlignment(JLabel.CENTER);
         labelNomDeck.setHorizontalAlignment(JLabel.CENTER);
         panelhaut.add(labelNomDeck, BorderLayout.CENTER);
+        panelhaut.setBackground(Color.lightGray);
 
         this.add(panelhaut,BorderLayout.NORTH);
 
+
         if (cartes.size() <= 14){
             grid = new JPanel(new GridLayout(1, 14));
+
         }
         else {
             grid = new JPanel(new GridLayout(2, 14));
+
         }
 
         for(Carte c : cartes){
@@ -47,7 +61,6 @@ public class VueDeck extends JPanel {
         }
         this.add(grid, BorderLayout.CENTER);
     }
-
     public static void main(String[] args) {
         ArrayList<Carte> c = new ArrayList<>();
         CarteTresor carte = new CarteTresor("src/images/ocean.jpg", "Carte", null);
