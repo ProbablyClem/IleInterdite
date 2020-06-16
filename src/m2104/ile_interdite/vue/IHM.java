@@ -7,6 +7,8 @@ import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,11 +20,18 @@ public class IHM extends Observable<Message> {
 
     private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Aventurier, VueAventurier> vueAventuriers;
+    private final JFrame aventurierFrame;
 
     public IHM(Observateur<Message> observateur) {
         this.addObservateur(observateur);
         this.vueAventuriers = new HashMap<>();
         this.vueInscription = new VueInscriptionJoueurs(this);
+
+        this.aventurierFrame = new JFrame();
+
+        aventurierFrame.setVisible(true);
+        aventurierFrame.setSize(600, 800);
+        aventurierFrame.setLocation(1200, 150);
     }
 
     public void creerVuesAventuriers(ArrayList<Aventurier> aventuriers) {
@@ -36,11 +45,19 @@ public class IHM extends Observable<Message> {
                     aventuriers.get(id),
                     new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
             );
+            this.setAventurier(aventuriers.get(id));
         }
     }
 
+<<<<<<< HEAD
     public void AfficherDeck(Utils.Deck deck, ArrayList<Carte> cartes){
         VueDeck vueDeck = new VueDeck(deck.libelle, cartes);
         vueDeck.afficher();
+=======
+    public void setAventurier(Aventurier A) {
+        aventurierFrame.setContentPane(this.vueAventuriers.get(A));
+        aventurierFrame.setVisible(false);
+        aventurierFrame.setVisible(true);
+>>>>>>> 7f1fb709ddc1d2c1fdc0efe45f2d334573d1e5a1
     }
 }
