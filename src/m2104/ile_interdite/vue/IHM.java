@@ -63,8 +63,6 @@ public class IHM extends Observable<Message> {
         window.setSize(1750, 800);
         window.setVisible(true);
         window.setLocation(400, 150);
-        window.setVisible(false);
-        window.setVisible(true);
     }
 
     public void creerVuesAventuriers(ArrayList<Aventurier> aventuriers) {

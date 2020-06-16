@@ -10,6 +10,7 @@ import java.io.IOException;
 public class ImageFrame extends JPanel {
 
     private BufferedImage image;
+    private Integer margin = 0;
 
     public ImageFrame(String path) {
         try {
@@ -19,15 +20,20 @@ public class ImageFrame extends JPanel {
         }
     }
 
+    public ImageFrame(String path, Integer margin) {
+        this(path);
+        this.margin = margin;
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         if (image.getHeight() > image.getWidth() || this.getWidth() > this.getHeight()) {
-            g.drawImage(image, Math.abs(this.getWidth() - image.getWidth() * this.getHeight() / image.getHeight()) / 2 , 0, image.getWidth() * this.getHeight() / image.getHeight(), this.getHeight(), null);
+            g.drawImage(image, Math.abs(this.getWidth() - image.getWidth() * this.getHeight() / image.getHeight()) / 2 + margin , margin, image.getWidth() * (this.getHeight()-margin*2) / image.getHeight(), this.getHeight() - margin*2, null);
         } else if (image.getHeight() < image.getWidth() || this.getWidth() < this.getHeight()) {
-            g.drawImage(image, 0, Math.abs(this.getHeight() - image.getHeight() * this.getWidth() / image.getWidth()) / 2, this.getWidth(), image.getHeight() * this.getWidth() / image.getWidth(), null);
+            g.drawImage(image, margin, Math.abs(this.getHeight() - image.getHeight() * this.getWidth() / image.getWidth()) / 2  + margin, (this.getWidth() - margin*2), image.getHeight() * (this.getWidth() - margin*2) / image.getWidth(), null);
         } else {
-            g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+            g.drawImage(image, margin, margin, (this.getWidth() - margin*2), (this.getHeight() - margin*2), null);
         }
     }
 }

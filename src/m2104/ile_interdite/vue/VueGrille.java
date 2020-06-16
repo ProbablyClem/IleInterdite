@@ -36,12 +36,12 @@ public class VueGrille extends JPanel {
 
                         @Override
                         public void mousePressed(MouseEvent e) {
-
+                            panel.setBackground(Color.RED);
                         }
 
                         @Override
                         public void mouseReleased(MouseEvent e) {
-
+                            panel.setBackground(Color.WHITE);
                         }
 
                         @Override
@@ -62,10 +62,10 @@ public class VueGrille extends JPanel {
             }
         }
 
-        components.get(0).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CRISTAL.getPathPicture()), BorderLayout.CENTER);
-        components.get(5).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CALICE.getPathPicture()), BorderLayout.CENTER);
-        components.get(30).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture()), BorderLayout.CENTER);
-        components.get(35).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture()), BorderLayout.CENTER);
+        components.get(0).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CRISTAL.getPathPicture(), 20), BorderLayout.CENTER);
+        components.get(5).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CALICE.getPathPicture(), 20), BorderLayout.CENTER);
+        components.get(30).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture(), 20), BorderLayout.CENTER);
+        components.get(35).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture(), 20), BorderLayout.CENTER);
 
     }
 
