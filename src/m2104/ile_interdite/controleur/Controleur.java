@@ -45,7 +45,6 @@ public class Controleur implements Observateur<Message> {
                 this.ihm.afficherMainWindow();
                 aventurierActuel = aventuriers.get(0);
                 ihm.setMessage(aventurierActuel, "Choisir une action");
-                //TODO desactiver grille
                 break;
             case VOIR_DECK:
                 switch (msg.getDeck()){
@@ -79,7 +78,6 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE:
                 if(etat == Utils.Etat.DEPLACER_JOUEUR){
                     aventurierActuel.setEmplacement(msg.getTuile());
-                    msg.getTuile().ajouterAventurier(aventurierActuel);
                     ihm.updateGrille();
                 }
                 else if(etat == Utils.Etat.ASSECHER_CASE){
