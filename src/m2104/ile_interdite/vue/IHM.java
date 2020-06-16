@@ -59,4 +59,8 @@ public class IHM extends Observable<Message> {
         VueFinPartie v = new VueFinPartie(message);
     }
 
+    public void updateGrille(){
+        mainWindow.getGrillePanel().repaint();
+    }
+
 }

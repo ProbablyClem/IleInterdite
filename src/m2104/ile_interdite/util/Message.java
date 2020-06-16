@@ -1,5 +1,9 @@
 package m2104.ile_interdite.util;
 
+import m2104.ile_interdite.modele.Aventurier;
+import m2104.ile_interdite.modele.Carte;
+import m2104.ile_interdite.modele.Tuile;
+
 import java.io.Serializable;
 
 /**
@@ -10,19 +14,19 @@ public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private final Utils.Commandes commande;
-    private final Integer idAventurier;
-    private final Integer idCarte;
+    private final Aventurier aventurier;
+    private final Carte carte;
     private final Utils.Tresor tresor;
-    private final Integer idTuile;
+    private final Tuile tuile;
     private final Integer nbJoueurs;
     private final Utils.Deck deck;
 
-    private Message(Utils.Commandes commande, Integer idAventurier, Integer idCarte, Utils.Tresor tresor, Integer idTuile, Integer nbJoueurs, Utils.Deck deck) {
+    private Message(Utils.Commandes commande, Aventurier aventurier, Carte carte, Utils.Tresor tresor, Tuile tuile, Integer nbJoueurs, Utils.Deck deck) {
         this.commande = commande;
-        this.idAventurier = idAventurier;
-        this.idCarte = idCarte;
+        this.aventurier = aventurier;
+        this.carte = carte;
         this.tresor = tresor;
-        this.idTuile = idTuile;
+        this.tuile = tuile;
         this.nbJoueurs = nbJoueurs;
         this.deck = deck;
     }
@@ -40,56 +44,56 @@ public class Message implements Serializable {
 
     /**
      *
-     * @param idAventurier
+     * @param aventurier
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#BOUGER}
      */
-    public static Message bouger(int idAventurier) {
-        return new Message(Utils.Commandes.BOUGER, idAventurier, null, null, null, null, null);
+    public static Message bouger(Aventurier aventurier) {
+        return new Message(Utils.Commandes.BOUGER, aventurier, null, null, null, null, null);
     }
 
     /**
      *
-     * @param idAventurier
+     * @param aventurier
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#ASSECHER}
      */
-    public static Message assecher(int idAventurier) {
-        return new Message(Utils.Commandes.ASSECHER, idAventurier, null, null, null, null, null);
+    public static Message assecher(Aventurier aventurier) {
+        return new Message(Utils.Commandes.ASSECHER, aventurier, null, null, null, null, null);
     }
 
     /**
      *
-     * @param idAventurier
+     * @param aventurier
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#DONNER}
      */
-    public static Message donner(int idAventurier) {
-        return new Message(Utils.Commandes.DONNER, idAventurier, null, null, null, null, null);
+    public static Message donner(Aventurier aventurier) {
+        return new Message(Utils.Commandes.DONNER, aventurier, null, null, null, null, null);
     }
 
     /**
      *
-     * @param idAventurier
+     * @param aventurier
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#RECUPERER_TRESOR}
      */
-    public static Message recupererTresor(int idAventurier) {
-        return new Message(Utils.Commandes.RECUPERER_TRESOR, idAventurier, null, null, null, null, null);
+    public static Message recupererTresor(Aventurier aventurier) {
+        return new Message(Utils.Commandes.RECUPERER_TRESOR, aventurier, null, null, null, null, null);
     }
 
     /**
      *
-     * @param idAventurier
+     * @param aventurier
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#TERMINER}
      */
-    public static Message terminer(int idAventurier) {
-        return new Message(Utils.Commandes.TERMINER, idAventurier, null, null, null, null, null);
+    public static Message terminer(Aventurier aventurier) {
+        return new Message(Utils.Commandes.TERMINER, aventurier, null, null, null, null, null);
     }
 
     /**
      *
-     * @param idAventurier
+     * @param aventurier
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#RECEVOIR}
      */
-    public static Message recevoir(int idAventurier) {
-        return new Message(Utils.Commandes.RECEVOIR, idAventurier, null, null, null, null, null);
+    public static Message recevoir(Aventurier aventurier) {
+        return new Message(Utils.Commandes.RECEVOIR, aventurier, null, null, null, null, null);
     }
 
     /**
@@ -104,17 +108,17 @@ public class Message implements Serializable {
      *
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#CHOISIR_TUILE}
      */
-    public static Message choisirTuile() {
-        return new Message(Utils.Commandes.CHOISIR_TUILE, null, null, null, null, null, null);
+    public static Message choisirTuile(Tuile t) {
+        return new Message(Utils.Commandes.CHOISIR_TUILE, null, null, null, t, null, null);
     }
 
     /**
      *
-     * @param idAventurier
+     * @param aventurier
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#DEPLACER}
      */
-    public static Message deplacer(int idAventurier) {
-        return new Message(Utils.Commandes.DEPLACER, idAventurier, null, null, null, null, null);
+    public static Message deplacer(Aventurier aventurier) {
+        return new Message(Utils.Commandes.DEPLACER, aventurier, null, null, null, null, null);
     }
 
     /**
@@ -127,6 +131,10 @@ public class Message implements Serializable {
 
     public static Message voirDeck(Utils.Deck deck) {
         return new Message(Utils.Commandes.VOIR_DECK, null, null, null, null, null, deck);
+    }
+
+    public static Message actionSpecial() {
+        return new Message(Utils.Commandes.ACTION_SPECIALE, null, null, null, null, null, null);
     }
 
     /**
@@ -142,21 +150,21 @@ public class Message implements Serializable {
     /**
      * @return the idAventurier`
      */
-    public Boolean hasIdAventurier() {
-        return idAventurier != null;
+    public Boolean hasAventurier() {
+        return aventurier != null;
     }
-    public Integer getIdAventurier() {
-        return idAventurier;
+    public Aventurier getAventurier() {
+        return aventurier;
     }
 
     /**
      * @return the idCarte
      */
-    public Boolean hasIdCarte() {
-        return idCarte != null;
+    public Boolean hasCarte() {
+        return carte != null;
     }
-    public Integer getIdCarte() {
-        return idCarte;
+    public Carte getCarte() {
+        return carte;
     }
 
     /**
@@ -183,25 +191,25 @@ public class Message implements Serializable {
     /**
      * @return the idTuile
      */
-    public Boolean hasIdTuile() {
-        return idTuile != null;
+    public Boolean hasTuile() {
+        return tuile != null;
     }
-    public Integer getIdTuile() {
-        return idTuile;
+    public Tuile getTuile() {
+        return tuile;
     }
 
     @Override
     public String toString() {
         String txt = "";
         txt += commande.toString() + " ";
-        if (hasIdAventurier()) {
-            txt += " aventurier=" + idAventurier;
+        if (hasAventurier()) {
+            txt += " aventurier=" + aventurier.getNom();
         }
-        if (hasIdCarte()) {
-            txt += " carte=" + idCarte;
+        if (hasCarte()) {
+            txt += " carte=" + carte;
         }
-        if (hasIdTuile()) {
-            txt += " tuile=" + idTuile;
+        if (hasTuile()) {
+            txt += " tuile=" + tuile;
         }
         if (hasTresor()) {
             txt += " tresor=" + tresor.toString();

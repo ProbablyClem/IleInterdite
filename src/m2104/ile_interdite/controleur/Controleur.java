@@ -20,11 +20,15 @@ public class Controleur implements Observateur<Message> {
 
     private final IleInterdite ileInterdite;
     private final IHM ihm;
+    private ArrayList<Aventurier> aventuriers;
+    private Aventurier aventurierActuel;
+    private Utils.Etat etat;
 
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
         this.ihm = new IHM(this, ileInterdite.getGrille());
     }
+
 
     @Override
     public void traiterMessage(Message msg) {
@@ -35,9 +39,11 @@ public class Controleur implements Observateur<Message> {
         switch (msg.getCommande()) {
             case VALIDER_JOUEURS:
                 assert msg.hasNbJoueurs();
-                ArrayList<Aventurier> aventuriers =
-                        Aventurier.getRandomAventuriers(msg.getNbJoueurs());
+                aventuriers = Aventurier.getRandomAventuriers(msg.getNbJoueurs());
                 this.ihm.creerVuesAventuriers(aventuriers);
+                aventurierActuel = aventuriers.get(0);
+                ihm.setMessage(aventurierActuel, "Choisir une action");
+                //TODO desactiver grille
                 break;
             case VOIR_DECK:
                 switch (msg.getDeck()){
@@ -62,6 +68,27 @@ public class Controleur implements Observateur<Message> {
                         ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, cartes);
                         break;
                 }
+                    break;
+            case DEPLACER:
+                ihm.setMessage(aventurierActuel, "Choisir une tuile ou aller");
+                //todo activer grille
+                etat = Utils.Etat.DEPLACER_JOUEUR;
+                break;
+            case CHOISIR_TUILE:
+                if(etat == Utils.Etat.DEPLACER_JOUEUR){
+                    aventurierActuel.setEmplacement(msg.getTuile());
+                    msg.getTuile().ajouterAventurier(aventurierActuel);
+                    ihm.updateGrille();
+                }
+                else if(etat == Utils.Etat.ASSECHER_CASE){
+                    msg.getTuile().setEtat(Utils.EtatTuile.ASSECHEE);
+                }
+                break;
+            case ASSECHER:
+                ihm.setMessage(aventurierActuel,"Choisir une case a assecher");
+                //todo activer grille
+                etat = Utils.Etat.ASSECHER_CASE;
+
 
             default:
                 if (Parameters.LOGS) {

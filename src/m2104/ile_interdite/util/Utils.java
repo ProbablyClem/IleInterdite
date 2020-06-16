@@ -14,6 +14,10 @@ import java.util.Collections;
  */
 public class Utils {
 
+    public static enum Etat{
+        DEPLACER_JOUEUR,
+        ASSECHER_CASE,
+    }
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
         BOUGER("Déplacer son pion"),
@@ -26,7 +30,8 @@ public class Utils {
         CHOISIR_TUILE("Sélectionner une tuile"),
         DEPLACER("Déplacer un autre joueur"),
         VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage"),
-        VOIR_DECK("Voir un deck");
+        VOIR_DECK("Voir un deck"),
+        ACTION_SPECIALE("Action spéciale");
 
         private final String libelle ;
 
