@@ -88,6 +88,16 @@ public class Controleur implements Observateur<Message> {
                 ihm.setMessage(aventurierActuel,"Choisir une case a assecher");
                 //todo activer grille
                 etat = Utils.Etat.ASSECHER_CASE;
+                break;
+            case TERMINER:
+                aventurierActuel = aventuriers.get(aventuriers.indexOf(aventurierActuel) + 1 % aventuriers.size());
+                ihm.setVueAventuriers(aventurierActuel);
+                break;
+            case ACTION_SPECIALE:
+                msg.getAventurier().actionSpeciale();
+                break;
+            case DONNER:
+                break;
 
 
             default:
