@@ -11,12 +11,10 @@ import java.util.ArrayList;
 
 public class VueGrille extends JPanel {
 
-    private final IHM ihm;
     private final Grille grille;
     private ArrayList<JComponent> components;
 
-    public VueGrille(IHM ihm, Grille grille) {
-        this.ihm = ihm;
+    public VueGrille(Grille grille) {
         this.grille = grille;
         components = new ArrayList<>();
 

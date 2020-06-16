@@ -1,18 +1,13 @@
 package m2104.ile_interdite.vue;
 
 import m2104.ile_interdite.modele.Aventurier;
-import m2104.ile_interdite.modele.Grille;
-import m2104.ile_interdite.modele.Pilote;
 import m2104.ile_interdite.modele.Carte;
+import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,45 +19,14 @@ public class IHM extends Observable<Message> {
 
     private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Aventurier, VueAventurier> vueAventuriers;
-
-    private final JFrame window;
-    private final JPanel mainPanel;
-    private final JPanel niveauPanel;
-    private final VueNiveau vueNiveau;
-    private final VueGrille grillePanel;
-    private VueAventurier aventurierPanel;
+    private Grille grille;
+    private mainWindow mainWindow;
 
     public IHM(Observateur<Message> observateur, Grille grille) {
-        window = new JFrame();
-
+        this.grille = grille;
         this.addObservateur(observateur);
         this.vueAventuriers = new HashMap<>();
         this.vueInscription = new VueInscriptionJoueurs(this);
-
-        this.mainPanel = new JPanel(new BorderLayout());
-        this.niveauPanel = new JPanel(new BorderLayout());
-        this.vueNiveau = new VueNiveau(2);
-        this.niveauPanel.add(vueNiveau, BorderLayout.SOUTH);
-        JButton exit = new JButton("Quitter");
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        this.niveauPanel.add(exit, BorderLayout.NORTH);
-
-        this.grillePanel = new VueGrille(this, grille);
-        this.aventurierPanel = new VueAventurier(this, new Pilote(6), "YYY");
-
-        mainPanel.add(niveauPanel, BorderLayout.WEST);
-        mainPanel.add(grillePanel, BorderLayout.CENTER);
-        mainPanel.add(aventurierPanel, BorderLayout.EAST);
-
-        window.setContentPane(mainPanel);
-        window.setSize(1750, 800);
-        window.setVisible(true);
-        window.setLocation(400, 150);
     }
 
     public void creerVuesAventuriers(ArrayList<Aventurier> aventuriers) {
@@ -76,18 +40,16 @@ public class IHM extends Observable<Message> {
                     aventuriers.get(id),
                     new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
             );
-            this.setAventurier(aventuriers.get(id));
         }
+        mainWindow = new mainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
     }
+
 
     public void AfficherDeck(Utils.Deck deck, ArrayList<Carte> cartes) {
         VueDeck vueDeck = new VueDeck(deck.libelle, cartes);
         vueDeck.afficher();
     }
 
-    public void setAventurier(Aventurier A) {
-        aventurierPanel = this.vueAventuriers.get(A);
-    }
 
     public void setMessage(Aventurier a, String message){
         vueAventuriers.get(a).setMessage(message);

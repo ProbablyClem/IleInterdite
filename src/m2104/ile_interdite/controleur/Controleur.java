@@ -8,9 +8,6 @@ import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.vue.IHM;
-import m2104.ile_interdite.vue.VueFinPartie;
-import m2104.ile_interdite.vue.VueGrille;
-import m2104.ile_interdite.vue.VueNiveau;
 import patterns.observateur.Observateur;
 
 import java.util.ArrayList;
@@ -27,8 +24,6 @@ public class Controleur implements Observateur<Message> {
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
         this.ihm = new IHM(this, ileInterdite.getGrille());
-
-        new VueFinPartie("cc");
     }
 
     @Override
