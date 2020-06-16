@@ -64,9 +64,9 @@ public class Controleur implements Observateur<Message> {
                     case DEFFAUSSE_INONDATION:
                         ArrayList<Carte> cartes = new ArrayList<>();
                         for(CarteInondation carteInondation : ileInterdite.getDeckInondation()){
-                            c.add((Carte)carteInondation);
+                            cartes.add((Carte)carteInondation);
                         }
-                        ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, c);
+                        ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, cartes);
                         break;
                 }
 
