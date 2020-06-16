@@ -16,8 +16,9 @@ public class VueGrille extends JPanel {
     private ArrayList<JPanel> components;
     private IHM ihm;
 
-    public VueGrille(Grille grille) {
+    public VueGrille(Grille grille, IHM ihm) {
         this.grille = grille;
+        this.ihm = ihm;
         components = new ArrayList<>();
 
         this.setLayout(new GridLayout(6, 6));
