@@ -4,6 +4,7 @@ import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.vue.ImageFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Tuile {
@@ -67,13 +68,23 @@ public class Tuile {
     }
 
     public ImageFrame getImage() {
+        ImageFrame IF;
         if (etat.equals(Utils.EtatTuile.ASSECHEE)) {
-            return new ImageFrame("src/images/tuiles/" + image + ".png", 3);
+            IF = new ImageFrame("src/images/tuiles/" + image + ".png", 3);
         } else if (etat.equals(Utils.EtatTuile.INONDEE)) {
-            return new ImageFrame("src/images/tuiles/" + image + "_Inonde.png", 3);
+            IF = new ImageFrame("src/images/tuiles/" + image + "_Inonde.png", 3);
         } else {
-            return new ImageFrame("");
+            IF = new ImageFrame("");
         }
+
+        IF.setLayout(new GridLayout(3, 4));
+
+        for (Aventurier A: aventuriers) {
+            ImageFrame pionIF = new ImageFrame("src/images/pions/" + A.getPion().getPath());
+            pionIF.setBackground(new Color(0, 0, 0, 0));
+            IF.add(pionIF);
+        }
+        return IF;
     }
 
     public static ArrayList<Tuile> getAllTuiles() {

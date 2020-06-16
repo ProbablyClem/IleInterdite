@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class VueGrille extends JPanel {
 
     private final Grille grille;
-    private ArrayList<JComponent> components;
+    private ArrayList<JPanel> components;
     private IHM ihm;
 
     public VueGrille(Grille grille, IHM ihm) {
-        this.ihm = ihm;
         this.grille = grille;
+        this.ihm = ihm;
         components = new ArrayList<>();
 
         this.setLayout(new GridLayout(6, 6));
@@ -32,18 +32,24 @@ public class VueGrille extends JPanel {
                     panel.addMouseListener(new MouseListener() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            System.out.println("Click sur " + t.getNom());
-                            ihm.notifierObservateurs(Message.choisirTuile(t));
+                            if (panel.isEnabled()) {
+                                System.out.println("Click sur " + t.getNom());
+                                ihm.notifierObservateurs(Message.choisirTuile(t));
+                            }
                         }
 
                         @Override
                         public void mousePressed(MouseEvent e) {
-                            panel.setBackground(Color.RED);
+                            if (panel.isEnabled()) {
+                                panel.setBackground(Color.BLACK);
+                            }
                         }
 
                         @Override
                         public void mouseReleased(MouseEvent e) {
-                            panel.setBackground(Color.WHITE);
+                            if (panel.isEnabled()) {
+                                panel.setBackground(components.get(0).getBackground());
+                            }
                         }
 
                         @Override
@@ -69,6 +75,14 @@ public class VueGrille extends JPanel {
         components.get(30).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture(), 20), BorderLayout.CENTER);
         components.get(35).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture(), 20), BorderLayout.CENTER);
 
+        etatGrille(true);
+
+    }
+
+    public void etatGrille(boolean etat) {
+        for (JPanel P: components) {
+            P.setEnabled(etat);
+        }
     }
 
 }
