@@ -15,15 +15,19 @@ public class Message implements Serializable {
     private final Utils.Tresor tresor;
     private final Integer idTuile;
     private final Integer nbJoueurs;
+    private final Utils.Deck deck;
 
-    private Message(Utils.Commandes commande, Integer idAventurier, Integer idCarte, Utils.Tresor tresor, Integer idTuile, Integer nbJoueurs) {
+    private Message(Utils.Commandes commande, Integer idAventurier, Integer idCarte, Utils.Tresor tresor, Integer idTuile, Integer nbJoueurs, Utils.Deck deck) {
         this.commande = commande;
         this.idAventurier = idAventurier;
         this.idCarte = idCarte;
         this.tresor = tresor;
         this.idTuile = idTuile;
         this.nbJoueurs = nbJoueurs;
+        this.deck = deck;
     }
+
+
 
     /**
      *
@@ -31,7 +35,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#VALIDER_JOUEURS}
      */
     public static Message validerJoueurs(int nbJoueurs) {
-        return new Message(Utils.Commandes.VALIDER_JOUEURS, null, null, null, null, nbJoueurs);
+        return new Message(Utils.Commandes.VALIDER_JOUEURS, null, null, null, null, nbJoueurs, null);
     }
 
     /**
@@ -40,7 +44,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#BOUGER}
      */
     public static Message bouger(int idAventurier) {
-        return new Message(Utils.Commandes.BOUGER, idAventurier, null, null, null, null);
+        return new Message(Utils.Commandes.BOUGER, idAventurier, null, null, null, null, null);
     }
 
     /**
@@ -49,7 +53,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#ASSECHER}
      */
     public static Message assecher(int idAventurier) {
-        return new Message(Utils.Commandes.ASSECHER, idAventurier, null, null, null, null);
+        return new Message(Utils.Commandes.ASSECHER, idAventurier, null, null, null, null, null);
     }
 
     /**
@@ -58,7 +62,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#DONNER}
      */
     public static Message donner(int idAventurier) {
-        return new Message(Utils.Commandes.DONNER, idAventurier, null, null, null, null);
+        return new Message(Utils.Commandes.DONNER, idAventurier, null, null, null, null, null);
     }
 
     /**
@@ -67,7 +71,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#RECUPERER_TRESOR}
      */
     public static Message recupererTresor(int idAventurier) {
-        return new Message(Utils.Commandes.RECUPERER_TRESOR, idAventurier, null, null, null, null);
+        return new Message(Utils.Commandes.RECUPERER_TRESOR, idAventurier, null, null, null, null, null);
     }
 
     /**
@@ -76,7 +80,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#TERMINER}
      */
     public static Message terminer(int idAventurier) {
-        return new Message(Utils.Commandes.TERMINER, idAventurier, null, null, null, null);
+        return new Message(Utils.Commandes.TERMINER, idAventurier, null, null, null, null, null);
     }
 
     /**
@@ -85,7 +89,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#RECEVOIR}
      */
     public static Message recevoir(int idAventurier) {
-        return new Message(Utils.Commandes.RECEVOIR, idAventurier, null, null, null, null);
+        return new Message(Utils.Commandes.RECEVOIR, idAventurier, null, null, null, null, null);
     }
 
     /**
@@ -93,7 +97,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#CHOISIR_CARTE}
      */
     public static Message choisirCarte() {
-        return new Message(Utils.Commandes.CHOISIR_CARTE, null, null, null, null, null);
+        return new Message(Utils.Commandes.CHOISIR_CARTE, null, null, null, null, null, null);
     }
 
     /**
@@ -101,7 +105,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#CHOISIR_TUILE}
      */
     public static Message choisirTuile() {
-        return new Message(Utils.Commandes.CHOISIR_TUILE, null, null, null, null, null);
+        return new Message(Utils.Commandes.CHOISIR_TUILE, null, null, null, null, null, null);
     }
 
     /**
@@ -110,7 +114,7 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#DEPLACER}
      */
     public static Message deplacer(int idAventurier) {
-        return new Message(Utils.Commandes.DEPLACER, idAventurier, null, null, null, null);
+        return new Message(Utils.Commandes.DEPLACER, idAventurier, null, null, null, null, null);
     }
 
     /**
@@ -118,7 +122,11 @@ public class Message implements Serializable {
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#VOIR_DEFAUSSE}
      */
     public static Message voirDefausse() {
-        return new Message(Utils.Commandes.VOIR_DEFAUSSE, null, null, null, null, null);
+        return new Message(Utils.Commandes.VOIR_DEFAUSSE, null, null, null, null, null, null);
+    }
+
+    public static Message voirDeck(Utils.Deck deck) {
+        return new Message(Utils.Commandes.VOIR_DECK, null, null, null, null, null, deck);
     }
 
     /**
@@ -199,5 +207,9 @@ public class Message implements Serializable {
             txt += " tresor=" + tresor.toString();
         }
         return txt;
+    }
+
+    public Utils.Deck getDeck() {
+        return deck;
     }
 }

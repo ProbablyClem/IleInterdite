@@ -84,7 +84,7 @@ public abstract class Aventurier {
         return cartes;
     }
 
-    public static Aventurier[] getRandomAventuriers(int nb) {
+    public static ArrayList<Aventurier> getRandomAventuriers(int nb) {
 
 
         ArrayList<Aventurier> allAventuriers = new ArrayList<>();
@@ -97,10 +97,10 @@ public abstract class Aventurier {
 
         Utils.melangerAventuriers(allAventuriers);
 
-        Aventurier[] aventuriers = new Aventurier[nb];
+        ArrayList<Aventurier> aventuriers = new ArrayList<>();
 
         for (int i = 0; i < nb; i++) {
-            aventuriers[i] = allAventuriers.remove(0);
+            aventuriers.add(allAventuriers.remove(0));
         }
 
         return aventuriers;

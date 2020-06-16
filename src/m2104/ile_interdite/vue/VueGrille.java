@@ -69,8 +69,9 @@ public class VueGrille extends JPanel {
 
         JFrame testFrame = new JFrame();
         testFrame.add(this);
-        testFrame.setSize(1600, 800);
+        testFrame.setSize(800, 800);
         testFrame.setVisible(true);
+        testFrame.setLocation(400, 150);
     }
 
 

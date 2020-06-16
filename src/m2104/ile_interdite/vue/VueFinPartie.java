@@ -43,6 +43,7 @@ public class VueFinPartie {
         fenetre.setLayout(new BorderLayout());
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setSize(400, 150);
+        fenetre.setLocation(400, 0);
         
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel panelBas = new JPanel(new GridLayout(1,3));
