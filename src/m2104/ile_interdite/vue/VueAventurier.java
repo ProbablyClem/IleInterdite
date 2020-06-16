@@ -3,6 +3,7 @@ package m2104.ile_interdite.vue;
 import m2104.ile_interdite.modele.Aventurier;
 import m2104.ile_interdite.modele.CarteTresor;
 import m2104.ile_interdite.modele.Messager;
+import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 
 import javax.swing.*;
@@ -133,20 +134,20 @@ public class VueAventurier extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cartesTresor){
-//            Message m = new Message.voirDeck(Utils.Deck.DECK_TRESOR);
-//            ihm.notifierObservateurs(m);
+            Message m = Message.voirDeck(Utils.Deck.DECK_TRESOR);
+            ihm.notifierObservateurs(m);
         }
         else if (e.getSource() == deffauseeTresor){
-//            VueDeck v = new VueDeck("Deffausse Cartes Tresor", ileInterdite.getDeckTresor());
-//            v.afficher();
+            Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_TRESOR);
+            ihm.notifierObservateurs(m);
         }
         else if (e.getSource() == deffauseInondation){
-//            VueDeck v = new VueDeck("Deffause Cartes Inondation", ileInterdite.getDeckTresor());
-//            v.afficher();
+            Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_INONDATION);
+            ihm.notifierObservateurs(m);
         }
         else if (e.getSource() == cartesInondation){
-//            VueDeck v = new VueDeck("Deck Cartes Inondation", ileInterdite.getDeckTresor());
-//            v.afficher();
+            Message m = Message.voirDeck(Utils.Deck.DECK_INONDATION);
+            ihm.notifierObservateurs(m);
         }
         else if(e.getSource() == seDeplacer){
 
