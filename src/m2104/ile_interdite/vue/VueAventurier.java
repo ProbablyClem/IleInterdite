@@ -133,8 +133,8 @@ public class VueAventurier extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cartesTresor){
-//            VueDeck v = new VueDeck("Deck Cartes Tresor", ileInterdite.getDeckTresor());
-//            v.afficher();
+//            Message m = new Message.voirDeck(Utils.Deck.DECK_TRESOR);
+//            ihm.notifierObservateurs(m);
         }
         else if (e.getSource() == deffauseeTresor){
 //            VueDeck v = new VueDeck("Deffausse Cartes Tresor", ileInterdite.getDeckTresor());

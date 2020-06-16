@@ -1,11 +1,12 @@
 package m2104.ile_interdite.util;
 
-import java.awt.Color;
+import m2104.ile_interdite.modele.Aventurier;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import javax.swing.JOptionPane;
-import m2104.ile_interdite.modele.Aventurier;
 
 /**
  *
@@ -24,7 +25,8 @@ public class Utils {
         CHOISIR_CARTE("Utiliser une carte trésor"),
         CHOISIR_TUILE("Sélectionner une tuile"),
         DEPLACER("Déplacer un autre joueur"),
-        VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage");
+        VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage"),
+        VOIR_DECK("Voir un deck");
 
         private final String libelle ;
 
@@ -159,6 +161,19 @@ public class Utils {
         }
 
 
+    }
+
+    public static enum Deck{
+        DECK_TRESOR("Deck cartes tresor"),
+        DECK_INONDATION("Deck cartes inondation"),
+        DEFFAUSSE_TRESOR("Deffausse cartes tresor"),
+        DEFFAUSSE_INONDATION("Deffausse cartes inondation");
+
+        public final String libelle;
+
+        Deck(String libelle){
+            this.libelle = libelle;
+        }
     }
 
     public static String toRGB(Color couleur) {

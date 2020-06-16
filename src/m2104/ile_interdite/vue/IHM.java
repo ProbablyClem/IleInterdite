@@ -1,7 +1,9 @@
 package m2104.ile_interdite.vue;
 
 import m2104.ile_interdite.modele.Aventurier;
+import m2104.ile_interdite.modele.Carte;
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -35,5 +37,10 @@ public class IHM extends Observable<Message> {
                     new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
             );
         }
+    }
+
+    public void AfficherDeck(Utils.Deck deck, ArrayList<Carte> cartes){
+        VueDeck vueDeck = new VueDeck(deck.libelle, cartes);
+        vueDeck.afficher();
     }
 }
