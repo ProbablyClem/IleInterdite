@@ -20,12 +20,12 @@ public class IleInterdite extends Observable<Message> {
     ArrayList<CarteInondation> deckInondation;
     ArrayList<CarteInondation> defausseInondation;
 
-    public IleInterdite(Observateur<Message> observateur) {
+    public IleInterdite(Observateur<Message> observateur, ArrayList<Aventurier> aventuriers, Grille grille) {
         this.addObservateur(observateur);
 
-        grille = new Grille();
+        this.grille = grille;
 
-        this.aventuriers = Aventurier.getRandomAventuriers(4);
+        this.aventuriers = aventuriers;
 
         this.deckTresor = CarteSpeciale.getAllCartesSpeciale();
 

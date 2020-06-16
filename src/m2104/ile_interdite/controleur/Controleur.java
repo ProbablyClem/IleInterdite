@@ -1,9 +1,6 @@
 package m2104.ile_interdite.controleur;
 
-import m2104.ile_interdite.modele.Aventurier;
-import m2104.ile_interdite.modele.Carte;
-import m2104.ile_interdite.modele.CarteInondation;
-import m2104.ile_interdite.modele.IleInterdite;
+import m2104.ile_interdite.modele.*;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
@@ -18,15 +15,17 @@ import java.util.ArrayList;
  */
 public class Controleur implements Observateur<Message> {
 
-    private final IleInterdite ileInterdite;
+    private IleInterdite ileInterdite;
     private final IHM ihm;
     private ArrayList<Aventurier> aventuriers;
     private Aventurier aventurierActuel;
     private Utils.Etat etat;
+    private Grille grille;
 
     public Controleur() {
-        this.ileInterdite = new IleInterdite(this);
-        this.ihm = new IHM(this, ileInterdite.getGrille());
+        this.grille = new Grille();
+        this.ihm = new IHM(this, grille);
+
     }
 
 
@@ -40,10 +39,12 @@ public class Controleur implements Observateur<Message> {
             case VALIDER_JOUEURS:
                 assert msg.hasNbJoueurs();
                 aventuriers = Aventurier.getRandomAventuriers(msg.getNbJoueurs());
+
                 this.ihm.creerVuesAventuriers(aventuriers);
+                this.ileInterdite = new IleInterdite(this, aventuriers, grille);
+                this.ihm.afficherMainWindow();
                 aventurierActuel = aventuriers.get(0);
                 ihm.setMessage(aventurierActuel, "Choisir une action");
-                //TODO desactiver grille
                 break;
             case VOIR_DECK:
                 switch (msg.getDeck()){
@@ -77,7 +78,6 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE:
                 if(etat == Utils.Etat.DEPLACER_JOUEUR){
                     aventurierActuel.setEmplacement(msg.getTuile());
-                    msg.getTuile().ajouterAventurier(aventurierActuel);
                     ihm.updateGrille();
                 }
                 else if(etat == Utils.Etat.ASSECHER_CASE){

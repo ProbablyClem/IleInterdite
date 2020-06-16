@@ -21,6 +21,7 @@ public class IHM extends Observable<Message> {
     private final HashMap<Aventurier, VueAventurier> vueAventuriers;
     private Grille grille;
     private mainWindow mainWindow;
+    private ArrayList<Aventurier> aventuriers;
 
     public IHM(Observateur<Message> observateur, Grille grille) {
         this.grille = grille;
@@ -30,7 +31,9 @@ public class IHM extends Observable<Message> {
     }
 
     public void creerVuesAventuriers(ArrayList<Aventurier> aventuriers) {
+        this.aventuriers = aventuriers;
         // - le pouvoir est disponible dans le modèle
+        this.grille = grille;
         for (int i = 0; i < this.vueInscription.getNomJoueurs().length; i++) {
             aventuriers.get(i).setNom(this.vueInscription.getNomJoueurs()[i]);
         }
@@ -41,7 +44,6 @@ public class IHM extends Observable<Message> {
                     new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
             );
         }
-        mainWindow = new mainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
     }
 
 
@@ -60,11 +62,16 @@ public class IHM extends Observable<Message> {
     }
 
     public void updateGrille(){
-        mainWindow.getGrillePanel().repaint();
+        mainWindow.getGrillePanel().drawGrille();
+        mainWindow.getGrillePanel().updateUI();
     }
 
     public void setVueAventuriers(Aventurier a){
         mainWindow.setAventurier(vueAventuriers.get(a));
+    }
+
+    public void afficherMainWindow(){
+        mainWindow = new mainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
     }
 
 }

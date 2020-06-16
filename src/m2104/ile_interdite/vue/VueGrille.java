@@ -1,6 +1,7 @@
 package m2104.ile_interdite.vue;
 
-import m2104.ile_interdite.modele.*;
+import m2104.ile_interdite.modele.Grille;
+import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 
@@ -19,17 +20,32 @@ public class VueGrille extends JPanel {
     public VueGrille(Grille grille, IHM ihm) {
         this.grille = grille;
         this.ihm = ihm;
+
+        drawGrille();
+
+        etatGrille(true);
+
+    }
+
+
+    public void etatGrille(boolean etat) {
+        for (JPanel P: components) {
+            P.setEnabled(etat);
+        }
+    }
+
+    public void drawGrille() {
+
         components = new ArrayList<>();
 
-
-        for (Component C: this.getComponents()) {
+        for (Component C : this.getComponents()) {
             this.remove(C);
         }
 
         this.setLayout(new GridLayout(6, 6));
 
-        for (Tuile[] T: this.grille.getTuiles()) {
-            for (Tuile t: T) {
+        for (Tuile[] T : this.grille.getTuiles()) {
+            for (Tuile t : T) {
                 try {
                     JPanel panel = t.getImage();
                     this.add(panel);
@@ -81,14 +97,6 @@ public class VueGrille extends JPanel {
         components.get(35).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture(), 20), BorderLayout.CENTER);
 
         etatGrille(true);
-
-    }
-
-
-    public void etatGrille(boolean etat) {
-        for (JPanel P: components) {
-            P.setEnabled(etat);
-        }
     }
 
 }
