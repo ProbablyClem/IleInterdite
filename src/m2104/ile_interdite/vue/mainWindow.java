@@ -33,7 +33,7 @@ public class mainWindow extends JFrame{
         });
         this.niveauPanel.add(exit, BorderLayout.NORTH);
 
-        this.grillePanel = new VueGrille(grille);
+        this.grillePanel = new VueGrille(grille, ihm);
         this.aventurierPanel = v;
 
         mainPanel.add(niveauPanel, BorderLayout.WEST);
@@ -49,5 +49,17 @@ public class mainWindow extends JFrame{
     public void setAventurier(VueAventurier v) {
         aventurierPanel = v;
         repaint();
+    }
+
+    public VueGrille getGrillePanel() {
+        return grillePanel;
+    }
+
+    public void activerGrille(){
+        this.grillePanel.setEnabled(true);
+    }
+
+    public void desactiverGrille(){
+        this.grillePanel.setEnabled(false);
     }
 }

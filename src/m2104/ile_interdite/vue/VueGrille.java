@@ -1,6 +1,7 @@
 package m2104.ile_interdite.vue;
 
 import m2104.ile_interdite.modele.*;
+import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class VueGrille extends JPanel {
 
     private final Grille grille;
     private ArrayList<JPanel> components;
+    private IHM ihm;
 
     public VueGrille(Grille grille) {
         this.grille = grille;
@@ -31,6 +33,7 @@ public class VueGrille extends JPanel {
                         public void mouseClicked(MouseEvent e) {
                             if (panel.isEnabled()) {
                                 System.out.println("Click sur " + t.getNom());
+                                ihm.notifierObservateurs(Message.choisirTuile(t));
                             }
                         }
 
@@ -50,10 +53,12 @@ public class VueGrille extends JPanel {
 
                         @Override
                         public void mouseEntered(MouseEvent e) {
+
                         }
 
                         @Override
                         public void mouseExited(MouseEvent e) {
+
                         }
                     });
                 } catch (NullPointerException e) {

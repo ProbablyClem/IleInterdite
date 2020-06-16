@@ -157,22 +157,22 @@ public class VueAventurier extends JPanel implements ActionListener {
             ihm.notifierObservateurs(m);
         }
         else if(e.getSource() == seDeplacer){
-
+            ihm.notifierObservateurs(Message.deplacer(aventurier));
         }
         else if(e.getSource() == assecher){
-
+            ihm.notifierObservateurs(Message.assecher(aventurier));
         }
         else if(e.getSource() == finirTour){
-
+            ihm.notifierObservateurs(Message.terminer(aventurier));
         }
         else if(e.getSource() == actionSpecial){
-
+            ihm.notifierObservateurs(Message.actionSpecial());
         }
         else if(e.getSource() == donnerCarte){
-
+            ihm.notifierObservateurs(Message.donner(aventurier));
         }
         else if(e.getSource() == prendreTresor){
-
+            ihm.notifierObservateurs(Message.recupererTresor(aventurier));
         }
     }
 
