@@ -68,9 +68,9 @@ public class Tuile {
 
     public ImageFrame getImage() {
         if (etat.equals(Utils.EtatTuile.ASSECHEE)) {
-            return new ImageFrame("src/images/tuiles/" + image + ".png", 5);
+            return new ImageFrame("src/images/tuiles/" + image + ".png", 3);
         } else if (etat.equals(Utils.EtatTuile.INONDEE)) {
-            return new ImageFrame("src/images/tuiles/" + image + "_Inonde.png", 5);
+            return new ImageFrame("src/images/tuiles/" + image + "_Inonde.png", 3);
         } else {
             return new ImageFrame("");
         }
