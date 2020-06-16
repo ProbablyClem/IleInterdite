@@ -28,7 +28,7 @@ public class Controleur implements Observateur<Message> {
         this.ileInterdite = new IleInterdite(this);
         this.ihm = new IHM(this, ileInterdite.getGrille());
 
-        new VueFinPartie();
+        new VueFinPartie("cc");
     }
 
     @Override
