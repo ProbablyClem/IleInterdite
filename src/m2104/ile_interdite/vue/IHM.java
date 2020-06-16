@@ -20,6 +20,7 @@ public class IHM extends Observable<Message> {
     private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Aventurier, VueAventurier> vueAventuriers;
     private Grille grille;
+    private mainWindow mainWindow;
 
     public IHM(Observateur<Message> observateur, Grille grille) {
         this.grille = grille;
@@ -40,7 +41,7 @@ public class IHM extends Observable<Message> {
                     new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
             );
         }
-        new mainWindow(this, grille, aventuriers.get(0));
+        mainWindow = new mainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
     }
 
 

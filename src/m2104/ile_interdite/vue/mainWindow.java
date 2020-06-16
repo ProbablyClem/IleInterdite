@@ -1,6 +1,5 @@
 package m2104.ile_interdite.vue;
 
-import m2104.ile_interdite.modele.Aventurier;
 import m2104.ile_interdite.modele.Grille;
 
 import javax.swing.*;
@@ -17,7 +16,7 @@ public class mainWindow extends JFrame{
     private VueAventurier aventurierPanel;
     private Grille grille;
 
-    public mainWindow(IHM ihm, Grille grille, Aventurier a){
+    public mainWindow(IHM ihm, Grille grille, VueAventurier v){
         this.grille = grille;
         this.ihm = ihm;
 
@@ -35,7 +34,7 @@ public class mainWindow extends JFrame{
         this.niveauPanel.add(exit, BorderLayout.NORTH);
 
         this.grillePanel = new VueGrille(grille);
-        this.aventurierPanel = new VueAventurier(ihm, a, a.actionSpeciale());
+        this.aventurierPanel = v;
 
         mainPanel.add(niveauPanel, BorderLayout.WEST);
         mainPanel.add(grillePanel, BorderLayout.CENTER);
@@ -47,8 +46,8 @@ public class mainWindow extends JFrame{
         this.setVisible(true);
     }
 
-    public void setAventurier(Aventurier a) {
-        aventurierPanel = new VueAventurier(ihm, a, a.actionSpeciale());
+    public void setAventurier(VueAventurier v) {
+        aventurierPanel = v;
         repaint();
     }
 }
