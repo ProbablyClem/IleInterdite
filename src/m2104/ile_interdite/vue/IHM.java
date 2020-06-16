@@ -96,7 +96,7 @@ public class IHM extends Observable<Message> {
     }
 
     public void finPartie(String message){
-        VueFinPartie v = new VueFinPartie();
+        VueFinPartie v = new VueFinPartie(message);
     }
 
 }
