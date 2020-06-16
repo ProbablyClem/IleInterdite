@@ -21,6 +21,11 @@ public class VueGrille extends JPanel {
         this.ihm = ihm;
         components = new ArrayList<>();
 
+
+        for (Component C: this.getComponents()) {
+            this.remove(C);
+        }
+
         this.setLayout(new GridLayout(6, 6));
 
         for (Tuile[] T: this.grille.getTuiles()) {
@@ -78,6 +83,7 @@ public class VueGrille extends JPanel {
         etatGrille(true);
 
     }
+
 
     public void etatGrille(boolean etat) {
         for (JPanel P: components) {

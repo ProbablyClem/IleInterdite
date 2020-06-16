@@ -74,7 +74,7 @@ public class Tuile {
         } else if (etat.equals(Utils.EtatTuile.INONDEE)) {
             IF = new ImageFrame("src/images/tuiles/" + image + "_Inonde.png", 3);
         } else {
-            IF = new ImageFrame("");
+            IF = new ImageFrame();
         }
 
         IF.setLayout(new GridLayout(3, 4));
