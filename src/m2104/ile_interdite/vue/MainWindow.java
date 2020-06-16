@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class mainWindow extends JFrame{
+public class MainWindow extends JFrame{
     private IHM ihm;
     private JPanel mainPanel;
     private JPanel niveauPanel;
@@ -16,7 +16,7 @@ public class mainWindow extends JFrame{
     private VueAventurier aventurierPanel;
     private Grille grille;
 
-    public mainWindow(IHM ihm, Grille grille, VueAventurier v){
+    public MainWindow(IHM ihm, Grille grille, VueAventurier v){
 
         this.grille = grille;
         this.ihm = ihm;

@@ -7,6 +7,7 @@ import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
+import m2104.ile_interdite.vue.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class IHM extends Observable<Message> {
     private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Aventurier, VueAventurier> vueAventuriers;
     private Grille grille;
-    private mainWindow mainWindow;
+    private MainWindow mainWindow;
     private ArrayList<Aventurier> aventuriers;
 
     public IHM(Observateur<Message> observateur, Grille grille) {
@@ -33,7 +34,6 @@ public class IHM extends Observable<Message> {
     public void creerVuesAventuriers(ArrayList<Aventurier> aventuriers) {
         this.aventuriers = aventuriers;
         // - le pouvoir est disponible dans le modèle
-        this.grille = grille;
         for (int i = 0; i < this.vueInscription.getNomJoueurs().length; i++) {
             aventuriers.get(i).setNom(this.vueInscription.getNomJoueurs()[i]);
         }
@@ -71,7 +71,7 @@ public class IHM extends Observable<Message> {
     }
 
     public void afficherMainWindow(){
-        mainWindow = new mainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
+        mainWindow = new MainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)));
     }
 
 }

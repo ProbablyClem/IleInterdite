@@ -91,10 +91,10 @@ public class VueGrille extends JPanel {
             }
         }
 
-        components.get(0).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CRISTAL.getPathPicture(), 20), BorderLayout.CENTER);
-        components.get(5).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.CALICE.getPathPicture(), 20), BorderLayout.CENTER);
-        components.get(30).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture(), 20), BorderLayout.CENTER);
-        components.get(35).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture(), 20), BorderLayout.CENTER);
+        components.get(0).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.CRISTAL.getPathPicture(), 20), BorderLayout.CENTER);
+        components.get(5).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.CALICE.getPathPicture(), 20), BorderLayout.CENTER);
+        components.get(30).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture(), 20), BorderLayout.CENTER);
+        components.get(35).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture(), 20), BorderLayout.CENTER);
 
         etatGrille(true);
     }

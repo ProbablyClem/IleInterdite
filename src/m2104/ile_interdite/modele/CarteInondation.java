@@ -1,16 +1,16 @@
 package m2104.ile_interdite.modele;
 
 import m2104.ile_interdite.util.Utils;
-import m2104.ile_interdite.vue.ImageFrame;
+import m2104.ile_interdite.vue.ImagePanel;
 
 import java.util.ArrayList;
 
 public class CarteInondation extends Carte {
 
     private Tuile tuile;
-    private ImageFrame image;
+    private ImagePanel image;
 
-    public CarteInondation(String nom, ImageFrame image, Tuile tuile) {
+    public CarteInondation(String nom, ImagePanel image, Tuile tuile) {
         super(nom);
         this.tuile = tuile;
         this.image = image;
@@ -41,7 +41,7 @@ public class CarteInondation extends Carte {
     }
 
     @Override
-    public ImageFrame getImage() {
+    public ImagePanel getImage() {
         return image;
     }
 }
