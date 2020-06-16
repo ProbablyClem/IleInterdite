@@ -67,11 +67,6 @@ public class VueGrille extends JPanel {
         components.get(30).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture()), BorderLayout.CENTER);
         components.get(35).add(new ImageFrame("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture()), BorderLayout.CENTER);
 
-        JFrame testFrame = new JFrame();
-        testFrame.add(this);
-        testFrame.setSize(800, 800);
-        testFrame.setVisible(true);
-        testFrame.setLocation(400, 150);
     }
 
 

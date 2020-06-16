@@ -108,6 +108,8 @@ public class VueAventurier extends JPanel implements ActionListener {
         decks.add(cartesInondation);
 
         this.add(decks);
+
+        this.setSize(400, 800);
     }
 
     //test

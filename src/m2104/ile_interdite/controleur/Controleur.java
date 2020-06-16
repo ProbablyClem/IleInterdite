@@ -23,11 +23,9 @@ public class Controleur implements Observateur<Message> {
 
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
-        this.ihm = new IHM(this);
+        this.ihm = new IHM(this, ileInterdite.getGrille());
 
-        new VueNiveau(1);
         new VueFinPartie(ihm);
-        new VueGrille(ihm, ileInterdite.getGrille());
     }
 
     @Override
