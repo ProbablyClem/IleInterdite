@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageFrame extends JPanel {
+public class ImagePanel extends JPanel {
 
     private BufferedImage image;
     private Integer margin = 0;
 
-    public ImageFrame(String path) {
+    public ImagePanel(String path) {
         try {
             this.image = ImageIO.read(new File(path));
         } catch (IOException e) {
@@ -20,11 +20,11 @@ public class ImageFrame extends JPanel {
         }
     }
 
-    public ImageFrame() {
+    public ImagePanel() {
         this("src/images/empty.png");
     }
 
-    public ImageFrame(String path, Integer margin) {
+    public ImagePanel(String path, Integer margin) {
         this(path);
         this.margin = margin;
     }

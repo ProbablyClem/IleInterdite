@@ -22,30 +22,30 @@ public class VueMain extends JPanel {
 
         if (cartes.size() > 5) {
             for (int i = 0; i < 5; i++) {
-                ImageFrame imageFrame = cartes.get(i).getImage();
-                imageFrame.setMinimumSize(new Dimension(100, 100));
-                imageFrame.setPreferredSize(new Dimension(150, 150));
-                imageFrame.setMaximumSize(new Dimension(200, 200));
-                lignehaut.add(imageFrame);
+                ImagePanel imagePanel = cartes.get(i).getImage();
+                imagePanel.setMinimumSize(new Dimension(100, 100));
+                imagePanel.setPreferredSize(new Dimension(150, 150));
+                imagePanel.setMaximumSize(new Dimension(200, 200));
+                lignehaut.add(imagePanel);
             }
             JPanel lignebas = new JPanel();
             for (int i = 5; i < cartes.size(); i++) {
-                ImageFrame imageFrame = cartes.get(i).getImage();
-                imageFrame.setMinimumSize(new Dimension(100, 100));
-                imageFrame.setPreferredSize(new Dimension(150, 150));
-                imageFrame.setMaximumSize(new Dimension(200, 200));
-                lignebas.add(imageFrame);
+                ImagePanel imagePanel = cartes.get(i).getImage();
+                imagePanel.setMinimumSize(new Dimension(100, 100));
+                imagePanel.setPreferredSize(new Dimension(150, 150));
+                imagePanel.setMaximumSize(new Dimension(200, 200));
+                lignebas.add(imagePanel);
             }
             this.add(lignehaut, BorderLayout.CENTER);
             this.add(lignebas, BorderLayout.SOUTH);
         }
         else {
             for (int i = 0; i < cartes.size(); i++) {
-                ImageFrame imageFrame = cartes.get(i).getImage();
-                imageFrame.setMinimumSize(new Dimension(100, 100));
-                imageFrame.setPreferredSize(new Dimension(150, 150));
-                imageFrame.setMaximumSize(new Dimension(200, 200));
-                lignehaut.add(imageFrame);
+                ImagePanel imagePanel = cartes.get(i).getImage();
+                imagePanel.setMinimumSize(new Dimension(100, 100));
+                imagePanel.setPreferredSize(new Dimension(150, 150));
+                imagePanel.setMaximumSize(new Dimension(200, 200));
+                lignehaut.add(imagePanel);
             }
             this.add(lignehaut);
         }

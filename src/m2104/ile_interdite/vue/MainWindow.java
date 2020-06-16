@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class mainWindow extends JFrame{
+public class MainWindow extends JFrame{
     private IHM ihm;
     private JPanel mainPanel;
     private JPanel niveauPanel;
@@ -16,7 +16,8 @@ public class mainWindow extends JFrame{
     private VueAventurier aventurierPanel;
     private Grille grille;
 
-    public mainWindow(IHM ihm, Grille grille, VueAventurier v){
+    public MainWindow(IHM ihm, Grille grille, VueAventurier v){
+
         this.grille = grille;
         this.ihm = ihm;
 
@@ -24,7 +25,7 @@ public class mainWindow extends JFrame{
         this.niveauPanel = new JPanel(new BorderLayout());
         this.vueNiveau = new VueNiveau(2);
         this.niveauPanel.add(vueNiveau, BorderLayout.SOUTH);
-        JButton exit = new JButton("Quitter");
+        JButton exit = new Button("Quitter", 0, 35, Color.RED, new Color(255, 120, 120));
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,7 +43,7 @@ public class mainWindow extends JFrame{
 
         this.setContentPane(mainPanel);
         this.setSize(1750, 800);
-        this.setLocation(400, 150);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

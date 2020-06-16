@@ -1,6 +1,6 @@
 package m2104.ile_interdite.modele;
 
-import m2104.ile_interdite.vue.ImageFrame;
+import m2104.ile_interdite.vue.ImagePanel;
 
 public abstract class Carte {
     private String image;
@@ -15,8 +15,8 @@ public abstract class Carte {
         this.nom = nom;
     }
 
-    public ImageFrame getImage() {
-        return new ImageFrame(image);
+    public ImagePanel getImage() {
+        return new ImagePanel(image);
     }
 
     public void setImage(String image) {

@@ -11,12 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Arrays;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import m2104.ile_interdite.util.Message;
 
@@ -30,15 +25,15 @@ public class VueInscriptionJoueurs {
 
     private JComboBox<Integer> choixNbJoueurs;
     private JLabel [] labelNomJoueurs = new JLabel[4];
-    private final JLabel textNomJ = new JLabel("Entrez vos noms :");
-    private final JLabel niv = new JLabel("NIVEAUX");
+    private final JLabel textNomJ = new JLabel("L'île Interdite :");
+    private final JLabel niv = new JLabel("Niveau", SwingConstants.CENTER);
     private JTextField [] saisieNomJoueurs = new JTextField[4];
-    private final JButton inscrire = new JButton("Inscrire");
-    private final JButton retour = new JButton("Quitter");
-    private final JButton novice;
-    private final JButton intermediaire;
-    private final JButton elite;
-    private final JButton legendaire;
+    private final Button retour;
+    private final Button inscrire;
+    private final Button novice;
+    private final Button intermediaire;
+    private final Button elite;
+    private final Button legendaire;
     //private final JButton plus = new JButton("+");
     //private final JButton moins = new JButton("-");
     //private JLabel numJ = new JLabel("2");
@@ -53,26 +48,18 @@ public class VueInscriptionJoueurs {
         fenetre = new JFrame();
         fenetre.setLayout(new BorderLayout());
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(500, 500);
-        
+        fenetre.setSize(500, 300);
+        fenetre.setLocationRelativeTo(null);
+
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JPanel panelChoix = new JPanel(new GridLayout(6,4));
-        
-        GridLayout g1 = new GridLayout(3, 4);
-        g1.setHgap(5);
-        g1.setVgap(10);
+        JPanel panelChoix = new JPanel(new GridLayout(5,2));
+
         JPanel panelBas = new JPanel();
-        panelBas.setLayout(g1);
+        panelBas.setLayout(new BorderLayout());
         
-        JPanel panelTop = new JPanel(new GridLayout(2, 1));
-        
-        JLabel blank = new JLabel(" ");
-        JLabel blank1 = new JLabel(" ");
-        JLabel blank2 = new JLabel(" ");
-        JLabel blank3 = new JLabel(" ");
-        JLabel blank4 = new JLabel(" ");
-       
+        JPanel panelTop = new JPanel(new BorderLayout());
+
         // nombre de joueurs
         choixNbJoueurs = new JComboBox<>(new Integer[] { 2, 3, 4 });
         panelChoix.add(new JLabel("Nombre de joueurs :"));
@@ -80,54 +67,49 @@ public class VueInscriptionJoueurs {
 
         // Saisie des noms de joueurs
         for(int i = 0; i < saisieNomJoueurs.length; i++) {
+            labelNomJoueurs[i] = new JLabel("Nom du joueur " + (i + 1) + " :");
             saisieNomJoueurs[i] = new JTextField();
-            labelNomJoueurs[i] = new JLabel("Nom du joueur No " + (i + 1) + " :");
-            panelChoix.add(blank);
             panelChoix.add(labelNomJoueurs[i]);
             panelChoix.add(saisieNomJoueurs[i]);
-            panelChoix.add(blank1);
             labelNomJoueurs[i].setEnabled(i < 2);
             saisieNomJoueurs[i].setEnabled(i < 2);
         }
         
-        
-        panelTop.add(textNomJ);
+
         
         textNomJ.setHorizontalAlignment(JLabel.CENTER);
         textNomJ.setFont(new Font("Roboto",Font.BOLD,20));
-        
-        panelBas.add(blank2);
-        panelBas.add(niv);
-        panelBas.add(blank3);
-        panelBas.add(blank4);
+
+
+        JPanel panelLvl = new JPanel(new GridLayout(1, 4));
+
+        panelTop.add(textNomJ, BorderLayout.NORTH);
+        panelTop.add(niv, BorderLayout.CENTER);
+        panelTop.add(panelLvl, BorderLayout.SOUTH);
+
         niv.setFont(new Font("Roboto",Font.BOLD,15));
         
-        novice = new JButton("novice");
-        novice.setBackground(Color.CYAN);
-        panelBas.add(novice);
+        novice = new Button("Novice", 0, 35, new Color(0, 250, 0), new Color(175, 250, 175));
+        panelLvl.add(novice);
         
-        intermediaire = new JButton("intérmediaire");
-        intermediaire.setBackground(Color.CYAN);
-        panelBas.add(intermediaire);
+        intermediaire = new Button("Intermédiaire", 0, 35, new Color(250, 220, 0), new Color(250, 220, 175));
+        panelLvl.add(intermediaire);
         
-        elite = new JButton("élite");
-        elite.setBackground(Color.CYAN);
-        panelBas.add(elite);
+        elite = new Button("Élite", 0, 35, new Color(0, 220, 250), new Color(175, 220, 250));
+        panelLvl.add(elite);
         
-        legendaire = new JButton("légendaire");
-        legendaire.setBackground(Color.CYAN);
-        panelBas.add(legendaire);
-        
-        panelBas.add(retour);
-        retour.setBackground(Color.red);
-        panelBas.add(blank);
-        panelBas.add(blank1);
-        panelBas.add(inscrire);
-        inscrire.setBackground(Color.green);
+        legendaire = new Button("Légendaire", 0, 35, new Color(220, 0, 250), new Color(220, 150, 250));
+        panelLvl.add(legendaire);
+
+        retour = new Button("Quitter", 150, 35, Color.RED, new Color(255, 120, 120));
+        panelBas.add(retour, BorderLayout.WEST);
+
+        inscrire = new Button("Jouer", 150, 35, Color.GREEN, new Color(120, 255, 120));
+        panelBas.add(inscrire, BorderLayout.EAST);
         
         mainPanel.add(panelTop, BorderLayout.NORTH);
-        mainPanel.add(panelBas, BorderLayout.SOUTH);
         mainPanel.add(panelChoix, BorderLayout.CENTER);
+        mainPanel.add(panelBas, BorderLayout.SOUTH);
         fenetre.add(mainPanel);
 
         // Choix du nombre de joueurs

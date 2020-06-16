@@ -1,9 +1,8 @@
 package m2104.ile_interdite.modele;
 
 import m2104.ile_interdite.util.Utils;
-import m2104.ile_interdite.vue.ImageFrame;
+import m2104.ile_interdite.vue.ImagePanel;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -67,20 +66,20 @@ public class Tuile {
         this.aventuriers.remove(aventurier);
     }
 
-    public ImageFrame getImage() {
-        ImageFrame IF;
+    public ImagePanel getImage() {
+        ImagePanel IF;
         if (etat.equals(Utils.EtatTuile.ASSECHEE)) {
-            IF = new ImageFrame("src/images/tuiles/" + image + ".png", 3);
+            IF = new ImagePanel("src/images/tuiles/" + image + ".png", 3);
         } else if (etat.equals(Utils.EtatTuile.INONDEE)) {
-            IF = new ImageFrame("src/images/tuiles/" + image + "_Inonde.png", 3);
+            IF = new ImagePanel("src/images/tuiles/" + image + "_Inonde.png", 3);
         } else {
-            IF = new ImageFrame();
+            IF = new ImagePanel();
         }
 
         IF.setLayout(new GridLayout(3, 4));
 
         for (Aventurier A: aventuriers) {
-            ImageFrame pionIF = new ImageFrame("src/images/pions/" + A.getPion().getPath());
+            ImagePanel pionIF = new ImagePanel("src/images/pions/" + A.getPion().getPath());
             pionIF.setBackground(new Color(0, 0, 0, 0));
             IF.add(pionIF);
         }
