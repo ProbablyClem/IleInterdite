@@ -19,16 +19,18 @@ public class VueAventurier extends JPanel implements ActionListener {
     private RichJLabel nomAventurier;
     private RichJLabel nbActionsLabel;
     private JLabel textField;
+
     private Button seDeplacer;
     private Button assecher;
     private Button finirTour;
     private Button actionSpecial;
     private Button donnerCarte;
     private Button prendreTresor;
-    private Button cartesTresor;
+
     private Button defausseTresor;
     private Button defausseInondation;
-    private Button cartesInondation;
+
+
 
     public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
         this.aventurier = aventurier;
@@ -132,7 +134,6 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.add(actionsPanel);
 
         VueMain main = new VueMain(aventurier.getCartes());
-        main.setBackground(Color.white);
         this.add(main);
 
         JPanel decks = new JPanel(new GridLayout(2, 4, 10, 10));
@@ -206,20 +207,12 @@ public class VueAventurier extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == cartesTresor){
-            Message m = Message.voirDeck(Utils.Deck.DECK_TRESOR);
-            ihm.notifierObservateurs(m);
-        }
-        else if (e.getSource() == defausseTresor){
+        if(e.getSource() == defausseTresor){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_TRESOR);
             ihm.notifierObservateurs(m);
         }
         else if (e.getSource() == defausseInondation){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_INONDATION);
-            ihm.notifierObservateurs(m);
-        }
-        else if (e.getSource() == cartesInondation){
-            Message m = Message.voirDeck(Utils.Deck.DECK_INONDATION);
             ihm.notifierObservateurs(m);
         }
         else if(e.getSource() == seDeplacer){

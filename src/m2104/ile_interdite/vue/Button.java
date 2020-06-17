@@ -18,7 +18,7 @@ public class Button extends JButton   {
     private Color color1;
     private Color color2;
 
-    private ImagePanel imgbutt;
+    private ImageIcon imgbutt;
 
     private double arcw;
     private double arch;
@@ -39,14 +39,6 @@ public class Button extends JButton   {
         setFocusable(false);
         this.color1 = Color.GRAY;
         this.color2 = Color.white;
-    }
-
-    public void setColor1(Color color1) {
-
-    }
-
-    public void setColor2(Color color2) {
-        this.color2 = color2;
     }
 
     public Color getColor1() {
@@ -98,11 +90,12 @@ public class Button extends JButton   {
         JFrame j = new JFrame();
         JButton po = new Button("Button",450,40,Color.BLACK,Color.BLUE);
         JButton pa = new Button("JButton",150,30);
+
         j.setLayout(new FlowLayout(FlowLayout.CENTER));
         j.getContentPane().add(pa);
         j.getContentPane().add(po);
         j.getRootPane().setDefaultButton(po);
-        j.setSize(400,400);
+        j.setSize(700,700);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setVisible(true);
 
