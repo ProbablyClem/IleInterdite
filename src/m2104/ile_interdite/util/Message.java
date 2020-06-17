@@ -71,6 +71,14 @@ public class Message implements Serializable {
         return new Message(Utils.Commandes.DONNER, aventurier, null, null, null, null, null, 0);
     }
 
+    public static Message choixCarte(Carte carte) {
+        return new Message(Utils.Commandes.CHOIX_CARTE, null, carte, null, null, null, null, 0);
+    }
+
+    public static Message choixAventurier(Aventurier aventurier) {
+        return new Message(Utils.Commandes.CHOIX_AVENTURIER, aventurier, null, null, null, null, null, 0);
+    }
+
     /**
      *
      * @param aventurier

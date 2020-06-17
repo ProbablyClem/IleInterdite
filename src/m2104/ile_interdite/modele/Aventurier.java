@@ -1,6 +1,7 @@
 package m2104.ile_interdite.modele;
 
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.vue.ImagePanel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,7 +76,7 @@ public abstract class Aventurier {
         setActions(actions-1);
     }
 
-    public void donnerCarte(Carte carte) {
+    public void prendreCarte(Carte carte) {
             this.cartes.add(carte);
     }
 
@@ -143,6 +144,10 @@ public abstract class Aventurier {
         return list;
     }
 
+    public ImagePanel getImg() {
+        return new ImagePanel("src/images/personnages/" + this.getClass().getSimpleName().toLowerCase() + ".png");
+    }
+
     public static ArrayList<Aventurier> getRandomAventuriers(int nb) {
 
 
@@ -168,4 +173,23 @@ public abstract class Aventurier {
         return aventuriers;
     }
 
+    public void donnerCarte(Aventurier A, Carte C) {
+        if (this.getEmplacement() == A.getEmplacement()) {
+            if (C.getClass().getSimpleName().equals("CarteTresor")) {
+                A.prendreCarte(this.getCartes().remove(this.getCartes().indexOf(C)));
+            }
+        }
+    }
+
+    public ArrayList<Carte> getCartesTresor() {
+        ArrayList<Carte> cartes = new ArrayList<>();
+
+        for (Carte C: getCartes()) {
+            if (C.getClass().getSimpleName().equals("CarteTresor")) {
+                cartes.add(C);
+            }
+        }
+
+        return cartes;
+    }
 }

@@ -32,7 +32,9 @@ public class Utils {
         VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage"),
         VOIR_DECK("Voir un deck"),
         ACTION_SPECIALE("Action spéciale"),
-        CHOIX_NIVEAU("Choix du niveau de difficulté");
+        CHOIX_NIVEAU("Choix du niveau de difficulté"),
+        CHOIX_CARTE("Choix de la carte liée à certaines commandes"),
+        CHOIX_AVENTURIER("Choix de l'aventurier lié à certaines commandes");
 
         private final String libelle ;
 
@@ -154,7 +156,7 @@ public class Utils {
         }
 
         public String getPath() {
-            return this.picturePath ;
+            return "src/images/pions/" + this.picturePath ;
         }
 
         public static Pion getFromName(String name) {

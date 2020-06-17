@@ -47,6 +47,7 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
         nivEaux = new VueNiveau(1);
 
         JPanel panelChoix = new JPanel(new GridLayout(5,2));
+        panelChoix.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 10));
 
         JPanel panelBas = new JPanel();
         panelBas.setLayout(new BorderLayout());

@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class TitleFrame extends JFrame {
 
     JLabel title;
-
+    JPanel content;
     JPanel main;
 
     TitleFrame(String title) {
@@ -22,11 +22,15 @@ public class TitleFrame extends JFrame {
         this.title.setFont(new Font("Roboto",Font.BOLD,20));
 
         this.main = new JPanel(new GridLayout(1, 1));
-        this.main.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+        this.main.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 10));
+
+        this.content = new JPanel(new GridLayout(1, 1));
+        this.content.add(this.main);
+        this.content.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
 
         this.setLayout(new BorderLayout());
         this.add(this.title, BorderLayout.NORTH);
-        this.add(this.main, BorderLayout.CENTER);
+        this.add(this.content, BorderLayout.CENTER);
         this.setUndecorated(true);
     }
 
