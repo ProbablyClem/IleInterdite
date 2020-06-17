@@ -130,6 +130,10 @@ public class VueAventurier extends JPanel implements ActionListener {
         repaint();
     }
 
+    public Aventurier getAventurier() {
+        return aventurier;
+    }
+
     //test
     public static void main(String[] args) {
         Aventurier aventurier = new Messager();

@@ -36,6 +36,9 @@ public class MainWindow extends TitleFrame {
 
         this.grillePanel = new VueGrille(grille, ihm);
         this.aventurierPanel = v;
+        v.update(v.getAventurier());
+        ;
+
 
         main.add(niveauPanel, BorderLayout.WEST);
         main.add(grillePanel, BorderLayout.CENTER);
