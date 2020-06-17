@@ -6,6 +6,8 @@ import m2104.ile_interdite.modele.CarteTresor;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -77,11 +79,11 @@ public class VueDeck extends JPanel {
     }
 
     public void afficher(){
-        JFrame w = new JFrame();
+        TitleFrame w = new TitleFrame("Vueflex");
         w.add(this);
+        retour.addActionListener(e -> w.dispose());
         w.setSize(500, 300);
         w.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        w.setTitle("Vueflex");
         w.setVisible(true);
     }
 }
