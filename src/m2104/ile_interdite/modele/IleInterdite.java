@@ -140,6 +140,31 @@ public class IleInterdite extends Observable<Message> {
                 if(deckInondation.get(0).getTuile().getAventuriers().size() > 0){
                     notifierObservateurs(Message.finPartie());
                 }
+
+                boolean carteExiste = false;
+                int x = 0;
+                int y = 0;
+                while(x < 6 && !carteExiste){
+                    while(y < 6 && !carteExiste){
+
+                        try{
+                            if (grille.getTuiles()[x][y].getTresor() == deckInondation.get(0).getTuile().getTresor()){
+                            carteExiste = true;
+                        }
+                        else{
+                            System.out.println("Debug");
+                        }}
+                        catch (Exception e){
+
+                        }
+
+                        y++;
+                    }
+                    x++;
+                }
+                if(!carteExiste){
+                    notifierObservateurs(Message.finPartie());
+                }
             };
             defausseInondation.add(deckInondation.remove(0));
         }
