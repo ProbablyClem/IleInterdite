@@ -54,21 +54,15 @@ public class IleInterdite extends Observable<Message> {
         Collections.shuffle(deckTresor);
 
         // Distribution des cartes
-        for (Aventurier A: aventuriers) {
-            for (int i = 0; i < 2; i++) {
-            A.prendreCarte(deckTresor.get(i));
-            deckTresor.remove(deckTresor.get(i));
-            }
+        for (Aventurier a: aventuriers) {
+            PiocherCartesTresor(a);
         }
 
         Collections.shuffle(deckTresor); // on évite ici que les cartes montée des eaux se retrouvent toutes à la fin
 
         Collections.shuffle(deckInondation);
 
-        for (int i = 0; i < 6; i++) {
-            deckInondation.get(0).utiliser();
-            defausseInondation.add(deckInondation.remove(0));
-        }
+        PiocherCartesInondation(6);
 
         // Affichage CLI de la grille
         grille.showGrille();
@@ -108,4 +102,21 @@ public class IleInterdite extends Observable<Message> {
         return nomAventuriers;
     }
 
+    public void  PiocherCartesTresor(Aventurier a){
+        for (int i = 0; i < 2; i++) {
+            a.prendreCarte(deckTresor.get(i));
+            deckTresor.remove(deckTresor.get(i));
+        }
+    }
+
+    public void PiocherCartesInondation(int nbCartes){
+        for (int i = 0; i < nbCartes; i++) {
+            deckInondation.get(0).utiliser();
+            defausseInondation.add(deckInondation.remove(0));
+        }
+    }
+
+    public int getNiveau() {
+        return niveau;
+    }
 }
