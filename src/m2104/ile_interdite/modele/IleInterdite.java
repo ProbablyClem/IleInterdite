@@ -1,6 +1,7 @@
 package m2104.ile_interdite.modele;
 
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -103,20 +104,77 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public void  PiocherCartesTresor(Aventurier a){
+
         for (int i = 0; i < 2; i++) {
-            a.prendreCarte(deckTresor.get(i));
+            if (deckTresor.size() < 1) {
+                Collections.shuffle(defausseTresor);
+                deckTresor = defausseTresor;
+            }
+            if(deckTresor.get(i) instanceof CarteMonteeDesEaux ){
+                Utils.afficherInformation("L'eau monte !");
+                this.niveau ++;
+                Collections.shuffle(defausseInondation);
+                for(CarteInondation c : defausseInondation){
+                    deckInondation.add(0, c);
+                }
+                defausseInondation.clear();
+                notifierObservateurs(Message.niveau(niveau));
+                defausseTresor.add(deckTresor.get(i));
+            }
+            else{
+                a.prendreCarte(deckTresor.get(i));
+            }
+
             deckTresor.remove(deckTresor.get(i));
         }
     }
 
     public void PiocherCartesInondation(int nbCartes){
         for (int i = 0; i < nbCartes; i++) {
-            deckInondation.get(0).utiliser();
+            if (deckInondation.size() < 1) {
+                Collections.shuffle(defausseInondation);
+                deckInondation = defausseInondation;
+            }
+
+            if (deckInondation.get(0).utiliser() == Utils.EtatTuile.COULEE){
+                if(deckInondation.get(0).getTuile().getAventuriers().size() > 0){
+                    notifierObservateurs(Message.finPartie());
+                }
+
+                boolean carteExiste = false;
+                int x = 0;
+                int y = 0;
+                while(x < 6 && !carteExiste){
+                    while(y < 6 && !carteExiste){
+
+                        try{
+                            if (grille.getTuiles()[x][y].getTresor() == deckInondation.get(0).getTuile().getTresor()){
+                            carteExiste = true;
+                        }
+                        else{
+                            System.out.println("Debug");
+                        }}
+                        catch (Exception e){
+
+                        }
+
+                        y++;
+                    }
+                    x++;
+                }
+                if(!carteExiste){
+                    notifierObservateurs(Message.finPartie());
+                }
+            };
             defausseInondation.add(deckInondation.remove(0));
         }
     }
 
     public int getNiveau() {
         return niveau;
+    }
+
+    public void PrendreTresor(Utils.Tresor t){
+        grille.PrendreTresor(t);
     }
 }

@@ -17,23 +17,26 @@ public class VueAventurier extends JPanel implements ActionListener {
     private String capaciteSpecial;
     private Aventurier aventurier;
     private RichJLabel nomAventurier;
-    private JLabel nbActionsLabel;
+    private RichJLabel nbActionsLabel;
     private JLabel textField;
+
     private Button seDeplacer;
     private Button assecher;
     private Button finirTour;
     private Button actionSpecial;
     private Button donnerCarte;
     private Button prendreTresor;
-    private Button cartesTresor;
+
     private Button defausseTresor;
     private Button defausseInondation;
-    private Button cartesInondation;
+
+
 
     public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
         this.aventurier = aventurier;
         this.ihm = ihm;
         this.capaciteSpecial = capaciteSpecial;
+
         draw();
     }
 
@@ -50,6 +53,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
     private void draw(){
         this.removeAll();
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JPanel header = new JPanel(new BorderLayout());
@@ -79,16 +83,24 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         header.add(nomAventurier, BorderLayout.CENTER);
 
-        nbActionsLabel = new JLabel("Actions restantes : " + aventurier.getActions() + " /3");
+        nbActionsLabel = new RichJLabel("Actions restantes :" + aventurier.getActions() + " /3",0);
         nbActionsLabel.setFont(new Font(nbActionsLabel.getFont().getFontName(), Font.PLAIN, 27));
+        nbActionsLabel.setForeground(Color.decode("#e3e3e3"));
         header.add(nbActionsLabel, BorderLayout.EAST);
+        header.setBackground(Color.white);
 
-        this.add(header);
+
 
         textField = new JLabel("Choisir une action");
-        this.add(textField);
+        textField.setHorizontalAlignment(JLabel.CENTER);
+        textField.setVerticalAlignment(JLabel.CENTER);
+        textField.setFont(new Font("Roboto",Font.BOLD,20));
+        header.add(textField,BorderLayout.SOUTH);
+        this.add(header);
 
-        JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 20, 20));
+
+        JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 10, 10));
+        actionsPanel.setBackground(Color.WHITE);
         seDeplacer = new Button("Se Deplacer",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         seDeplacer.setBorder(new RoundedBorder(20));
         seDeplacer.addActionListener(this);
@@ -124,12 +136,13 @@ public class VueAventurier extends JPanel implements ActionListener {
         VueMain main = new VueMain(aventurier.getCartes());
         this.add(main);
 
-        JPanel decks = new JPanel(new GridLayout(0, 4, 10, 10));
+        JPanel decks = new JPanel(new GridLayout(2, 4, 10, 10));
 
 
         defausseTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
         defausseTresor.setBorder(new RoundedBorder(20));
         defausseTresor.addActionListener(this);
+        decks.setBackground(Color.white);
         decks.add(defausseTresor);
 
         defausseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
@@ -155,6 +168,22 @@ public class VueAventurier extends JPanel implements ActionListener {
         return aventurier;
     }
 
+    public void DesactiverBoutons(){
+        seDeplacer.setEnabled(false);
+        assecher.setEnabled(false);
+        actionSpecial.setEnabled(false);
+        donnerCarte.setEnabled(false);
+        prendreTresor.setEnabled(false);
+    }
+
+    public void ActiverBoutons(){
+        seDeplacer.setEnabled(true);
+        assecher.setEnabled(true);
+        actionSpecial.setEnabled(true);
+        donnerCarte.setEnabled(true);
+        prendreTresor.setEnabled(true);
+    }
+
     //test
     public static void main(String[] args) {
         Aventurier aventurier = new Messager();
@@ -175,22 +204,15 @@ public class VueAventurier extends JPanel implements ActionListener {
         w.setVisible(true);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == cartesTresor){
-            Message m = Message.voirDeck(Utils.Deck.DECK_TRESOR);
-            ihm.notifierObservateurs(m);
-        }
-        else if (e.getSource() == defausseTresor){
+        if(e.getSource() == defausseTresor){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_TRESOR);
             ihm.notifierObservateurs(m);
         }
         else if (e.getSource() == defausseInondation){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_INONDATION);
-            ihm.notifierObservateurs(m);
-        }
-        else if (e.getSource() == cartesInondation){
-            Message m = Message.voirDeck(Utils.Deck.DECK_INONDATION);
             ihm.notifierObservateurs(m);
         }
         else if(e.getSource() == seDeplacer){

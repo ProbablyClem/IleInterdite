@@ -1,21 +1,12 @@
 package m2104.ile_interdite.vue;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import m2104.ile_interdite.util.Parameters;
+
+import javax.swing.*;
+import javax.swing.border.MatteBorder;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Scanner;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.MatteBorder;
-import m2104.ile_interdite.util.Parameters;
 
 public class VueNiveau extends JPanel {
 
@@ -116,7 +107,6 @@ public class VueNiveau extends JPanel {
     }
 
     public void setNiveau(Integer niveau) {
-        System.out.println("VueNiveau_nopic.setNiveau(" + niveau + ")");
         panelsGauches.get(this.niveau).setBackground(getBgColor(this.niveau - 1));
         this.niveau = niveau ;
         panelsGauches.get(this.niveau).setBackground(this.niveau == 10 ? Color.RED : Color.YELLOW);

@@ -22,6 +22,7 @@ public class IHM extends Observable<Message> {
     private Grille grille;
     private MainWindow mainWindow;
     private ArrayList<Aventurier> aventuriers;
+    private int niveau;
 
     public IHM(Observateur<Message> observateur, Grille grille) {
         this.grille = grille;
@@ -88,4 +89,8 @@ public class IHM extends Observable<Message> {
         mainWindow = new MainWindow(this, grille,vueAventuriers.get(aventuriers.get(0)), niveau);
     }
 
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
+        mainWindow.getVueNiveau().setNiveau(niveau);
+    }
 }

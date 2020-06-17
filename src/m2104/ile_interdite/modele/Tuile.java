@@ -17,25 +17,25 @@ public class Tuile {
     private Utils.Pion departPion;
     private ArrayList<Aventurier> aventuriers;
 
-    Tuile (String nom) {
+    public Tuile (String nom) {
         this.nom = nom;
         this.etat = Utils.EtatTuile.ASSECHEE;
         aventuriers = new ArrayList<>();
     }
 
-    Tuile (String nom, String image) {
+    public Tuile (String nom, String image) {
         this.nom = nom;
         this.etat = Utils.EtatTuile.ASSECHEE;
         this.image = image;
         aventuriers = new ArrayList<>();
     }
 
-    Tuile (String nom, String image, Utils.Tresor tresor) {
+    public Tuile (String nom, String image, Utils.Tresor tresor) {
         this(nom, image);
         this.tresor = tresor;
     }
 
-    Tuile (String nom,String image, Utils.Pion departPion) {
+    public Tuile (String nom,String image, Utils.Pion departPion) {
         this(nom, image);
         this.departPion = departPion;
     }

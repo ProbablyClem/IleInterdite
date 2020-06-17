@@ -32,16 +32,24 @@ public class CarteInondation extends Carte {
         return cartes;
     }
 
-    public void utiliser() {
+    public Utils.EtatTuile utiliser() {
         if (this.tuile.getEtat().equals(Utils.EtatTuile.ASSECHEE)) {
             this.tuile.setEtat(Utils.EtatTuile.INONDEE);
         } else {
             this.tuile.setEtat(Utils.EtatTuile.COULEE);
+            if(this.tuile.getAventuriers().size() > 0){
+
+            }
         }
+        return this.tuile.getEtat();
     }
 
     @Override
     public ImagePanel getImage() {
         return image;
+    }
+
+    public Tuile getTuile() {
+        return tuile;
     }
 }

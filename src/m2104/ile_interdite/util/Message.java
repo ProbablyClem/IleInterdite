@@ -151,6 +151,10 @@ public class Message implements Serializable {
         return new Message(Utils.Commandes.CHOIX_NIVEAU, null, null, null, null, null, null, niveau);
     }
 
+    public static Message finPartie(){
+        return new Message(Utils.Commandes.FIN_PARTIE, null, null, null, null, null, null, 0);
+    }
+
     /**
      * @return the commande
      */
