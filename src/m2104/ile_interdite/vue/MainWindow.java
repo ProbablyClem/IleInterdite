@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 public class MainWindow extends TitleFrame {
     private IHM ihm;
-    private JPanel mainPanel;
     private JPanel niveauPanel;
     private VueNiveau vueNiveau;
     private VueGrille grillePanel;
@@ -61,10 +60,10 @@ public class MainWindow extends TitleFrame {
     }
 
     public void activerGrille(){
-        this.grillePanel.setEnabled(true);
+        this.grillePanel.etatGrille(true);
     }
 
     public void desactiverGrille(){
-        this.grillePanel.setEnabled(false);
+        this.grillePanel.etatGrille(false);
     }
 }

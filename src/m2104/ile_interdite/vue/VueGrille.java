@@ -52,7 +52,6 @@ public class VueGrille extends JPanel {
                         @Override
                         public void mouseClicked(MouseEvent e) {
                             if (panel.isEnabled()) {
-                                System.out.println("Click sur " + t.getNom());
                                 ihm.notifierObservateurs(Message.choisirTuile(t));
                             }
                         }
@@ -60,14 +59,14 @@ public class VueGrille extends JPanel {
                         @Override
                         public void mousePressed(MouseEvent e) {
                             if (panel.isEnabled()) {
-                                panel.setBackground(Color.BLACK);
+                                panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
                             }
                         }
 
                         @Override
                         public void mouseReleased(MouseEvent e) {
                             if (panel.isEnabled()) {
-                                panel.setBackground(components.get(0).getBackground());
+                                panel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 5));
                             }
                         }
 
@@ -95,6 +94,16 @@ public class VueGrille extends JPanel {
         components.get(35).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture(), 20), BorderLayout.CENTER);
 
         etatGrille(true);
+    }
+
+    public void highlightTuiles(ArrayList<Tuile> tuiles) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (tuiles.contains(grille.getTuiles()[i][j])) {
+                    components.get(i*6 + j).setBorder(BorderFactory.createLineBorder(Color.green, 5, true));
+                }
+            }
+        }
     }
 
 }

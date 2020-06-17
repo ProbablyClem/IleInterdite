@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Tuile {
 
+    private Grille grille;
     private String nom;
     private String image;
     private Utils.EtatTuile etat;
@@ -56,6 +57,14 @@ public class Tuile {
 
     public void setEtat(Utils.EtatTuile etat) {
         this.etat = etat;
+    }
+
+    public void setGrille(Grille grille) {
+        this.grille = grille;
+    }
+
+    public Grille getGrille() {
+        return grille;
     }
 
     public void ajouterAventurier(Aventurier aventurier) {

@@ -22,10 +22,12 @@ public class Controleur implements Observateur<Message> {
     private Utils.Etat etat;
     private Grille grille;
     private int niveau = 2;
+    private ArrayList<Tuile> listTuiles;
 
     public Controleur() {
         this.grille = new Grille();
         this.ihm = new IHM(this, grille);
+        this.listTuiles = new ArrayList<>();
     }
 
     @Override
@@ -74,16 +76,24 @@ public class Controleur implements Observateur<Message> {
                 }
                     break;
             case DEPLACER:
+                listTuiles = aventurierActuel.getDeplacementsPossibles();
+
                 ihm.setMessage(aventurierActuel, "Choisir une tuile ou aller");
+                ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
+
                 //todo activer grille
                 etat = Utils.Etat.DEPLACER_JOUEUR;
                 break;
             case CHOISIR_TUILE:
                 if(etat == Utils.Etat.DEPLACER_JOUEUR){
-                    aventurierActuel.setEmplacement(msg.getTuile());
-                    aventurierActuel.setActions(aventurierActuel.getActions()-1);
-                    ihm.updateGrille();
-                    ihm.updateActions();
+                    if (listTuiles.contains(msg.getTuile())) {
+                        aventurierActuel.setEmplacement(msg.getTuile());
+                        aventurierActuel.setActions(aventurierActuel.getActions()-1);
+                        ihm.updateGrille();
+                        ihm.updateActions();
+                    } else {
+                        ihm.setMessage(aventurierActuel, "Déplacement impossible");
+                    }
                 }
                 else if(etat == Utils.Etat.ASSECHER_CASE){
                     msg.getTuile().setEtat(Utils.EtatTuile.ASSECHEE);

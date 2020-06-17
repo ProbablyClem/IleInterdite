@@ -37,10 +37,10 @@ public class IHM extends Observable<Message> {
             aventuriers.get(i).setNom(this.vueInscription.getNomJoueurs()[i]);
         }
         //assert nomsJoueurs.length == nomAventuriers.length;
-        for (int id = 0; id < aventuriers.size(); ++id) {
+        for (Aventurier A : aventuriers) {
             this.vueAventuriers.put(
-                    aventuriers.get(id),
-                    new VueAventurier(this, aventuriers.get(id), aventuriers.get(id).actionSpeciale())
+                    A,
+                    new VueAventurier(this, A, A.actionSpeciale())
             );
         }
     }
@@ -51,6 +51,9 @@ public class IHM extends Observable<Message> {
         vueDeck.afficher();
     }
 
+    public MainWindow getMainWindow() {
+        return this.mainWindow;
+    }
 
     public void setMessage(Aventurier a, String message){
         vueAventuriers.get(a).setMessage(message);
