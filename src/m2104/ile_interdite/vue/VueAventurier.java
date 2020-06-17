@@ -16,7 +16,7 @@ public class VueAventurier extends JPanel implements ActionListener {
     private IHM ihm;
     private String capaciteSpecial;
     private Aventurier aventurier;
-    private JLabel nomAventurier;
+    private RichJLabel nomAventurier;
     private JLabel nbActionsLabel;
     private JLabel textField;
     private Button seDeplacer;
@@ -54,8 +54,17 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         JPanel header = new JPanel(new BorderLayout());
 
-        nomAventurier = new JLabel(aventurier.getNom() + " : " + aventurier.getRole());
+        nomAventurier = new RichJLabel(aventurier.getNom() + ":" + aventurier.getRole(),0);
         nomAventurier.setFont(new Font(nomAventurier.getFont().getFontName(), Font.PLAIN, 30));
+        if (aventurier.getRole().equals("Ingénieur")) {
+            nomAventurier.setForeground(Color.RED);
+        }
+        else if (aventurier.getRole().equals("Pilote")){
+            nomAventurier.setForeground(Color.BLUE);
+        }
+        else if (aventurier.getRole().equals("Plongeur")){
+            nomAventurier.setForeground(Color.decode("#a50fbf"));
+        }
         header.add(nomAventurier, BorderLayout.CENTER);
 
         nbActionsLabel = new JLabel("Actions restantes : " + aventurier.getActions() + " /3");
@@ -68,32 +77,32 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.add(textField);
 
         JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 20, 20));
-        seDeplacer = new Button("Se Deplacer",80,80);
+        seDeplacer = new Button("Se Deplacer",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         seDeplacer.setBorder(new RoundedBorder(20));
         seDeplacer.addActionListener(this);
         actionsPanel.add(seDeplacer);
 
-        assecher = new Button("Assecher",80,80);
+        assecher = new Button("Assecher",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         assecher.setBorder(new RoundedBorder(20));
         assecher.addActionListener(this);
         actionsPanel.add(assecher);
 
-        finirTour = new Button("Finir Tour",80,80);
+        finirTour = new Button("Finir Tour",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         finirTour.setBorder(new RoundedBorder(20));
         finirTour.addActionListener(this);
         actionsPanel.add(finirTour);
 
-        actionSpecial = new Button(capaciteSpecial,80,80);
+        actionSpecial = new Button(capaciteSpecial,80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         actionSpecial.setBorder(new RoundedBorder(20));
         actionSpecial.addActionListener(this);
         actionsPanel.add(actionSpecial);
 
-        donnerCarte = new Button("Donner Carte",80,80);
+        donnerCarte = new Button("Donner Carte",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         donnerCarte.setBorder(new RoundedBorder(20));
         donnerCarte.addActionListener(this);
         actionsPanel.add(donnerCarte);
 
-        prendreTresor = new Button("Prendre Tresor",80,80);
+        prendreTresor = new Button("Prendre Tresor",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         prendreTresor.setBorder(new RoundedBorder(20));
         prendreTresor.addActionListener(this);
         actionsPanel.add(prendreTresor);

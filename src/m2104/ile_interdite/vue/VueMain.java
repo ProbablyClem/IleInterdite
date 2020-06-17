@@ -14,8 +14,11 @@ public class VueMain extends JPanel {
 
     public VueMain(ArrayList<Carte> cartes){
         this.cartes = cartes;
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BorderLayout());
         titre = new JLabel("Cartes Joueur");
+        titre.setFont(new Font("Roboto",Font.BOLD,20));
+        titre.setHorizontalAlignment(JLabel.CENTER);
+        titre.setVerticalAlignment(JLabel.CENTER);
         this.add(titre, BorderLayout.NORTH);
 
         lignehaut = new JPanel();

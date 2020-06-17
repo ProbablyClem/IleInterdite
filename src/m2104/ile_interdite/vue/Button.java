@@ -85,7 +85,7 @@ public class Button extends JButton   {
     public void paintBorder(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.GRAY);
+        g2.setColor(Color.black);
         g2.setStroke(st);
         g2.draw(re);
         g2.dispose();
