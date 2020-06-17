@@ -22,6 +22,7 @@ public class Controleur implements Observateur<Message> {
     private Utils.Etat etat;
     private Grille grille;
     private int niveau = 2;
+    private int idJoueur = 0;
     private ArrayList<Tuile> listTuiles;
 
     public Controleur() {
@@ -128,7 +129,8 @@ public class Controleur implements Observateur<Message> {
 
                 break;
             case TERMINER:
-                aventurierActuel = aventuriers.get(aventuriers.indexOf(aventurierActuel) + 1 % aventuriers.size());
+                idJoueur = idJoueur + 1 % aventuriers.size();
+                aventurierActuel = aventuriers.get(idJoueur);
                 ihm.setVueAventuriers(aventurierActuel);
                 break;
             case ACTION_SPECIALE:
