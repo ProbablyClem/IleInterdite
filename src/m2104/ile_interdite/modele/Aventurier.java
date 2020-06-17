@@ -70,8 +70,9 @@ public abstract class Aventurier {
         // TODO: function core
     }
 
-    public void assecher() {
-        // TODO: function core
+    public void assecher(Tuile t){
+        t.setEtat(Utils.EtatTuile.ASSECHEE);
+        setActions(actions-1);
     }
 
     public void donnerCarte(Carte carte) {
@@ -109,6 +110,33 @@ public abstract class Aventurier {
             list.add(grille.getTuiles()[index.n1][index.n2-1]);
         }
         if (index.n2 + 1 < 6 && grille.getTuiles()[index.n1][index.n2+1] != null && grille.getTuiles()[index.n1][index.n2+1].getEtat() != Utils.EtatTuile.COULEE) {
+            list.add(grille.getTuiles()[index.n1][index.n2+1]);
+        }
+
+        return list;
+    }
+
+    public ArrayList<Tuile> gettAssechementPossible(){
+        Grille grille = getEmplacement().getGrille();
+        Index index = Grille.getIndex(grille, getEmplacement());
+
+        if (index == null) {
+            return null;
+        }
+        ArrayList<Tuile> list = new ArrayList<>();
+        if (emplacement.getEtat() == Utils.EtatTuile.INONDEE){
+            list.add(emplacement);
+        }
+        if (index.n1 - 1 >= 0 && grille.getTuiles()[index.n1-1][index.n2] != null && grille.getTuiles()[index.n1-1][index.n2].getEtat() == Utils.EtatTuile.INONDEE) {
+            list.add(grille.getTuiles()[index.n1-1][index.n2]);
+        }
+        if (index.n1 + 1 < 6 && grille.getTuiles()[index.n1+1][index.n2] != null && grille.getTuiles()[index.n1+1][index.n2].getEtat()  == Utils.EtatTuile.INONDEE) {
+            list.add(grille.getTuiles()[index.n1+1][index.n2]);
+        }
+        if (index.n2 - 1 >= 0 && grille.getTuiles()[index.n1][index.n2-1] != null && grille.getTuiles()[index.n1][index.n2-1].getEtat()  == Utils.EtatTuile.INONDEE) {
+            list.add(grille.getTuiles()[index.n1][index.n2-1]);
+        }
+        if (index.n2 + 1 < 6 && grille.getTuiles()[index.n1][index.n2+1] != null && grille.getTuiles()[index.n1][index.n2+1].getEtat()  == Utils.EtatTuile.INONDEE) {
             list.add(grille.getTuiles()[index.n1][index.n2+1]);
         }
 
