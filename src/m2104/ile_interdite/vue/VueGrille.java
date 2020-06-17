@@ -22,7 +22,7 @@ public class VueGrille extends JPanel {
         this.ihm = ihm;
 
         drawGrille();
-
+        etatGrille(false);
     }
 
 

@@ -70,7 +70,14 @@ public class IHM extends Observable<Message> {
 
     public void updateActions(){
         mainWindow.getAventurierPanel().updateActions();
+    }
 
+    public void activerGrille(){
+        this.mainWindow.getGrillePanel().etatGrille(true);
+    }
+
+    public void desactiverGrille(){
+        this.mainWindow.getGrillePanel().etatGrille(false);
     }
 
     public void setVueAventuriers(Aventurier a){
