@@ -119,7 +119,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             case ASSECHER :
                 if (aventurierActuel.getActions() > 0){
-                    listTuiles = aventurierActuel.gettAssechementPossible();
+                    listTuiles = aventurierActuel.getAssechementPossible();
                     ihm.setMessage(aventurierActuel,"Choisir une case a assecher");
                     ihm.activerGrille();
                     etat = Utils.Etat.ASSECHER_CASE;

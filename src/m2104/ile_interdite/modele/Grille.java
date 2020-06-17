@@ -62,6 +62,33 @@ public class Grille {
         return null;
     }
 
+    public ArrayList<Tuile> getTuilesAdjacentes(Tuile T) {
+        Index i = Grille.getIndex(this, T);
+        ArrayList<Tuile> list = new ArrayList<>();
+
+        if (i != null) {
+            if (i.n1 - 1 >= 0 && this.getTuiles()[i.n1 - 1][i.n2    ] != null) list.add(this.getTuiles()[i.n1 - 1][i.n2    ]);
+            if (i.n1 + 1 < 6  && this.getTuiles()[i.n1 + 1][i.n2    ] != null) list.add(this.getTuiles()[i.n1 + 1][i.n2    ]);
+            if (i.n2 - 1 >= 0 && this.getTuiles()[i.n1    ][i.n2 - 1] != null) list.add(this.getTuiles()[i.n1    ][i.n2 - 1]);
+            if (i.n2 + 1 < 6  && this.getTuiles()[i.n1    ][i.n2 + 1] != null) list.add(this.getTuiles()[i.n1    ][i.n2 + 1]);
+        }
+
+        return list;
+    }
+
+    public ArrayList<Tuile> getTuilesDiagonales(Tuile T) {
+        Index i = Grille.getIndex(this, T);
+        ArrayList<Tuile> list = new ArrayList<>();
+
+        if (i != null) {
+            if (i.n1 - 1 >= 0 && i.n2 - 1 >= 0 && this.getTuiles()[i.n1 - 1][i.n2 - 1] != null) list.add(this.getTuiles()[i.n1 - 1][i.n2 - 1]);
+            if (i.n1 - 1 >= 0 && i.n2 + 1 <  6 && this.getTuiles()[i.n1 - 1][i.n2 + 1] != null) list.add(this.getTuiles()[i.n1 - 1][i.n2 + 1]);
+            if (i.n1 + 1 <  6 && i.n2 - 1 >= 0 && this.getTuiles()[i.n1 + 1][i.n2 - 1] != null) list.add(this.getTuiles()[i.n1 + 1][i.n2 - 1]);
+            if (i.n1 + 1 <  6 && i.n2 + 1 <  6 && this.getTuiles()[i.n1 + 1][i.n2 + 1] != null) list.add(this.getTuiles()[i.n1 + 1][i.n2 + 1]);
+        }
+
+        return list;
+    }
 }
 
 class Index {

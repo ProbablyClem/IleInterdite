@@ -108,6 +108,7 @@ public class Tuile {
         return this.aventuriers;
     }
 
+
     public static ArrayList<Tuile> getAllTuiles() {
         ArrayList<Tuile> allTuiles = new ArrayList<>();
         allTuiles.add(new Tuile("La Caverne des Ombres","LaCarverneDesOmbres", Utils.Tresor.CRISTAL));

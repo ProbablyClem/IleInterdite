@@ -19,6 +19,7 @@ public abstract class Aventurier {
     private ArrayList<Carte> cartes;
     private Tuile emplacement;
     private ArrayList<Utils.Tresor> tresors;
+    private boolean ASutilisee;
 
     Aventurier (String role, Utils.Pion pion) {
         this.role = role;
@@ -63,6 +64,10 @@ public abstract class Aventurier {
         this.emplacement = nouveau;
     }
 
+    public void setASutilisee(boolean ASutilisee) {
+        this.ASutilisee = ASutilisee;
+    }
+
     public void seDeplacer(Tuile nouveau) {
         //TODO: function core
     }
@@ -95,50 +100,28 @@ public abstract class Aventurier {
     }
 
     public ArrayList<Tuile> getDeplacementsPossibles() {
-        Grille grille = getEmplacement().getGrille();
-        Index index = Grille.getIndex(grille, getEmplacement());
-        if (index == null) {
-            return null;
-        }
         ArrayList<Tuile> list = new ArrayList<>();
-        if (index.n1 - 1 >= 0 && grille.getTuiles()[index.n1-1][index.n2] != null && grille.getTuiles()[index.n1-1][index.n2].getEtat() != Utils.EtatTuile.COULEE) {
-            list.add(grille.getTuiles()[index.n1-1][index.n2]);
-        }
-        if (index.n1 + 1 < 6 && grille.getTuiles()[index.n1+1][index.n2] != null && grille.getTuiles()[index.n1+1][index.n2].getEtat() != Utils.EtatTuile.COULEE) {
-            list.add(grille.getTuiles()[index.n1+1][index.n2]);
-        }
-        if (index.n2 - 1 >= 0 && grille.getTuiles()[index.n1][index.n2-1] != null && grille.getTuiles()[index.n1][index.n2-1].getEtat() != Utils.EtatTuile.COULEE) {
-            list.add(grille.getTuiles()[index.n1][index.n2-1]);
-        }
-        if (index.n2 + 1 < 6 && grille.getTuiles()[index.n1][index.n2+1] != null && grille.getTuiles()[index.n1][index.n2+1].getEtat() != Utils.EtatTuile.COULEE) {
-            list.add(grille.getTuiles()[index.n1][index.n2+1]);
+
+        for (Tuile T: this.getEmplacement().getGrille().getTuilesAdjacentes(this.getEmplacement())) {
+            if (T.getEtat() != Utils.EtatTuile.COULEE) {
+                list.add(T);
+            }
         }
 
         return list;
     }
 
-    public ArrayList<Tuile> gettAssechementPossible(){
-        Grille grille = getEmplacement().getGrille();
-        Index index = Grille.getIndex(grille, getEmplacement());
-
-        if (index == null) {
-            return null;
-        }
+    public ArrayList<Tuile> getAssechementPossible(){
         ArrayList<Tuile> list = new ArrayList<>();
+
         if (emplacement.getEtat() == Utils.EtatTuile.INONDEE){
             list.add(emplacement);
         }
-        if (index.n1 - 1 >= 0 && grille.getTuiles()[index.n1-1][index.n2] != null && grille.getTuiles()[index.n1-1][index.n2].getEtat() == Utils.EtatTuile.INONDEE) {
-            list.add(grille.getTuiles()[index.n1-1][index.n2]);
-        }
-        if (index.n1 + 1 < 6 && grille.getTuiles()[index.n1+1][index.n2] != null && grille.getTuiles()[index.n1+1][index.n2].getEtat()  == Utils.EtatTuile.INONDEE) {
-            list.add(grille.getTuiles()[index.n1+1][index.n2]);
-        }
-        if (index.n2 - 1 >= 0 && grille.getTuiles()[index.n1][index.n2-1] != null && grille.getTuiles()[index.n1][index.n2-1].getEtat()  == Utils.EtatTuile.INONDEE) {
-            list.add(grille.getTuiles()[index.n1][index.n2-1]);
-        }
-        if (index.n2 + 1 < 6 && grille.getTuiles()[index.n1][index.n2+1] != null && grille.getTuiles()[index.n1][index.n2+1].getEtat()  == Utils.EtatTuile.INONDEE) {
-            list.add(grille.getTuiles()[index.n1][index.n2+1]);
+
+        for (Tuile T: this.getEmplacement().getGrille().getTuilesAdjacentes(this.getEmplacement())) {
+            if (T.getEtat() == Utils.EtatTuile.INONDEE) {
+                list.add(T);
+            }
         }
 
         return list;
