@@ -25,8 +25,8 @@ public class VueAventurier extends JPanel implements ActionListener {
     private Button donnerCarte;
     private Button prendreTresor;
     private Button cartesTresor;
-    private Button deffauseeTresor;
-    private Button deffauseInondation;
+    private Button defausseTresor;
+    private Button defausseInondation;
     private Button cartesInondation;
 
     public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
@@ -89,15 +89,15 @@ public class VueAventurier extends JPanel implements ActionListener {
         JPanel decks = new JPanel(new GridLayout(0, 4, 10, 10));
 
 
-        deffauseeTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
-        deffauseeTresor.setBorder(new RoundedBorder(20));
-        deffauseeTresor.addActionListener(this);
-        decks.add(deffauseeTresor);
+        defausseTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
+        defausseTresor.setBorder(new RoundedBorder(20));
+        defausseTresor.addActionListener(this);
+        decks.add(defausseTresor);
 
-        deffauseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
-        deffauseInondation.setBorder(new RoundedBorder(20));
-        deffauseInondation.addActionListener(this);
-        decks.add(deffauseInondation);
+        defausseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
+        defausseInondation.setBorder(new RoundedBorder(20));
+        defausseInondation.addActionListener(this);
+        decks.add(defausseInondation);
 
 
         this.add(decks);
@@ -136,11 +136,11 @@ public class VueAventurier extends JPanel implements ActionListener {
             Message m = Message.voirDeck(Utils.Deck.DECK_TRESOR);
             ihm.notifierObservateurs(m);
         }
-        else if (e.getSource() == deffauseeTresor){
+        else if (e.getSource() == defausseTresor){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_TRESOR);
             ihm.notifierObservateurs(m);
         }
-        else if (e.getSource() == deffauseInondation){
+        else if (e.getSource() == defausseInondation){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_INONDATION);
             ihm.notifierObservateurs(m);
         }
