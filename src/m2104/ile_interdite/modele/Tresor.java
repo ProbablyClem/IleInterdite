@@ -11,7 +11,7 @@ public class Tresor {
     }
 
     public ImagePanel getImage(){
-        return new ImagePanel(tresor.getPathPicture());
+        return new ImagePanel(tresor.getPathPicture(), 20);
     }
 
     public Utils.Tresor getTresor() {
