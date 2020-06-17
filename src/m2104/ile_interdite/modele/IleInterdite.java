@@ -59,7 +59,7 @@ public class IleInterdite extends Observable<Message> {
                 while (deckTresor.get(0).getClass().getSimpleName().equals("CarteMonteeDesEaux")) {
                     deckTresor.add(deckTresor.remove(0));
                 }
-                A.donnerCarte(deckTresor.remove(0));
+                A.prendreCarte(deckTresor.remove(0));
             }
         }
 

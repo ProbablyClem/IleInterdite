@@ -3,6 +3,7 @@ package m2104.ile_interdite.modele;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.vue.ImagePanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -85,14 +86,26 @@ public class Tuile {
             IF = new ImagePanel();
         }
 
-        IF.setLayout(new GridLayout(3, 4));
+        IF.setLayout(new GridLayout(3, 2));
 
         for (Aventurier A: aventuriers) {
-            ImagePanel pionIF = new ImagePanel("src/images/pions/" + A.getPion().getPath());
+            ImagePanel pionIF = new ImagePanel(A.getPion().getPath());
             pionIF.setBackground(new Color(0, 0, 0, 0));
             IF.add(pionIF);
         }
+
+        for (int i = 0; i < 6-aventuriers.size(); i++) {
+            JPanel panel = new JPanel();
+            panel.setOpaque(false);
+            IF.add(panel);
+        }
+
+        IF.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 4));
         return IF;
+    }
+
+    public ArrayList<Aventurier> getAventuriers() {
+        return this.aventuriers;
     }
 
     public static ArrayList<Tuile> getAllTuiles() {

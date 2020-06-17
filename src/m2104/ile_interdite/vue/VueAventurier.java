@@ -121,13 +121,13 @@ public class VueAventurier extends JPanel implements ActionListener {
     public static void main(String[] args) {
         Aventurier aventurier = new Messager();
         aventurier.setNom("Clement");
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
         VueAventurier v = new VueAventurier(null, aventurier, "flex");
         JFrame w = new JFrame();
         w.add(v);
