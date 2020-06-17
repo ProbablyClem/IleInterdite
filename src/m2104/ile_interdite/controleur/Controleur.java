@@ -7,6 +7,7 @@ import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.vue.IHM;
 import m2104.ile_interdite.vue.VueChoixCarte;
 import m2104.ile_interdite.vue.VueChoixPersonnage;
+import m2104.ile_interdite.vue.VueFinPartie;
 import patterns.observateur.Observateur;
 
 import java.util.ArrayList;
@@ -204,6 +205,8 @@ public class Controleur implements Observateur<Message> {
                     ihm.setMessage(aventurierActuel, "Vous n'avez pas les tresors neccesaires pour prendre le tresor");
                 }
                 break;
+            case FIN_PARTIE:
+                new VueFinPartie("La partie est finie");
 
 
             default :

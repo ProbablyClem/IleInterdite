@@ -34,7 +34,8 @@ public class Utils {
         ACTION_SPECIALE("Action spéciale"),
         CHOIX_NIVEAU("Choix du niveau de difficulté"),
         CHOIX_CARTE("Choix de la carte liée à certaines commandes"),
-        CHOIX_AVENTURIER("Choix de l'aventurier lié à certaines commandes");
+        CHOIX_AVENTURIER("Choix de l'aventurier lié à certaines commandes"),
+        FIN_PARTIE("La partie est fini");
 
         private final String libelle ;
 

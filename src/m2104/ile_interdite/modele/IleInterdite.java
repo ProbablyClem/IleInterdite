@@ -137,9 +137,8 @@ public class IleInterdite extends Observable<Message> {
             }
 
             if (deckInondation.get(0).utiliser() == Utils.EtatTuile.COULEE){
-                for (Aventurier a: deckInondation.get(0).getTuile().getAventuriers()) {
-                    Utils.afficherInformation("Le joueur "+ a.getNom()+ "est mort");
-                    this.aventuriers.remove(a);
+                if(deckInondation.get(0).getTuile().getAventuriers().size() > 0){
+                    notifierObservateurs(Message.finPartie());
                 }
             };
             defausseInondation.add(deckInondation.remove(0));
