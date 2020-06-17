@@ -19,10 +19,10 @@ public class CarteTresor extends Carte {
         ArrayList<Carte> cartes = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
-            cartes.add(new CarteTresor("Calice","src/images/Calice.png", Utils.Tresor.CALICE));
-            cartes.add(new CarteTresor("Pierre", "src/images/Pierre.png", Utils.Tresor.PIERRE));
-            cartes.add(new CarteTresor("Zephyr", "src/images/Zephyr.png", Utils.Tresor.ZEPHYR));
-            cartes.add(new CarteTresor("Cristal", "src/images/Cristal.png", Utils.Tresor.CRISTAL));
+            cartes.add(new CarteTresor("src/images/cartes/Calice.png","Calice", Utils.Tresor.CALICE));
+            cartes.add(new CarteTresor("src/images/cartes/Pierre.png","Pierre", Utils.Tresor.PIERRE));
+            cartes.add(new CarteTresor("src/images/cartes/Zephyr.png","Zephyr", Utils.Tresor.ZEPHYR));
+            cartes.add(new CarteTresor( "src/images/cartes/Cristal.png","Cristal", Utils.Tresor.CRISTAL));
         }
 
         return cartes;

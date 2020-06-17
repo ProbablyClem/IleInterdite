@@ -6,7 +6,7 @@ public class CarteMonteeDesEaux extends CarteSpeciale {
 
 
     public CarteMonteeDesEaux(){
-        super("Carte montée des eaux", "src/images/MonteeDesEaux.png");
+        super( "src/images/MonteeDesEaux.png", "Carte montée des eaux");
     }
 
 

@@ -81,7 +81,7 @@ public class IHM extends Observable<Message> {
     }
 
     public void setVueAventuriers(Aventurier a){
-        mainWindow.setAventurier(vueAventuriers.get(a));
+        mainWindow.getAventurierPanel().update(a);
     }
 
     public void afficherMainWindow(int niveau){

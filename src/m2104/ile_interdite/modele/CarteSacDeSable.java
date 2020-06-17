@@ -9,7 +9,7 @@ public class CarteSacDeSable extends CarteSpeciale {
 
 
     public CarteSacDeSable() {
-        super("Sac Sable", "src/images/tresors/SacsDeSable.png");
+        super( "src/images/tresors/SacsDeSable.png", "Sac Sable");
     }
 
 

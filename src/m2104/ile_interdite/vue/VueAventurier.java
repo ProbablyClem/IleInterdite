@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class VueAventurier extends JPanel implements ActionListener {
     private IHM ihm;
+    private String capaciteSpecial;
     private Aventurier aventurier;
     private JLabel nomAventurier;
     private JLabel nbActionsLabel;
@@ -32,84 +33,8 @@ public class VueAventurier extends JPanel implements ActionListener {
     public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
         this.aventurier = aventurier;
         this.ihm = ihm;
-
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-        JPanel header = new JPanel(new BorderLayout());
-
-        nomAventurier = new JLabel(aventurier.getNom() + " : " + aventurier.getRole());
-        nomAventurier.setFont(new Font(nomAventurier.getFont().getFontName(), Font.PLAIN, 30));
-        header.add(nomAventurier, BorderLayout.CENTER);
-
-        nbActionsLabel = new JLabel("Actions restantes : " + aventurier.getActions() + " /3");
-        nbActionsLabel.setFont(new Font(nbActionsLabel.getFont().getFontName(), Font.PLAIN, 27));
-        header.add(nbActionsLabel, BorderLayout.EAST);
-
-        this.add(header);
-
-        textField = new JLabel("Choisir une action");
-        this.add(textField);
-
-        JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 20, 20));
-        seDeplacer = new Button("Se Deplacer",80,80);
-        seDeplacer.setBorder(new RoundedBorder(20));
-        seDeplacer.addActionListener(this);
-        actionsPanel.add(seDeplacer);
-
-        assecher = new Button("Assecher",80,80);
-        assecher.setBorder(new RoundedBorder(20));
-        assecher.addActionListener(this);
-        actionsPanel.add(assecher);
-
-        finirTour = new Button("Finir Tour",80,80);
-        finirTour.setBorder(new RoundedBorder(20));
-        finirTour.addActionListener(this);
-        actionsPanel.add(finirTour);
-
-        actionSpecial = new Button("capacite Special",80,80);
-        actionSpecial.setBorder(new RoundedBorder(20));
-        actionSpecial.addActionListener(this);
-        actionsPanel.add(actionSpecial);
-
-        donnerCarte = new Button("Donner Carte",80,80);
-        donnerCarte.setBorder(new RoundedBorder(20));
-        donnerCarte.addActionListener(this);
-        actionsPanel.add(donnerCarte);
-
-        prendreTresor = new Button("Prendre Tresor",80,80);
-        prendreTresor.setBorder(new RoundedBorder(20));
-        prendreTresor.addActionListener(this);
-        actionsPanel.add(prendreTresor);
-
-        this.add(actionsPanel);
-
-        VueMain main = new VueMain(aventurier.getCartes());
-        this.add(main);
-
-        JPanel decks = new JPanel(new GridLayout(0, 4, 10, 10));
-        cartesTresor = new Button("<html><body>Carte Tresor</body></html>",80,80);
-        cartesTresor.setBorder(new RoundedBorder(20));
-        cartesTresor.addActionListener(this);
-        decks.add(cartesTresor);
-
-        deffauseeTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
-        deffauseeTresor.setBorder(new RoundedBorder(20));
-        deffauseeTresor.addActionListener(this);
-        decks.add(deffauseeTresor);
-
-        deffauseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
-        deffauseInondation.setBorder(new RoundedBorder(20));
-        deffauseInondation.addActionListener(this);
-        decks.add(deffauseInondation);
-
-        cartesInondation = new Button("<html><body>Carte Inondation</body></html>",80,80);
-        cartesInondation.setBorder(new RoundedBorder(20));
-        cartesInondation.addActionListener(this);
-        decks.add(cartesInondation);
-
-        this.add(decks);
-
-        this.setPreferredSize(new Dimension(700,700));
+        this.capaciteSpecial = capaciteSpecial;
+        draw();
     }
 
     public void setMessage(String message){
@@ -179,6 +104,94 @@ public class VueAventurier extends JPanel implements ActionListener {
         nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
     }
 
+    private void draw(){
+        this.removeAll();
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        JPanel header = new JPanel(new BorderLayout());
+
+        nomAventurier = new JLabel(aventurier.getNom() + " : " + aventurier.getRole());
+        nomAventurier.setFont(new Font(nomAventurier.getFont().getFontName(), Font.PLAIN, 30));
+        header.add(nomAventurier, BorderLayout.CENTER);
+
+        nbActionsLabel = new JLabel("Actions restantes : " + aventurier.getActions() + " /3");
+        nbActionsLabel.setFont(new Font(nbActionsLabel.getFont().getFontName(), Font.PLAIN, 27));
+        header.add(nbActionsLabel, BorderLayout.EAST);
+
+        this.add(header);
+
+        textField = new JLabel("Choisir une action");
+        this.add(textField);
+
+        JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 20, 20));
+        seDeplacer = new Button("Se Deplacer",80,80);
+        seDeplacer.setBorder(new RoundedBorder(20));
+        seDeplacer.addActionListener(this);
+        actionsPanel.add(seDeplacer);
+
+        assecher = new Button("Assecher",80,80);
+        assecher.setBorder(new RoundedBorder(20));
+        assecher.addActionListener(this);
+        actionsPanel.add(assecher);
+
+        finirTour = new Button("Finir Tour",80,80);
+        finirTour.setBorder(new RoundedBorder(20));
+        finirTour.addActionListener(this);
+        actionsPanel.add(finirTour);
+
+        actionSpecial = new Button(capaciteSpecial,80,80);
+        actionSpecial.setBorder(new RoundedBorder(20));
+        actionSpecial.addActionListener(this);
+        actionsPanel.add(actionSpecial);
+
+        donnerCarte = new Button("Donner Carte",80,80);
+        donnerCarte.setBorder(new RoundedBorder(20));
+        donnerCarte.addActionListener(this);
+        actionsPanel.add(donnerCarte);
+
+        prendreTresor = new Button("Prendre Tresor",80,80);
+        prendreTresor.setBorder(new RoundedBorder(20));
+        prendreTresor.addActionListener(this);
+        actionsPanel.add(prendreTresor);
+
+        this.add(actionsPanel);
+
+        VueMain main = new VueMain(aventurier.getCartes());
+        this.add(main);
+
+        JPanel decks = new JPanel(new GridLayout(0, 4, 10, 10));
+        cartesTresor = new Button("<html><body>Carte Tresor</body></html>",80,80);
+        cartesTresor.setBorder(new RoundedBorder(20));
+        cartesTresor.addActionListener(this);
+        decks.add(cartesTresor);
+
+        deffauseeTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
+        deffauseeTresor.setBorder(new RoundedBorder(20));
+        deffauseeTresor.addActionListener(this);
+        decks.add(deffauseeTresor);
+
+        deffauseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
+        deffauseInondation.setBorder(new RoundedBorder(20));
+        deffauseInondation.addActionListener(this);
+        decks.add(deffauseInondation);
+
+        cartesInondation = new Button("<html><body>Carte Inondation</body></html>",80,80);
+        cartesInondation.setBorder(new RoundedBorder(20));
+        cartesInondation.addActionListener(this);
+        decks.add(cartesInondation);
+
+        this.add(decks);
+
+        this.setPreferredSize(new Dimension(700,700));
+    }
+
+    public void update(Aventurier a){
+        this.aventurier = a;
+        removeAll();
+        draw();
+        validate();
+        repaint();
+    }
     private static class RoundedBorder implements Border {
         private int radius;
         RoundedBorder(int radius) {

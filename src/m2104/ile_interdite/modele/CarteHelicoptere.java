@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CarteHelicoptere extends CarteSpeciale {
 
     public CarteHelicoptere(){
-        super("Carte helicoptere", "src/images/Helicoptere.png");
+        super("src/images/Helicoptere.png", "Carte helicoptere");
     }
 
 
