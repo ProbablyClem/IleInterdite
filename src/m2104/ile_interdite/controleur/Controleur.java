@@ -55,6 +55,10 @@ public class Controleur implements Observateur<Message> {
                 break;
             case CHOIX_NIVEAU :
                 this.niveau = msg.getNiveau();
+                if (ihm.getMainWindow() != null) {
+                    ihm.setNiveau(niveau);
+                }
+
                 System.out.println(msg.getNiveau());
                 break;
             case VOIR_DECK :
@@ -142,6 +146,7 @@ public class Controleur implements Observateur<Message> {
                 }
                 aventurierActuel = aventuriers.get(idJoueur);
                 ihm.setVueAventuriers(aventurierActuel);
+                ihm.getMainWindow().desactiverGrille();
                 break;
             case ACTION_SPECIALE :
                 msg.getAventurier().actionSpeciale();

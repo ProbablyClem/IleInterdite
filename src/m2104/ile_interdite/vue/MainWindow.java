@@ -74,4 +74,8 @@ public class MainWindow extends TitleFrame {
     public void desactiverGrille(){
         this.grillePanel.etatGrille(false);
     }
+
+    public VueNiveau getVueNiveau() {
+        return vueNiveau;
+    }
 }

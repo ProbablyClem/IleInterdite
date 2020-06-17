@@ -1,6 +1,7 @@
 package m2104.ile_interdite.modele;
 
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -104,7 +105,22 @@ public class IleInterdite extends Observable<Message> {
 
     public void  PiocherCartesTresor(Aventurier a){
         for (int i = 0; i < 2; i++) {
-            a.prendreCarte(deckTresor.get(i));
+
+            if(deckTresor.get(i) instanceof CarteMonteeDesEaux ){
+                Utils.afficherInformation("L'eau monte !");
+                this.niveau ++;
+                Collections.shuffle(defausseInondation);
+                for(CarteInondation c : defausseInondation){
+                    deckInondation.add(0, c);
+                }
+                defausseInondation.clear();
+                notifierObservateurs(Message.niveau(niveau));
+                defausseTresor.add(deckTresor.get(i));
+            }
+            else{
+                a.prendreCarte(deckTresor.get(i));
+            }
+
             deckTresor.remove(deckTresor.get(i));
         }
     }
