@@ -26,8 +26,8 @@ public class VueAventurier extends JPanel implements ActionListener {
     private Button donnerCarte;
     private Button prendreTresor;
     private Button cartesTresor;
-    private Button deffauseeTresor;
-    private Button deffauseInondation;
+    private Button defausseTresor;
+    private Button defausseInondation;
     private Button cartesInondation;
 
     public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
@@ -42,63 +42,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.repaint();
     }
 
-    //test
-    public static void main(String[] args) {
-        Aventurier aventurier = new Messager();
-        aventurier.setNom("Clement");
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        VueAventurier v = new VueAventurier(null, aventurier, "flex");
-        JFrame w = new JFrame();
-        w.add(v);
-        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        w.pack();
-        w.setTitle("vueAventurier");
-        w.setVisible(true);
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == cartesTresor){
-            Message m = Message.voirDeck(Utils.Deck.DECK_TRESOR);
-            ihm.notifierObservateurs(m);
-        }
-        else if (e.getSource() == deffauseeTresor){
-            Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_TRESOR);
-            ihm.notifierObservateurs(m);
-        }
-        else if (e.getSource() == deffauseInondation){
-            Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_INONDATION);
-            ihm.notifierObservateurs(m);
-        }
-        else if (e.getSource() == cartesInondation){
-            Message m = Message.voirDeck(Utils.Deck.DECK_INONDATION);
-            ihm.notifierObservateurs(m);
-        }
-        else if(e.getSource() == seDeplacer){
-            ihm.notifierObservateurs(Message.deplacer(aventurier));
-        }
-        else if(e.getSource() == assecher){
-            ihm.notifierObservateurs(Message.assecher(aventurier));
-        }
-        else if(e.getSource() == finirTour){
-            ihm.notifierObservateurs(Message.terminer(aventurier));
-        }
-        else if(e.getSource() == actionSpecial){
-            ihm.notifierObservateurs(Message.actionSpecial());
-        }
-        else if(e.getSource() == donnerCarte){
-            ihm.notifierObservateurs(Message.donner(aventurier));
-        }
-        else if(e.getSource() == prendreTresor){
-            ihm.notifierObservateurs(Message.recupererTresor(aventurier));
-        }
-    }
 
     public void updateActions(){
         nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
@@ -160,25 +104,18 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.add(main);
 
         JPanel decks = new JPanel(new GridLayout(0, 4, 10, 10));
-        cartesTresor = new Button("<html><body>Carte Tresor</body></html>",80,80);
-        cartesTresor.setBorder(new RoundedBorder(20));
-        cartesTresor.addActionListener(this);
-        decks.add(cartesTresor);
 
-        deffauseeTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
-        deffauseeTresor.setBorder(new RoundedBorder(20));
-        deffauseeTresor.addActionListener(this);
-        decks.add(deffauseeTresor);
 
-        deffauseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
-        deffauseInondation.setBorder(new RoundedBorder(20));
-        deffauseInondation.addActionListener(this);
-        decks.add(deffauseInondation);
+        defausseTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
+        defausseTresor.setBorder(new RoundedBorder(20));
+        defausseTresor.addActionListener(this);
+        decks.add(defausseTresor);
 
-        cartesInondation = new Button("<html><body>Carte Inondation</body></html>",80,80);
-        cartesInondation.setBorder(new RoundedBorder(20));
-        cartesInondation.addActionListener(this);
-        decks.add(cartesInondation);
+        defausseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
+        defausseInondation.setBorder(new RoundedBorder(20));
+        defausseInondation.addActionListener(this);
+        decks.add(defausseInondation);
+
 
         this.add(decks);
 
@@ -192,6 +129,66 @@ public class VueAventurier extends JPanel implements ActionListener {
         validate();
         repaint();
     }
+
+    //test
+    public static void main(String[] args) {
+        Aventurier aventurier = new Messager();
+        aventurier.setNom("Clement");
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        aventurier.donnerCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
+        VueAventurier v = new VueAventurier(null, aventurier, "flex");
+        JFrame w = new JFrame();
+        w.add(v);
+        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        w.pack();
+        w.setTitle("vueAventurier");
+        w.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == cartesTresor){
+            Message m = Message.voirDeck(Utils.Deck.DECK_TRESOR);
+            ihm.notifierObservateurs(m);
+        }
+        else if (e.getSource() == defausseTresor){
+            Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_TRESOR);
+            ihm.notifierObservateurs(m);
+        }
+        else if (e.getSource() == defausseInondation){
+            Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_INONDATION);
+            ihm.notifierObservateurs(m);
+        }
+        else if (e.getSource() == cartesInondation){
+            Message m = Message.voirDeck(Utils.Deck.DECK_INONDATION);
+            ihm.notifierObservateurs(m);
+        }
+        else if(e.getSource() == seDeplacer){
+            ihm.notifierObservateurs(Message.deplacer(aventurier));
+        }
+        else if(e.getSource() == assecher){
+            ihm.notifierObservateurs(Message.assecher(aventurier));
+        }
+        else if(e.getSource() == finirTour){
+            ihm.notifierObservateurs(Message.terminer(aventurier));
+        }
+        else if(e.getSource() == actionSpecial){
+            ihm.notifierObservateurs(Message.actionSpecial());
+        }
+        else if(e.getSource() == donnerCarte){
+            ihm.notifierObservateurs(Message.donner(aventurier));
+        }
+        else if(e.getSource() == prendreTresor){
+            ihm.notifierObservateurs(Message.recupererTresor(aventurier));
+        }
+    }
+
+
     private static class RoundedBorder implements Border {
         private int radius;
         RoundedBorder(int radius) {
