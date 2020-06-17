@@ -87,10 +87,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.add(main);
 
         JPanel decks = new JPanel(new GridLayout(0, 4, 10, 10));
-        cartesTresor = new Button("<html><body>Carte Tresor</body></html>",80,80);
-        cartesTresor.setBorder(new RoundedBorder(20));
-        cartesTresor.addActionListener(this);
-        decks.add(cartesTresor);
+
 
         deffauseeTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
         deffauseeTresor.setBorder(new RoundedBorder(20));
@@ -102,10 +99,6 @@ public class VueAventurier extends JPanel implements ActionListener {
         deffauseInondation.addActionListener(this);
         decks.add(deffauseInondation);
 
-        cartesInondation = new Button("<html><body>Carte Inondation</body></html>",80,80);
-        cartesInondation.setBorder(new RoundedBorder(20));
-        cartesInondation.addActionListener(this);
-        decks.add(cartesInondation);
 
         this.add(decks);
 
