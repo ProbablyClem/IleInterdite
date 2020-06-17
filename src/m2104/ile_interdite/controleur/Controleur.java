@@ -43,7 +43,7 @@ public class Controleur implements Observateur<Message> {
         }
 
         switch (msg.getCommande()) {
-            case VALIDER_JOUEURS -> {
+            case VALIDER_JOUEURS :
                 assert msg.hasNbJoueurs();
                 aventuriers = Aventurier.getRandomAventuriers(msg.getNbJoueurs());
 
@@ -52,34 +52,36 @@ public class Controleur implements Observateur<Message> {
                 this.ihm.afficherMainWindow(niveau);
                 aventurierActuel = aventuriers.get(0);
                 ihm.setMessage(aventurierActuel, "Choisir une action");
-            }
-            case CHOIX_NIVEAU -> {
+                break;
+            case CHOIX_NIVEAU :
                 this.niveau = msg.getNiveau();
                 System.out.println(msg.getNiveau());
-            }
-            case VOIR_DECK -> {
+                break;
+            case VOIR_DECK :
                 switch (msg.getDeck()) {
-                    case DECK_TRESOR -> {
+                    case DECK_TRESOR :
                         ihm.AfficherDeck(Utils.Deck.DECK_TRESOR, ileInterdite.getDeckTresor());
-                    }
-                    case DECK_INONDATION -> {
+                        break;
+                    case DECK_INONDATION:
                         ArrayList<Carte> c = new ArrayList<>();
                         for (CarteInondation carteInondation : ileInterdite.getDeckInondation()) {
                             c.add((Carte) carteInondation);
                         }
                         ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, c);
-                    }
-                    case DEFFAUSSE_TRESOR -> ihm.AfficherDeck(Utils.Deck.DEFFAUSSE_TRESOR, ileInterdite.getDefausseTresor());
-                    case DEFFAUSSE_INONDATION -> {
+                        break;
+                    case DEFFAUSSE_TRESOR :
+                        ihm.AfficherDeck(Utils.Deck.DEFFAUSSE_TRESOR, ileInterdite.getDefausseTresor());
+                        break;
+                    case DEFFAUSSE_INONDATION :
                         ArrayList<Carte> cartes = new ArrayList<>();
                         for (CarteInondation carteInondation : ileInterdite.getDefausseInondation()) {
                             cartes.add((Carte) carteInondation);
                         }
                         ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, cartes);
+                        break;
                     }
-                }
-            }
-            case DEPLACER -> {
+                break;
+            case DEPLACER :
                 if (aventurierActuel.getActions() > 0) {
                     listTuiles = aventurierActuel.getDeplacementsPossibles();
 
@@ -93,8 +95,8 @@ public class Controleur implements Observateur<Message> {
                     ihm.setMessage(aventurierActuel, "Plus de points d'actions");
                     ihm.desactiverGrille();
                 }
-            }
-            case CHOISIR_TUILE -> {
+                break;
+            case CHOISIR_TUILE :
                 if (etat == Utils.Etat.DEPLACER_JOUEUR) {
                     if (listTuiles.contains(msg.getTuile())) {
                         aventurierActuel.setEmplacement(msg.getTuile());
@@ -114,8 +116,8 @@ public class Controleur implements Observateur<Message> {
                         ihm.setMessage(aventurierActuel, "Déplacement impossible");
                     }
                 }
-            }
-            case ASSECHER -> {
+                break;
+            case ASSECHER :
                 if (aventurierActuel.getActions() > 0){
                     listTuiles = aventurierActuel.gettAssechementPossible();
                     ihm.setMessage(aventurierActuel,"Choisir une case a assecher");
@@ -128,14 +130,16 @@ public class Controleur implements Observateur<Message> {
                     ihm.setMessage(aventurierActuel, "Plus de points d'actions disponible");
                     ihm.desactiverGrille();
                 }
-            }
-            case TERMINER -> {
+                break;
+            case TERMINER :
                 idJoueur = idJoueur + 1 % aventuriers.size();
                 aventurierActuel = aventuriers.get(idJoueur);
                 ihm.setVueAventuriers(aventurierActuel);
-            }
-            case ACTION_SPECIALE -> msg.getAventurier().actionSpeciale();
-            case DONNER -> {
+                break;
+            case ACTION_SPECIALE :
+                msg.getAventurier().actionSpeciale();
+                break;
+            case DONNER :
                 if (aventurierActuel.getRole().equals("Messager") || aventurierActuel.getEmplacement().getAventuriers().size() > 1) {
                     if (aventurierActuel.getCartesTresor().size() != 0) {
                         ihm.setMessage(aventurierActuel, "Veuillez choisir une carte");
@@ -146,26 +150,25 @@ public class Controleur implements Observateur<Message> {
                 } else {
                     ihm.setMessage(aventurierActuel, "Il n'y a personne sur votre case");
                 }
-            }
-            case CHOIX_CARTE -> {
+                break;
+            case CHOIX_CARTE :
                 ihm.setMessage(aventurierActuel, "Veuillez choisir une personne");
                 ArrayList<Aventurier> memeCase = new ArrayList<>(!aventurierActuel.getRole().equals("Messager") ? aventurierActuel.getEmplacement().getAventuriers() : aventuriers);
                 memeCase.remove(aventurierActuel);
                 vueChoixPerso = new VueChoixPersonnage(ihm, memeCase);
                 carte = msg.getCarte();
                 vueChoixCarte.dispose();
-            }
-            case CHOIX_AVENTURIER -> {
+                break;
+            case CHOIX_AVENTURIER :
                 aventurierActuel.donnerCarte(msg.getAventurier(), carte);
                 vueChoixPerso.dispose();
-            }
+                break;
 
 
-            default -> {
+            default :
                 if (Parameters.LOGS) {
                     System.err.println("Action interdite : " + msg.getCommande().toString());
                 }
-            }
         }
     }
 }
