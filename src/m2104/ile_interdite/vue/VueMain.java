@@ -11,7 +11,7 @@ public class VueMain extends JPanel {
     private JLabel titre;
     private ArrayList<Carte> cartes;
     private JPanel pheader;
-    private JPanel lignehaut;
+    private JPanel jcartes;
 
     public VueMain(ArrayList<Carte> cartes){
         this.cartes = cartes;
@@ -29,48 +29,17 @@ public class VueMain extends JPanel {
 
 
 
-        lignehaut = new JPanel();
+        jcartes = new JPanel();
+        jcartes.setLayout(new GridLayout(2,cartes.size(),0,10));
+        jcartes.setBackground(Color.white);
 
-        if (cartes.size() > 5) {
-            for (int i = 0; i < 5; i++) {
-                ImagePanel imagePanel = cartes.get(i).getImage();
-                imagePanel.setMinimumSize(new Dimension(100, 100));
-                imagePanel.setPreferredSize(new Dimension(150, 150));
-                imagePanel.setMaximumSize(new Dimension(200, 200));
-                imagePanel.setBackground(Color.white);
-                lignehaut.setBackground(Color.white);
-                lignehaut.add(imagePanel);
-            }
-            JPanel lignebas = new JPanel();
-            for (int i = 5; i < cartes.size(); i++) {
-                ImagePanel imagePanel = cartes.get(i).getImage();
-                imagePanel.setMinimumSize(new Dimension(100, 100));
-                imagePanel.setPreferredSize(new Dimension(150, 150));
-                imagePanel.setMaximumSize(new Dimension(200, 200));
-                imagePanel.setBackground(Color.white);
-                lignebas.setBackground(Color.white);
-                lignebas.add(imagePanel);
-            }
-            lignehaut.setBackground(Color.white);
-            this.setBackground(Color.white);
-            this.add(lignehaut, BorderLayout.CENTER);
-            this.add(lignebas, BorderLayout.SOUTH);
-        }
-        else {
-            for (int i = 0; i < cartes.size(); i++) {
-                ImagePanel imagePanel = cartes.get(i).getImage();
-                imagePanel.setMinimumSize(new Dimension(100, 100));
-                imagePanel.setPreferredSize(new Dimension(150, 150));
-                imagePanel.setMaximumSize(new Dimension(200, 200));
-                lignehaut.add(imagePanel);
-            }
-            this.add(lignehaut);
-        }
+        for (Carte C: cartes) {
+            ImagePanel panel = C.getImage();
+            panel.setBackground(Color.white);
+            jcartes.add(panel);
 
-
-
-
-
+    }
+        this.add(jcartes,BorderLayout.CENTER);
 
     }
 }
