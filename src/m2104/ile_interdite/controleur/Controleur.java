@@ -176,6 +176,12 @@ public class Controleur implements Observateur<Message> {
                 vueChoixPerso.dispose();
                 ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
                 break;
+            case RECUPERER_TRESOR:
+                if(aventurierActuel.prendreTresor()){
+                    ileInterdite.PrendreTresor(aventurierActuel.getEmplacement().getTresor());
+                    ihm.updateGrille();
+                }
+                break;
 
 
             default :

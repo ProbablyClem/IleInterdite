@@ -104,8 +104,12 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public void  PiocherCartesTresor(Aventurier a){
-        for (int i = 0; i < 2; i++) {
 
+        for (int i = 0; i < 2; i++) {
+            if (deckTresor.size() < 1) {
+                Collections.shuffle(defausseTresor);
+                deckTresor = defausseTresor;
+            }
             if(deckTresor.get(i) instanceof CarteMonteeDesEaux ){
                 Utils.afficherInformation("L'eau monte !");
                 this.niveau ++;
@@ -127,6 +131,11 @@ public class IleInterdite extends Observable<Message> {
 
     public void PiocherCartesInondation(int nbCartes){
         for (int i = 0; i < nbCartes; i++) {
+            if (deckInondation.size() < 1) {
+                Collections.shuffle(defausseInondation);
+                deckInondation = defausseInondation;
+            }
+
             deckInondation.get(0).utiliser();
             defausseInondation.add(deckInondation.remove(0));
         }
@@ -134,5 +143,9 @@ public class IleInterdite extends Observable<Message> {
 
     public int getNiveau() {
         return niveau;
+    }
+
+    public void PrendreTresor(Utils.Tresor t){
+        grille.PrendreTresor(t);
     }
 }

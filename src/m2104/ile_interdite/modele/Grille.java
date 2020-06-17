@@ -4,12 +4,11 @@ import m2104.ile_interdite.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class Grille {
 
     private Tuile[][] tuiles = new Tuile[6][6];
-
+    private ArrayList<Tresor> tresors = new ArrayList<>();
     private byte niveauEau;
 
     public Grille() {
@@ -24,6 +23,12 @@ public class Grille {
                 }
             }
         }
+
+        tresors.add(new Tresor(Utils.Tresor.CRISTAL));
+        tresors.add(new Tresor(Utils.Tresor.CALICE));
+        tresors.add(new Tresor(Utils.Tresor.PIERRE));
+        tresors.add(new Tresor(Utils.Tresor.ZEPHYR));
+
     }
 
     public Tuile[][] getTuiles() {
@@ -62,6 +67,17 @@ public class Grille {
         return null;
     }
 
+    public ArrayList<Tresor> getTresors() {
+        return tresors;
+    }
+
+    public void PrendreTresor(Utils.Tresor t){
+        int cpt = 0;
+        while(tresors.get(cpt).getTresor() != t){
+            cpt++;
+        }
+        tresors.remove(tresors.get(cpt));
+    }
 }
 
 class Index {

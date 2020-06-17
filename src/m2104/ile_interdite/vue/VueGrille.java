@@ -3,7 +3,6 @@ package m2104.ile_interdite.vue;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
-import m2104.ile_interdite.util.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +24,7 @@ public class VueGrille extends JPanel {
         etatGrille(false);
         this.setOpaque(true);
     }
+
 
 
     public void etatGrille(boolean etat) {
@@ -89,10 +89,33 @@ public class VueGrille extends JPanel {
             }
         }
 
-        components.get(0).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.CRISTAL.getPathPicture(), 20), BorderLayout.CENTER);
-        components.get(5).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.CALICE.getPathPicture(), 20), BorderLayout.CENTER);
-        components.get(30).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.PIERRE.getPathPicture(), 20), BorderLayout.CENTER);
-        components.get(35).add(new ImagePanel("src/images/tresors/" + Utils.Tresor.ZEPHYR.getPathPicture(), 20), BorderLayout.CENTER);
+        try{
+            components.get(0).add(grille.getTresors().get(0).getImage());
+        }
+        catch (Exception e){
+            components.get(0).add(new ImagePanel());
+        }
+
+        try{
+            components.get(5).add(grille.getTresors().get(1).getImage());
+        }
+        catch (Exception e){
+            components.get(0).add(new ImagePanel());
+        }
+
+        try{
+            components.get(30).add(grille.getTresors().get(2).getImage());
+        }
+        catch (Exception e){
+            components.get(0).add(new ImagePanel());
+        }
+
+        try{
+            components.get(35).add(grille.getTresors().get(3).getImage());
+        }
+        catch (Exception e){
+            components.get(0).add(new ImagePanel());
+        }
 
         etatGrille(true);
     }

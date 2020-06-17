@@ -14,6 +14,9 @@ public class CarteTresor extends Carte {
         this.tresor = tresor;
     }
 
+    public Utils.Tresor getTresor() {
+        return tresor;
+    }
 
     public static ArrayList<Carte> getAllCartes() {
         ArrayList<Carte> cartes = new ArrayList<>();

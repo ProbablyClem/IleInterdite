@@ -11,7 +11,7 @@ import java.util.Collections;
  * @author IUT2-Dept Info
  */
 public abstract class Aventurier {
-    
+
     private int actions = 3;
     private String role;
     private String nom;
@@ -20,7 +20,7 @@ public abstract class Aventurier {
     private Tuile emplacement;
     private ArrayList<Utils.Tresor> tresors;
 
-    Aventurier (String role, Utils.Pion pion) {
+    Aventurier(String role, Utils.Pion pion) {
         this.role = role;
         this.pion = pion;
         this.cartes = new ArrayList<>();
@@ -71,18 +71,34 @@ public abstract class Aventurier {
         // TODO: function core
     }
 
-    public void assecher(Tuile t){
+    public void assecher(Tuile t) {
         t.setEtat(Utils.EtatTuile.ASSECHEE);
-        setActions(actions-1);
+        setActions(actions - 1);
     }
 
     public void prendreCarte(Carte carte) {
-            this.cartes.add(carte);
+        this.cartes.add(carte);
     }
 
-    public void prendreTresor() {
-        // TODO: function core
+    public boolean prendreTresor() {
+
+        ArrayList<CarteTresor> cartesTresor = new ArrayList<>();
+        for (Carte c : cartes) {
+            if (c instanceof CarteTresor && ((CarteTresor) c).getTresor() == emplacement.getTresor()) {
+                cartesTresor.add((CarteTresor) c);
+            }
+        }
+        if (cartesTresor.size() > 4) {
+            for (int i = 0; i < 4; i++) {
+                cartes.remove(cartesTresor.get(i));
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
     }
+
 
     public void tirerCarte() {
         // TODO: function core
