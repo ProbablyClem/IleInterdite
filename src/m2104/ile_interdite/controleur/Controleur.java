@@ -133,8 +133,13 @@ public class Controleur implements Observateur<Message> {
                 break;
             case TERMINER :
                 aventurierActuel.setActions(3);
+                ileInterdite.PiocherCartesTresor(aventurierActuel);
+                ileInterdite.PiocherCartesInondation(ileInterdite.getNiveau());
+                ihm.updateGrille();
                 idJoueur ++;
-                if (idJoueur == aventuriers.size()) {idJoueur = 0; }
+                if (idJoueur == aventuriers.size()) {
+                    idJoueur = 0;
+                }
                 aventurierActuel = aventuriers.get(idJoueur);
                 ihm.setVueAventuriers(aventurierActuel);
                 break;
