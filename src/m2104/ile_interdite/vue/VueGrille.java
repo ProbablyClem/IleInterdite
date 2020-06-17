@@ -1,8 +1,8 @@
 package m2104.ile_interdite.vue;
 
-import m2104.ile_interdite.modele.Grille;
-import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.modele.*;
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,31 +90,31 @@ public class VueGrille extends JPanel {
         }
 
         try{
-            components.get(0).add(grille.getTresors().get(0).getImage());
+            components.get(0).add(grille.getTresors()[0].getImage());
         }
         catch (Exception e){
             components.get(0).add(new ImagePanel());
         }
 
         try{
-            components.get(5).add(grille.getTresors().get(1).getImage());
+            components.get(5).add(grille.getTresors()[1].getImage());
         }
         catch (Exception e){
-            components.get(0).add(new ImagePanel());
+            components.get(5).add(new ImagePanel());
         }
 
         try{
-            components.get(30).add(grille.getTresors().get(2).getImage());
+            components.get(30).add(grille.getTresors()[2].getImage());
         }
         catch (Exception e){
-            components.get(0).add(new ImagePanel());
+            components.get(30).add(new ImagePanel());
         }
 
         try{
-            components.get(35).add(grille.getTresors().get(3).getImage());
+            components.get(35).add(grille.getTresors()[3].getImage());
         }
         catch (Exception e){
-            components.get(0).add(new ImagePanel());
+            components.get(35).add(new ImagePanel());
         }
 
         etatGrille(true);
@@ -130,4 +130,26 @@ public class VueGrille extends JPanel {
         }
     }
 
+    public static void main(String[] args) {
+        JFrame w = new JFrame();
+        Grille grille = new Grille();
+        VueGrille vueGrille = new VueGrille(grille, null);
+        w.add(vueGrille);
+        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        w.setSize(1000, 1000);
+        w.setTitle("vueGrille");
+        w.setVisible(true);
+        Aventurier aventurier = new Pilote();
+        ArrayList<Carte> cartes = new ArrayList<>();
+        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
+        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
+        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
+        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
+        aventurier.setEmplacement(new Tuile(null, null, Utils.Tresor.CALICE));
+        aventurier.setCartes(cartes);
+        if (aventurier.prendreTresor()){
+            grille.PrendreTresor(Utils.Tresor.CALICE);
+            vueGrille.drawGrille();
+        }
+    }
 }

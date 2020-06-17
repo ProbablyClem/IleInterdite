@@ -88,7 +88,7 @@ public abstract class Aventurier {
                 cartesTresor.add((CarteTresor) c);
             }
         }
-        if (cartesTresor.size() > 4) {
+        if (cartesTresor.size() >= 4) {
             for (int i = 0; i < 4; i++) {
                 cartes.remove(cartesTresor.get(i));
             }
@@ -207,5 +207,9 @@ public abstract class Aventurier {
         }
 
         return cartes;
+    }
+
+    public void setCartes(ArrayList<Carte> cartes) {
+        this.cartes = cartes;
     }
 }

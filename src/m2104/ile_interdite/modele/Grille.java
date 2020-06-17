@@ -8,7 +8,7 @@ import java.util.Collections;
 public class Grille {
 
     private Tuile[][] tuiles = new Tuile[6][6];
-    private ArrayList<Tresor> tresors = new ArrayList<>();
+    private Tresor[] tresors = new Tresor[4];
     private byte niveauEau;
 
     public Grille() {
@@ -24,10 +24,10 @@ public class Grille {
             }
         }
 
-        tresors.add(new Tresor(Utils.Tresor.CRISTAL));
-        tresors.add(new Tresor(Utils.Tresor.CALICE));
-        tresors.add(new Tresor(Utils.Tresor.PIERRE));
-        tresors.add(new Tresor(Utils.Tresor.ZEPHYR));
+        tresors[0] = new Tresor(Utils.Tresor.CRISTAL);
+        tresors[1] = new Tresor(Utils.Tresor.CALICE);
+        tresors[2] = new Tresor(Utils.Tresor.PIERRE);
+        tresors[3] = new Tresor(Utils.Tresor.ZEPHYR);
 
     }
 
@@ -67,16 +67,16 @@ public class Grille {
         return null;
     }
 
-    public ArrayList<Tresor> getTresors() {
+    public Tresor[] getTresors() {
         return tresors;
     }
 
     public void PrendreTresor(Utils.Tresor t){
         int cpt = 0;
-        while(tresors.get(cpt).getTresor() != t){
+        while(tresors[cpt].getTresor() != t){
             cpt++;
         }
-        tresors.remove(tresors.get(cpt));
+        tresors[cpt] = null;
     }
 }
 
