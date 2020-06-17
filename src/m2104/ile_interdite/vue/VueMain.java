@@ -20,7 +20,7 @@ public class VueMain extends JPanel {
         titre.setHorizontalAlignment(JLabel.CENTER);
         titre.setVerticalAlignment(JLabel.CENTER);
         this.add(titre, BorderLayout.NORTH);
-
+        this.setBackground(Color.WHITE);
         lignehaut = new JPanel();
 
         if (cartes.size() > 5) {
