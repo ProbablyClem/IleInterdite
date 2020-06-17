@@ -185,7 +185,7 @@ public abstract class Aventurier {
         ArrayList<Carte> cartes = new ArrayList<>();
 
         for (Carte C: getCartes()) {
-            if (C.getClass().getSimpleName().equals("CarteTresor")) {
+            if (C instanceof CarteTresor) {
                 cartes.add(C);
             }
         }
