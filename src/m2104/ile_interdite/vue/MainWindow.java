@@ -43,7 +43,6 @@ public class MainWindow extends TitleFrame {
         main.add(niveauPanel, BorderLayout.WEST);
         main.add(grillePanel, BorderLayout.CENTER);
         main.add(aventurierPanel, BorderLayout.EAST);
-
         this.setVisible(true);
         this.setSize(1580, 800);
         this.centrer();

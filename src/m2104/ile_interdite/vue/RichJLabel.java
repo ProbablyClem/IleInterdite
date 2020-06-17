@@ -13,11 +13,11 @@ import java.awt.*;
         public RichJLabel(String text, int tracking) {
             super(text, JLabel.CENTER);
             this.tracking = tracking;
-            left_x = -3;
-            left_y = -3;
+            left_x = -2;
+            left_y = -2;
             left_color = Color.BLACK.brighter();
-            right_x = 2;
-            right_y = 3;
+            right_x = 1;
+            right_y = 2;
             right_color = Color.black.brighter();
         }
 

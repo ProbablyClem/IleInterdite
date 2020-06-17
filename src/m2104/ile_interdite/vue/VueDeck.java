@@ -52,18 +52,24 @@ public class VueDeck extends JPanel {
 
         if (cartes.size() <= 14){
             grid = new JPanel(new GridLayout(1, 14));
+            grid.setOpaque(true);
 
         }
         else {
             grid = new JPanel(new GridLayout(2, 14));
+            grid.setOpaque(true);
 
         }
 
         for(Carte c : cartes){
             grid.add(c.getImage());
+
+            grid.setOpaque(true);
         }
         this.add(grid, BorderLayout.CENTER);
         this.setPreferredSize(new Dimension(700,700));
+        this.setOpaque(true);
+        this.setBackground(Color.WHITE);
     }
 
 
