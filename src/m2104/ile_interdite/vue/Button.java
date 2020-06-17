@@ -18,6 +18,8 @@ public class Button extends JButton   {
     private Color color1;
     private Color color2;
 
+    private ImagePanel imgbutt;
+
     private double arcw;
     private double arch;
 

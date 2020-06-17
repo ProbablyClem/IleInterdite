@@ -56,15 +56,27 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         nomAventurier = new RichJLabel(aventurier.getNom() + ":" + aventurier.getRole(),0);
         nomAventurier.setFont(new Font(nomAventurier.getFont().getFontName(), Font.PLAIN, 30));
+
         if (aventurier.getRole().equals("Ingénieur")) {
-            nomAventurier.setForeground(Color.RED);
+            nomAventurier.setForeground(Color.decode("#cf4942"));
         }
         else if (aventurier.getRole().equals("Pilote")){
-            nomAventurier.setForeground(Color.BLUE);
+            nomAventurier.setForeground(Color.decode("#3dbfbd"));
         }
         else if (aventurier.getRole().equals("Plongeur")){
             nomAventurier.setForeground(Color.decode("#a50fbf"));
         }
+        else if (aventurier.getRole().equals("Navigateur")){
+            nomAventurier.setForeground(Color.decode("#ebd338"));
+        }
+        else if (aventurier.getRole().equals("Messager")){
+            nomAventurier.setForeground(Color.decode("#eb7a38"));
+        }
+        else if(aventurier.getRole().equals("Explorateur")){
+            nomAventurier.setForeground(Color.decode("#5cc955"));
+        }
+
+
         header.add(nomAventurier, BorderLayout.CENTER);
 
         nbActionsLabel = new JLabel("Actions restantes : " + aventurier.getActions() + " /3");
