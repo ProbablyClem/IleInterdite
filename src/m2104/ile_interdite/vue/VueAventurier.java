@@ -167,6 +167,22 @@ public class VueAventurier extends JPanel implements ActionListener {
         return aventurier;
     }
 
+    public void DesactiverBoutons(){
+        seDeplacer.setEnabled(false);
+        assecher.setEnabled(false);
+        actionSpecial.setEnabled(false);
+        donnerCarte.setEnabled(false);
+        prendreTresor.setEnabled(false);
+    }
+
+    public void ActiverBoutons(){
+        seDeplacer.setEnabled(true);
+        assecher.setEnabled(true);
+        actionSpecial.setEnabled(true);
+        donnerCarte.setEnabled(true);
+        prendreTresor.setEnabled(true);
+    }
+
     //test
     public static void main(String[] args) {
         Aventurier aventurier = new Messager();
@@ -186,6 +202,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         w.setTitle("vueAventurier");
         w.setVisible(true);
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
