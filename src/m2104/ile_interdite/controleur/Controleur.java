@@ -73,7 +73,7 @@ public class Controleur implements Observateur<Message> {
                             cartes.add((Carte) carteInondation);
                         }
                         ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, cartes);
-                        break;
+                    }
                 }
             }
             case DEPLACER -> {
@@ -132,14 +132,23 @@ public class Controleur implements Observateur<Message> {
             }
             case ACTION_SPECIALE -> msg.getAventurier().actionSpeciale();
             case DONNER -> {
-                ihm.setMessage(aventurierActuel, "Veuillez choisir une carte");
-                vueChoixCarte = new VueChoixCarte(ihm, aventurierActuel);
+                if (aventurierActuel.getRole().equals("Messager") || aventurierActuel.getEmplacement().getAventuriers().size() > 1) {
+                    if (aventurierActuel.getCartesTresor().size() != 0) {
+                        ihm.setMessage(aventurierActuel, "Veuillez choisir une carte");
+                        vueChoixCarte = new VueChoixCarte(ihm, aventurierActuel);
+                    } else {
+                        ihm.setMessage(aventurierActuel, "Vous n'avez pas de carte à donner");
+                    }
+                } else {
+                    ihm.setMessage(aventurierActuel, "Il n'y a personne sur votre case");
+                }
             }
             case CHOIX_CARTE -> {
                 ihm.setMessage(aventurierActuel, "Veuillez choisir une personne");
-                ArrayList<Aventurier> memeCase = (!aventurierActuel.getRole().equals("Messager") ? aventurierActuel.getEmplacement().getAventuriers() : aventuriers);
+                ArrayList<Aventurier> memeCase = new ArrayList<>(!aventurierActuel.getRole().equals("Messager") ? aventurierActuel.getEmplacement().getAventuriers() : aventuriers);
                 memeCase.remove(aventurierActuel);
                 vueChoixPerso = new VueChoixPersonnage(ihm, memeCase);
+                carte = msg.getCarte();
                 vueChoixCarte.dispose();
             }
             case CHOIX_AVENTURIER -> {

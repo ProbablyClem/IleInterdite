@@ -16,6 +16,7 @@ public class ImagePanel extends JPanel {
         try {
             this.image = ImageIO.read(new File(path));
         } catch (IOException e) {
+            System.out.println(path);
             e.printStackTrace();
         }
     }

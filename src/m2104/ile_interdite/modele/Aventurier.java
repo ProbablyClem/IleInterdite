@@ -175,11 +175,21 @@ public abstract class Aventurier {
 
     public void donnerCarte(Aventurier A, Carte C) {
         if (this.getEmplacement() == A.getEmplacement()) {
-            if (!C.getClass().getCanonicalName().contains("CarteSpeciale")) {
-                System.out.println(C.getClass().getCanonicalName());
+            if (C.getClass().getSimpleName().equals("CarteTresor")) {
                 A.prendreCarte(this.getCartes().remove(this.getCartes().indexOf(C)));
             }
         }
     }
 
+    public ArrayList<Carte> getCartesTresor() {
+        ArrayList<Carte> cartes = new ArrayList<>();
+
+        for (Carte C: getCartes()) {
+            if (C.getClass().getSimpleName().equals("CarteTresor")) {
+                cartes.add(C);
+            }
+        }
+
+        return cartes;
+    }
 }

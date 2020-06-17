@@ -13,24 +13,16 @@ public class VueChoixCarte extends TitleFrame {
     public VueChoixCarte(IHM ihm, Aventurier aventurier) {
         super("Choix de la carte");
 
-        ArrayList<Carte> cartes = new ArrayList<>();
-        for (Carte C: aventurier.getCartes()) {
-            if (!C.getClass().getCanonicalName().contains("CarteSpeciale")) {
-                cartes.add(C);
-            }
-        }
-
-        main.setLayout(new GridLayout(1, cartes.size()));
+        main.setLayout(new GridLayout(1, aventurier.getCartesTresor().size()));
 
         this.setMinimumSize(new Dimension(250, 200));
-        this.setSize(120 * cartes.size(),200);
+        this.setSize(120 * aventurier.getCartesTresor().size(),200);
 
-        for (Carte C: cartes) {
+        for (Carte C: aventurier.getCartesTresor()) {
             ImagePanel panel = C.getImage();
             panel.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    System.out.println("Click sur " + C.getNom());
                     ihm.notifierObservateurs(Message.choixCarte(C));
                 }
 

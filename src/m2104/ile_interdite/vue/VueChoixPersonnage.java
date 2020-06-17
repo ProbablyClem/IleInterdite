@@ -22,7 +22,6 @@ public class VueChoixPersonnage extends TitleFrame {
             panel.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    System.out.println("Click sur " + A.getRole());
                     ihm.notifierObservateurs(Message.choixAventurier(A));
                 }
 
