@@ -15,10 +15,10 @@ import java.awt.*;
             this.tracking = tracking;
             left_x = -3;
             left_y = -3;
-            left_color = Color.BLACK;
+            left_color = Color.BLACK.brighter();
             right_x = 2;
             right_y = 3;
-            right_color = Color.black;
+            right_color = Color.black.brighter();
         }
 
 
@@ -70,58 +70,6 @@ import java.awt.*;
                     RenderingHints.KEY_TEXT_ANTIALIASING,
                     RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT);
 
-        } // end paintComponent()
-
-        public static void main(String[] args) {
-
-            JPanel panel1 = new JPanel( new BorderLayout() );
-            panel1.setBackground( Color.BLUE );
-            panel1.setBorder( BorderFactory.createBevelBorder( BevelBorder.LOWERED ));
-
-            JPanel interiorPanel = new JPanel( new BorderLayout() );
-            panel1.add(interiorPanel, BorderLayout.CENTER);
-            RichJLabel label = new RichJLabel("100", 0);
-
-
-            // drop shadow w/ highlight
-
-
-            label.setHorizontalAlignment(JLabel.CENTER);
-            label.setVerticalAlignment(JLabel.CENTER);
-            label.setVisible( true );
-            label.setForeground( Color.YELLOW );
-
-            interiorPanel.add(label, BorderLayout.CENTER);
-            label.setFont(new Font("Arial", Font.BOLD, 140));
-            label.setFont(label.getFont().deriveFont(140f));
-
-            //resize code
-            Font labelFont = label.getFont();
-
-            JFrame frame = new JFrame("Label SSCCEE");
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setContentPane(panel1);
-            frame.pack();
-            frame.setVisible(true);
-
-            int componentWidth = interiorPanel.getWidth();
-            String labelText = label.getText();
-            int stringWidth = label.getFontMetrics(labelFont).stringWidth(labelText);
-            // Find out how much the font can grow in width.
-            double widthRatio = (double)componentWidth / (double)stringWidth;
-            int newFontSize = (int)(labelFont.getSize() * widthRatio);
-            int componentHeight = interiorPanel.getHeight();
-
-            // Pick a new font size so it will not be larger than the height of label.
-            int fontSizeToUse = Math.min(newFontSize, componentHeight);
-            System.out.println("fontSizeToUse: " + fontSizeToUse);
-            if (fontSizeToUse<1) {
-                System.err.println("Font size less than 1!");
-                System.exit(1);
-            }
-
-            // Set the label's font size to the newly determined size.
-            label.setFont(new Font(labelFont.getName(), Font.BOLD, fontSizeToUse));
-            label.setForeground(Color.gray);
-        }}
+        }
+        }
 

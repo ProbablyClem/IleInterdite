@@ -23,6 +23,7 @@ public class VueGrille extends JPanel {
 
         drawGrille();
         etatGrille(false);
+        this.setOpaque(true);
     }
 
 
