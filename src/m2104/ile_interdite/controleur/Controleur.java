@@ -103,8 +103,7 @@ public class Controleur implements Observateur<Message> {
                 }
                 else if(etat == Utils.Etat.ASSECHER_CASE){
                     if (listTuiles.contains(msg.getTuile())){
-                        msg.getTuile().setEtat(Utils.EtatTuile.ASSECHEE);
-                        aventurierActuel.setActions(aventurierActuel.getActions()-1);
+                        aventurierActuel.assecher(msg.getTuile());
                         ihm.updateGrille();
                         ihm.updateActions();
                     }
