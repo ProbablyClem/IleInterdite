@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public abstract class CarteSpeciale extends Carte {
 
 
-    public CarteSpeciale(String nom, String image) {
-        super(nom, image);
+    public CarteSpeciale(String image, String nom) {
+        super(image, nom);
     }
 
     public static ArrayList<Carte> getAllCartesSpeciale() {

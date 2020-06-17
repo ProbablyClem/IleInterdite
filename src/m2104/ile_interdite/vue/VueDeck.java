@@ -6,6 +6,8 @@ import m2104.ile_interdite.modele.CarteTresor;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class VueDeck extends JPanel {
 
 
     private ArrayList<Carte> cartes;
+    private ArrayList<CarteTresor> cartesTresors;
 
 
     public VueDeck(String nomDeck, ArrayList<Carte> cartes) {
@@ -60,28 +63,32 @@ public class VueDeck extends JPanel {
             grid.add(c.getImage());
         }
         this.add(grid, BorderLayout.CENTER);
+        this.setPreferredSize(new Dimension(700,700));
     }
+
+
+
     public static void main(String[] args) {
         ArrayList<Carte> c = new ArrayList<>();
-        CarteTresor carte = new CarteTresor("src/images/ocean.jpg", "Carte", null);
+        CarteTresor carte = new CarteTresor("src/images/cartes/SacsDeSable.png", "Carte", null);
         CarteTresor cartee = new CarteTresor("src/images/ocean.jpg", "Carte", null);
         c.add(carte);
         c.add(cartee);
         VueDeck vueDeck= new VueDeck("DECK", c);
         JFrame w = new JFrame();
         w.add(vueDeck);
-        w.setSize(500, 300);
+        w.setPreferredSize(new Dimension(700,700));
         w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         w.setTitle("Vueflex");
         w.setVisible(true);
     }
 
     public void afficher(){
-        JFrame w = new JFrame();
+        TitleFrame w = new TitleFrame("Vueflex");
         w.add(this);
+        retour.addActionListener(e -> w.dispose());
         w.setSize(500, 300);
         w.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        w.setTitle("Vueflex");
         w.setVisible(true);
     }
 }

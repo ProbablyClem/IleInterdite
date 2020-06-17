@@ -56,10 +56,8 @@ public class IleInterdite extends Observable<Message> {
         // Distribution des cartes
         for (Aventurier A: aventuriers) {
             for (int i = 0; i < 2; i++) {
-                while (deckTresor.get(0).getClass().getSimpleName().equals("CarteMonteeDesEaux")) {
-                    deckTresor.add(deckTresor.remove(0));
-                }
-                A.prendreCarte(deckTresor.remove(0));
+            A.prendreCarte(deckTresor.get(i));
+            deckTresor.remove(deckTresor.get(i));
             }
         }
 

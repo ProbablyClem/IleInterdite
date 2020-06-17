@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class VueAventurier extends JPanel implements ActionListener {
     private IHM ihm;
+    private String capaciteSpecial;
     private Aventurier aventurier;
     private JLabel nomAventurier;
     private JLabel nbActionsLabel;
@@ -25,14 +26,30 @@ public class VueAventurier extends JPanel implements ActionListener {
     private Button donnerCarte;
     private Button prendreTresor;
     private Button cartesTresor;
-    private Button deffauseeTresor;
-    private Button deffauseInondation;
+    private Button defausseTresor;
+    private Button defausseInondation;
     private Button cartesInondation;
 
     public VueAventurier(IHM ihm, Aventurier aventurier, String capaciteSpecial){
         this.aventurier = aventurier;
         this.ihm = ihm;
+        this.capaciteSpecial = capaciteSpecial;
+        draw();
+    }
 
+    public void setMessage(String message){
+        this.textField.setText(message);
+        this.repaint();
+    }
+
+
+
+    public void updateActions(){
+        nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
+    }
+
+    private void draw(){
+        this.removeAll();
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JPanel header = new JPanel(new BorderLayout());
@@ -66,7 +83,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         finirTour.addActionListener(this);
         actionsPanel.add(finirTour);
 
-        actionSpecial = new Button("capacite Special",80,80);
+        actionSpecial = new Button(capaciteSpecial,80,80);
         actionSpecial.setBorder(new RoundedBorder(20));
         actionSpecial.addActionListener(this);
         actionsPanel.add(actionSpecial);
@@ -87,34 +104,30 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.add(main);
 
         JPanel decks = new JPanel(new GridLayout(0, 4, 10, 10));
-        cartesTresor = new Button("<html><body>Carte Tresor</body></html>",80,80);
-        cartesTresor.setBorder(new RoundedBorder(20));
-        cartesTresor.addActionListener(this);
-        decks.add(cartesTresor);
 
-        deffauseeTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
-        deffauseeTresor.setBorder(new RoundedBorder(20));
-        deffauseeTresor.addActionListener(this);
-        decks.add(deffauseeTresor);
 
-        deffauseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
-        deffauseInondation.setBorder(new RoundedBorder(20));
-        deffauseInondation.addActionListener(this);
-        decks.add(deffauseInondation);
+        defausseTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
+        defausseTresor.setBorder(new RoundedBorder(20));
+        defausseTresor.addActionListener(this);
+        decks.add(defausseTresor);
 
-        cartesInondation = new Button("<html><body>Carte Inondation</body></html>",80,80);
-        cartesInondation.setBorder(new RoundedBorder(20));
-        cartesInondation.addActionListener(this);
-        decks.add(cartesInondation);
+        defausseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
+        defausseInondation.setBorder(new RoundedBorder(20));
+        defausseInondation.addActionListener(this);
+        decks.add(defausseInondation);
+
 
         this.add(decks);
 
         this.setPreferredSize(new Dimension(700,700));
     }
 
-    public void setMessage(String message){
-        this.textField.setText(message);
-        this.repaint();
+    public void update(Aventurier a){
+        this.aventurier = a;
+        removeAll();
+        draw();
+        validate();
+        repaint();
     }
 
     //test
@@ -143,11 +156,11 @@ public class VueAventurier extends JPanel implements ActionListener {
             Message m = Message.voirDeck(Utils.Deck.DECK_TRESOR);
             ihm.notifierObservateurs(m);
         }
-        else if (e.getSource() == deffauseeTresor){
+        else if (e.getSource() == defausseTresor){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_TRESOR);
             ihm.notifierObservateurs(m);
         }
-        else if (e.getSource() == deffauseInondation){
+        else if (e.getSource() == defausseInondation){
             Message m = Message.voirDeck(Utils.Deck.DEFFAUSSE_INONDATION);
             ihm.notifierObservateurs(m);
         }
@@ -175,9 +188,6 @@ public class VueAventurier extends JPanel implements ActionListener {
         }
     }
 
-    public void updateActions(){
-        nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
-    }
 
     private static class RoundedBorder implements Border {
         private int radius;

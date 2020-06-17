@@ -73,17 +73,23 @@ public class Controleur implements Observateur<Message> {
                             cartes.add((Carte) carteInondation);
                         }
                         ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, cartes);
-                    }
+                        break;
                 }
             }
             case DEPLACER -> {
-                listTuiles = aventurierActuel.getDeplacementsPossibles();
+                if (aventurierActuel.getActions() > 0) {
+                    listTuiles = aventurierActuel.getDeplacementsPossibles();
 
-                ihm.setMessage(aventurierActuel, "Choisir une tuile ou aller");
-                ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
+                    ihm.setMessage(aventurierActuel, "Choisir une tuile ou aller");
+                    ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
 
-                //todo activer grille
-                etat = Utils.Etat.DEPLACER_JOUEUR;
+                    ihm.activerGrille();
+                    etat = Utils.Etat.DEPLACER_JOUEUR;
+                }
+                else {
+                    ihm.setMessage(aventurierActuel, "Plus de points d'actions");
+                    ihm.desactiverGrille();
+                }
             }
             case CHOISIR_TUILE -> {
                 if (etat == Utils.Etat.DEPLACER_JOUEUR) {
@@ -96,13 +102,29 @@ public class Controleur implements Observateur<Message> {
                         ihm.setMessage(aventurierActuel, "Déplacement impossible");
                     }
                 } else if (etat == Utils.Etat.ASSECHER_CASE) {
-                    msg.getTuile().setEtat(Utils.EtatTuile.ASSECHEE);
+                    if (listTuiles.contains(msg.getTuile())){
+                        aventurierActuel.assecher(msg.getTuile());
+                        ihm.updateGrille();
+                        ihm.updateActions();
+                    }
+                    else {
+                        ihm.setMessage(aventurierActuel, "Déplacement impossible");
+                    }
                 }
             }
             case ASSECHER -> {
-                ihm.setMessage(aventurierActuel, "Choisir une case a assecher");
-                //todo activer grille
-                etat = Utils.Etat.ASSECHER_CASE;
+                if (aventurierActuel.getActions() > 0){
+                    listTuiles = aventurierActuel.gettAssechementPossible();
+                    ihm.setMessage(aventurierActuel,"Choisir une case a assecher");
+                    ihm.activerGrille();
+                    etat = Utils.Etat.ASSECHER_CASE;
+                    ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
+                    ihm.activerGrille();
+                }
+                else {
+                    ihm.setMessage(aventurierActuel, "Plus de points d'actions disponible");
+                    ihm.desactiverGrille();
+                }
             }
             case TERMINER -> {
                 aventurierActuel = aventuriers.get(aventuriers.indexOf(aventurierActuel) + 1 % aventuriers.size());
