@@ -14,39 +14,44 @@ import java.awt.event.ActionListener;
  *
  * @author baptd
  */
-public class VueFinPartie {
-    private final JFrame fenetre;
+public class VueFinPartie extends TitleFrame {
+    
 
     
     private JLabel  textFin;
     private String message;
-    private final JButton relancer = new JButton("Relancer");
-    private final JButton quitter = new JButton("Quitter");
+    private final Button relancer;
+    private final JButton quitter;
     
     public VueFinPartie(String message) {
+        super("L'île Interdite");
         this.message = message;
-        textFin = new JLabel("<html><body><font color='blue'>"+ message +"</body></html>");
-        fenetre = new JFrame();
-        fenetre.setLayout(new BorderLayout());
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(400, 150);
-        fenetre.setLocation(400, 0);
         
-        JPanel mainPanel = new JPanel(new BorderLayout());
+        
+        textFin = new JLabel("<html><body><font color='blue'>"+ message +"</body></html>"); //penser a mettre un <br> dans le message pour un affichage propre
+        textFin.setFont(new Font("Roboto",Font.BOLD,15));
+        this.setSize(400, 250);
+        this.setLocation(400, 0);
+        
+        
         JPanel panelBas = new JPanel(new GridLayout(1,3));
         JPanel panelHaut = new JPanel();
         
         JLabel blank = new JLabel(" ");
         
-        panelBas.add(relancer);
-        panelBas.add(blank);
+        relancer = new Button("Relancer",150, 35, Color.GREEN, new Color(120, 255, 120));
+        quitter = new Button("Quitter", 150, 35, Color.RED, new Color(255, 120, 120));
         panelBas.add(quitter);
+        panelBas.add(blank);
+        panelBas.add(relancer);
         
         textFin.setBackground(Color.red);
         panelHaut.add(textFin);
         
-        mainPanel.add(panelHaut,BorderLayout.NORTH);
-        mainPanel.add(panelBas, BorderLayout.SOUTH);
+        main.setLayout(new BorderLayout());
+
+        main.add(panelHaut,BorderLayout.NORTH);
+        main.add(panelBas, BorderLayout.SOUTH);
         
         relancer.addActionListener(new ActionListener() {
             @Override
@@ -63,8 +68,9 @@ public class VueFinPartie {
         });
         
         
-        fenetre.add(mainPanel);
-        fenetre.setVisible(true);
+        
+        this.setVisible(true);
+        this.centrer();
     }
     
     
