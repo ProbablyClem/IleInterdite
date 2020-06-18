@@ -1,5 +1,7 @@
 package m2104.ile_interdite.vue;
 
+import m2104.ile_interdite.modele.Carte;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +13,7 @@ public class ImagePanel extends JPanel {
 
     private BufferedImage image;
     private Integer margin = 0;
+    private Carte carte;
 
     public ImagePanel(String path) {
         try {
@@ -19,6 +22,17 @@ public class ImagePanel extends JPanel {
             System.out.println(path);
             e.printStackTrace();
         }
+    }
+
+    public ImagePanel(String path, Carte carte){
+        try {
+            this.image = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            System.out.println(path);
+            e.printStackTrace();
+        }
+
+        this.carte = carte;
     }
 
     public ImagePanel() {
@@ -53,5 +67,9 @@ public class ImagePanel extends JPanel {
 
         g.drawImage(newImage, (this.getWidth() - w) / 2, (this.getHeight() - h) / 2, w, h, null);
 
+    }
+
+    public Carte getCarte() {
+        return carte;
     }
 }

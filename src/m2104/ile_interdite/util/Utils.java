@@ -12,7 +12,8 @@ public class Utils {
 
     public static enum Etat{
         DEPLACER_JOUEUR,
-        ASSECHER_CASE,
+        ASSECHER_CASE_JOUEUR,
+        ASSECHER_CASE_CARTE,
     }
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),

@@ -16,7 +16,7 @@ public abstract class Carte {
     }
 
     public ImagePanel getImage() {
-        return new ImagePanel(image);
+        return new ImagePanel(image, this);
     }
 
     public void setImage(String image) {

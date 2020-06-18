@@ -1,6 +1,7 @@
 package m2104.ile_interdite.vue;
 
 import m2104.ile_interdite.modele.Aventurier;
+import m2104.ile_interdite.modele.Carte;
 import m2104.ile_interdite.modele.CarteTresor;
 import m2104.ile_interdite.modele.Messager;
 import m2104.ile_interdite.util.Message;
@@ -19,7 +20,7 @@ public class VueAventurier extends JPanel implements ActionListener {
     private RichJLabel nomAventurier;
     private RichJLabel nbActionsLabel;
     private JLabel textField;
-
+    private VueMain vueMain;
     private Button seDeplacer;
     private Button assecher;
     private Button finirTour;
@@ -117,8 +118,8 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         this.add(actionsPanel);
 
-        VueMain main = new VueMain(aventurier.getCartes(),this);
-        this.add(main);
+        vueMain = new VueMain(aventurier.getCartes(),this);
+        this.add(vueMain);
 
         JPanel decks = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
 
@@ -168,6 +169,10 @@ public class VueAventurier extends JPanel implements ActionListener {
         actionSpecial.setEnabled(true);
         donnerCarte.setEnabled(true);
         prendreTresor.setEnabled(true);
+    }
+
+    public Carte getCarteSelectionne(){
+        return vueMain.getCarteSelectionnée();
     }
 
     //test

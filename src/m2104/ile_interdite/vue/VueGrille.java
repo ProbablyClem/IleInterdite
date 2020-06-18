@@ -54,7 +54,7 @@ public class VueGrille extends JPanel {
                         @Override
                         public void mouseClicked(MouseEvent e) {
                             if (panel.isEnabled()) {
-                                ihm.notifierObservateurs(Message.choisirTuile(t));
+                                ihm.notifierObservateurs(Message.choisirTuile(t, ihm.getMainWindow().getAventurierPanel().getCarteSelectionne()));
                             }
                         }
 

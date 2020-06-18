@@ -128,8 +128,8 @@ public class Message implements Serializable {
      *
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#CHOISIR_TUILE}
      */
-    public static Message choisirTuile(Tuile t) {
-        return new Message(Utils.Commandes.CHOISIR_TUILE, null, null, null, t, null, null, 0);
+    public static Message choisirTuile(Tuile t, Carte c) {
+        return new Message(Utils.Commandes.CHOISIR_TUILE, null, c, null, t, null, null, 0);
     }
 
     /**
