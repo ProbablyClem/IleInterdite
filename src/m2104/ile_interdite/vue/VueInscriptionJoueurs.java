@@ -33,7 +33,7 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
     public VueInscriptionJoueurs(IHM ihm) {
         super("L'île Interdite");
-        this.setSize(500, 350);
+        this.setSize(500, 300);
 
         this.ihm = ihm;
         

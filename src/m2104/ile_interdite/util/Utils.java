@@ -18,6 +18,7 @@ public class Utils {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
         BOUGER("Déplacer son pion"),
         ASSECHER("Assécher une tuile"),
+        SACDESABLE("Assécher deux tuiles"),
         DONNER("Donner une carte à un autre joueur"),
         RECUPERER_TRESOR("Récupérer le trésor de la tuile"),
         TERMINER("Terminer son tour"),

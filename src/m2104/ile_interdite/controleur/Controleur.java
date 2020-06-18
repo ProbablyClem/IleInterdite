@@ -116,14 +116,14 @@ public class Controleur implements Observateur<Message> {
                         ihm.updateActions();
                     }
                     else {
-                        ihm.setMessage(aventurierActuel, "Déplacement impossible");
+                        ihm.setMessage(aventurierActuel, "Déplacements impossible");
                     }
                 }
                 break;
             case ASSECHER :
                 if (aventurierActuel.getActions() > 0){
                     listTuiles = aventurierActuel.getAssechementPossible();
-                    ihm.setMessage(aventurierActuel,"Choisir une case a assecher");
+                    ihm.setMessage(aventurierActuel,"Choisir une case à assecher");
                     ihm.activerGrille();
                     etat = Utils.Etat.ASSECHER_CASE;
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
@@ -135,6 +135,28 @@ public class Controleur implements Observateur<Message> {
                     ihm.desactiverGrille();
                 }
                 break;
+
+            case SACDESABLE:
+                listTuiles.clear();
+                for (Tuile t: aventurierActuel.getEmplacement().getGrille().getListTuiles()){
+                    if (t.getEtat()==Utils.EtatTuile.INONDEE  ){
+                        listTuiles.add(t);
+
+                    }
+
+
+                }
+                ihm.setMessage(aventurierActuel,"Choisir une case à assecher");
+                ihm.activerGrille();
+
+                etat = Utils.Etat.ASSECHER_CASE;
+
+                ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
+                ihm.activerGrille();
+
+                break;
+
+
             case TERMINER :
                 aventurierActuel.setActions(3);
                 ihm.getMainWindow().getAventurierPanel().ActiverBoutons();

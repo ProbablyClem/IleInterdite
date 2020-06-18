@@ -68,6 +68,10 @@ public class Message implements Serializable {
         return new Message(Utils.Commandes.ASSECHER, aventurier, null, null, null, null, null, 0);
     }
 
+    public static Message sacdesable(Aventurier aventurier) {
+        return new Message(Utils.Commandes.SACDESABLE, aventurier, null, null, null, null, null, 0);
+    }
+
     /**
      *
      * @param aventurier

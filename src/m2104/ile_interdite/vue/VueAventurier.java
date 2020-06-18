@@ -45,7 +45,9 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.repaint();
     }
 
-
+    public IHM getIhm() {
+        return ihm;
+    }
 
     public void updateActions(){
         nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + " /3");
@@ -115,7 +117,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         this.add(actionsPanel);
 
-        VueMain main = new VueMain(aventurier.getCartes());
+        VueMain main = new VueMain(aventurier.getCartes(),this);
         this.add(main);
 
         JPanel decks = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
