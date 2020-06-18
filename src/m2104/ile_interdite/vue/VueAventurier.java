@@ -62,15 +62,15 @@ public class VueAventurier extends JPanel implements ActionListener {
         JPanel header = new JPanel(new BorderLayout());
 
         nomAventurier = new RichJLabel(aventurier.getNom() + ":" + aventurier.getRole(),0);
-        nomAventurier.setFont(new Font(nomAventurier.getFont().getFontName(), Font.PLAIN, 30));
+        nomAventurier.setFont(new Font("Roboto",Font.BOLD,20));
 
         nomAventurier.setForeground(aventurier.getPion().getCouleur());
 
         header.add(nomAventurier, BorderLayout.CENTER);
 
         nbActionsLabel = new RichJLabel("Actions restantes :" + aventurier.getActions() + " /3 ",0);
-        nbActionsLabel.setFont(new Font(nbActionsLabel.getFont().getFontName(), Font.PLAIN, 27));
-        nbActionsLabel.setForeground(Color.decode("#e3e3e3"));
+        nbActionsLabel.setFont(new Font("Roboto",Font.BOLD,20));
+        nbActionsLabel.setForeground(aventurier.getPion().getCouleur());
         header.add(nbActionsLabel, BorderLayout.EAST);
         header.setBackground(Color.white);
 
@@ -87,31 +87,44 @@ public class VueAventurier extends JPanel implements ActionListener {
         JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 10, 10));
         actionsPanel.setBackground(Color.WHITE);
         seDeplacer = new Button("Se Deplacer",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
+        seDeplacer.setForeground(Color.WHITE);
+        seDeplacer.setFont(new Font("Roboto", Font.BOLD, 19));
+
         seDeplacer.setBorder(new RoundedBorder(20));
         seDeplacer.addActionListener(this);
         actionsPanel.add(seDeplacer);
 
         assecher = new Button("Assecher",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
+        assecher.setForeground(Color.WHITE);
+        assecher.setFont(new Font("Roboto", Font.BOLD, 19));
         assecher.setBorder(new RoundedBorder(20));
         assecher.addActionListener(this);
         actionsPanel.add(assecher);
 
         finirTour = new Button("Finir Tour",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
+        finirTour.setForeground(Color.WHITE);
+        finirTour.setFont(new Font("Roboto", Font.BOLD, 19));
         finirTour.setBorder(new RoundedBorder(20));
         finirTour.addActionListener(this);
         actionsPanel.add(finirTour);
 
         actionSpecial = new Button(capaciteSpecial,80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
+        actionSpecial.setForeground(Color.WHITE);
+        actionSpecial.setFont(new Font("Roboto", Font.BOLD, 19));
         actionSpecial.setBorder(new RoundedBorder(20));
         actionSpecial.addActionListener(this);
         actionsPanel.add(actionSpecial);
 
         donnerCarte = new Button("Donner Carte",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
+        donnerCarte.setForeground(Color.WHITE);
+        donnerCarte.setFont(new Font("Roboto", Font.BOLD, 19));
         donnerCarte.setBorder(new RoundedBorder(20));
         donnerCarte.addActionListener(this);
         actionsPanel.add(donnerCarte);
 
         prendreTresor = new Button("Prendre Tresor",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
+        prendreTresor.setForeground(Color.WHITE);
+        prendreTresor.setFont(new Font("Roboto", Font.BOLD, 19));
         prendreTresor.setBorder(new RoundedBorder(20));
         prendreTresor.addActionListener(this);
         actionsPanel.add(prendreTresor);
@@ -124,13 +137,17 @@ public class VueAventurier extends JPanel implements ActionListener {
         JPanel decks = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
 
 
-        defausseTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",90,100);
+        defausseTresor = new Button("<html><body>Defausse <br>Carte <br>   Tresor</body></html>",110,90,Color.decode("#db7a12"),Color.decode("#ff9d33"));
         defausseTresor.setBorder(new RoundedBorder(20));
+        defausseTresor.setForeground(Color.WHITE);
+        defausseTresor.setFont(new Font("Roboto", Font.BOLD, 15));
         defausseTresor.addActionListener(this);
         decks.setBackground(Color.white);
         decks.add(defausseTresor);
 
-        defausseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",90,100);
+        defausseInondation = new Button("<html><body>Defausse<br>Carte<br>Inondation</body></html>",110,90,Color.decode("#1d79bf"),Color.decode("#2b92e0"));
+        defausseInondation.setForeground(Color.WHITE);
+        defausseInondation.setFont(new Font("Roboto", Font.BOLD, 15));
         defausseInondation.setBorder(new RoundedBorder(20));
         defausseInondation.addActionListener(this);
         decks.add(defausseInondation);
