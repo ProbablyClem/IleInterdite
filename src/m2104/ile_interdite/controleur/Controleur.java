@@ -260,6 +260,7 @@ public class Controleur implements Observateur<Message> {
                     ihm.updateGrille();
                     Utils.afficherInformation("Vous avez recupere le tresor " + aventurierActuel.getEmplacement().getTresor() + " !" );
                     aventurierActuel.setActions(aventurierActuel.getActions()-1);
+                    ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
                     if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
                 }
                 else {
