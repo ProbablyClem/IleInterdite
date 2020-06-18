@@ -209,9 +209,6 @@ public class Controleur implements Observateur<Message> {
             case FIN_PARTIE:
                 new VueFinPartie(msg.getTexte());
                 break;
-            case REFRESH_GRILLE:
-                ihm.updateGrille();
-                break;
 
             default :
                 if (Parameters.LOGS) {
