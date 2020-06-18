@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-/**
- *
- * @author IUT2-Dept Info
- */
 public class Utils {
 
     public static enum Etat{

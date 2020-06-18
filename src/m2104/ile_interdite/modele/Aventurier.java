@@ -6,10 +6,6 @@ import m2104.ile_interdite.vue.ImagePanel;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- *
- * @author IUT2-Dept Info
- */
 public abstract class Aventurier {
 
     private int actions = 3;

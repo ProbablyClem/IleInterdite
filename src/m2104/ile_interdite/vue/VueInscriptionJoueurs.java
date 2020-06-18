@@ -13,10 +13,6 @@ import javax.swing.*;
 
 import m2104.ile_interdite.util.Message;
 
-/**
- *
- * @author Yann Laurillau <yann.laurillau@iut2.univ-grenoble-alpes.fr>
- */
 public class VueInscriptionJoueurs extends TitleFrame implements ActionListener {
     private final IHM ihm;
 

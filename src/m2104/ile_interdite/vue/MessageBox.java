@@ -15,10 +15,6 @@ import javax.swing.ScrollPaneConstants;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 
-/**
- *
- * @author IUT2-Dept Info
- */
 public class MessageBox {
     private final JFrame window ;
     private final JEditorPane html ;
