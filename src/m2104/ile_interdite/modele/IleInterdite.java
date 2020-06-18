@@ -110,6 +110,9 @@ public class IleInterdite extends Observable<Message> {
             if(deckTresor.get(i) instanceof CarteMonteeDesEaux ){
                 Utils.afficherInformation("L'eau monte !");
                 this.niveau ++;
+                if (this.niveau > 9){
+                    notifierObservateurs(Message.finPartie("L'ile est totalement inondée"));
+                }
                 Collections.shuffle(defausseInondation);
                 for(CarteInondation c : defausseInondation){
                     deckInondation.add(0, c);
