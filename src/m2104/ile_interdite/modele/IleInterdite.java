@@ -145,7 +145,7 @@ public class IleInterdite extends Observable<Message> {
                     ArrayList<Aventurier> aventuriers = deckInondation.get(0).getTuile().getAventuriers();
                     for (Aventurier a : aventuriers) {
                         ArrayList<Tuile> tuilesDispo = new ArrayList<>();
-                        tuilesDispo.addAll(grille.getTuilesAdjacentes(deckInondation.get(0).getTuile()));
+                        tuilesDispo.addAll(a.getDeplacementsPossibles());
                         if (a instanceof Explorateur) {
                             tuilesDispo.addAll(grille.getTuilesDiagonales(deckInondation.get(0).getTuile()));
                         }

@@ -14,12 +14,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class VueDeck extends JPanel {
+public class VueDeck extends TitleFrame {
     private IHM vueIHM;
-    private JLabel labelNomDeck;
     private JButton retour;
+    private JPanel panelCartes;
+    private JPanel panelBas;
     private JPanel grid;
-    private JPanel panelhaut;
 
 
 
@@ -28,48 +28,39 @@ public class VueDeck extends JPanel {
 
 
     public VueDeck(String nomDeck, ArrayList<Carte> cartes) {
+        super(nomDeck);
         this.cartes = cartes;
-        this.setLayout(new BorderLayout());
+        main.setLayout(new BorderLayout());
 
-        panelhaut= new JPanel(new BorderLayout());
+        panelCartes = new JPanel();
+        panelCartes.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 10));
+        panelBas = new JPanel(new BorderLayout());
 
-        retour= new Button("RETOUR",200,50,Color.decode("#c4443b"),Color.decode("#f02416"));
-        retour.setFont(new Font("Roboto",Font.BOLD,20));
-
-
-        panelhaut.add(retour, BorderLayout.WEST);
-        labelNomDeck = new JLabel(nomDeck);
-
-        labelNomDeck.setFont(new Font("Roboto",Font.BOLD,24));
-
-        labelNomDeck.setVerticalAlignment(JLabel.CENTER);
-        labelNomDeck.setHorizontalAlignment(JLabel.CENTER);
-        panelhaut.add(labelNomDeck, BorderLayout.CENTER);
-        panelhaut.setBackground(Color.WHITE);
-
-        this.add(panelhaut,BorderLayout.NORTH);
-
-
-        if (cartes.size() <= 4){
-            grid = new JPanel(new GridLayout(1, cartes.size()));
-            grid.setOpaque(true);
-
-        }
-        else {
-            grid = new JPanel(new GridLayout(2, cartes.size()));
-            grid.setOpaque(true);
-
+        if (cartes.size() <= 4) {
+            panelCartes.setLayout(new GridLayout(1, cartes.size()));
+            this.setSize(new Dimension((cartes.size() > 2 ? 120 * cartes.size() : 300),280));
+        } else {
+            panelCartes.setLayout(new GridLayout(2, cartes.size() / 2 + cartes.size() % 2));
+            this.setSize(new Dimension((cartes.size() / 2 + cartes.size() % 2 > 2 ? 120 * (cartes.size() / 2 + cartes.size() % 2) : 300),480));
         }
 
         for(Carte c : cartes){
-            grid.add(c.getImage());
-
-            grid.setOpaque(true);
+            panelCartes.add(c.getImage());
         }
-        this.add(grid, BorderLayout.CENTER);
-        this.setPreferredSize(new Dimension(600,300));
-        this.setOpaque(true);
-        this.setBackground(Color.WHITE);
+
+        retour = new Button("FERMER",200,50,Color.decode("#c4443b"),Color.decode("#f02416"));
+        retour.setFont(new Font("Roboto",Font.BOLD,20));
+
+        retour.addActionListener(e -> this.dispose());
+
+        panelBas.add(retour, BorderLayout.CENTER);
+
+        main.add(panelCartes, BorderLayout.CENTER);
+        main.add(panelBas, BorderLayout.SOUTH);
+        main.setBackground(Color.WHITE);
+
+        this.setVisible(true);
+        this.centrer();
     }
 
 
@@ -86,18 +77,6 @@ public class VueDeck extends JPanel {
         w.setPreferredSize(new Dimension(700,700));
         w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         w.setTitle("Vueflex");
-        w.setVisible(true);
-    }
-
-    public void afficher(){
-        TitleFrame w = new TitleFrame("DECK");
-        w.add(this);
-        this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
-        w.setSize(600, 600);
-        w.centrer();
-        retour.addActionListener(e -> w.dispose());
-
-        w.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         w.setVisible(true);
     }
 }
