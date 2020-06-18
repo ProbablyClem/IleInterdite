@@ -19,7 +19,7 @@ public class Ingenieur extends Aventurier {
 
     public void assecher(Tuile t) {
         t.setEtat(Utils.EtatTuile.ASSECHEE);
-        if (!etatAS) {
+        if (etatAS) {
             setActions(getActions() - 1);
         }
         etatAS = !etatAS;
