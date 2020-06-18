@@ -15,6 +15,7 @@ public class Utils {
         ASSECHER_CASE_JOUEUR,
         ASSECHER_CASE_CARTE,
         HELICOPTERE,
+        AS_NAVIGATEUR
     }
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
@@ -37,7 +38,8 @@ public class Utils {
         CHOIX_AVENTURIER("Choix de l'aventurier lié à certaines commandes"),
         FIN_PARTIE("La partie est fini"),
         RELANCER("Relancer la partie"),
-        CARTE_HELICOPTERE("Carte helicoptere");
+        CARTE_HELICOPTERE("Carte helicoptere"),
+        AS_NAVIGATEUR("Action Spéciale Navigateur");
 
         private final String libelle ;
 

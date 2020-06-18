@@ -1,9 +1,6 @@
 package m2104.ile_interdite.vue;
 
-import m2104.ile_interdite.modele.Aventurier;
-import m2104.ile_interdite.modele.Carte;
-import m2104.ile_interdite.modele.CarteTresor;
-import m2104.ile_interdite.modele.Messager;
+import m2104.ile_interdite.modele.*;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 
@@ -51,7 +48,7 @@ public class VueAventurier extends JPanel implements ActionListener {
     }
 
     public void updateActions(){
-        nbActionsLabel.setText("Actions restantes :" + aventurier.getActions() + " /3 ");
+        nbActionsLabel.setText("Actions restantes : " + aventurier.getActions() + "/3 ");
     }
 
     private void draw(){
@@ -68,7 +65,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         header.add(nomAventurier, BorderLayout.CENTER);
 
-        nbActionsLabel = new RichJLabel("Actions restantes :" + aventurier.getActions() + " /3 ",0);
+        nbActionsLabel = new RichJLabel("Actions restantes : " + aventurier.getActions() + "/3 ",0);
         nbActionsLabel.setFont(new Font("Roboto",Font.BOLD,20));
         nbActionsLabel.setForeground(aventurier.getPion().getCouleur());
         header.add(nbActionsLabel, BorderLayout.EAST);
@@ -106,12 +103,14 @@ public class VueAventurier extends JPanel implements ActionListener {
         finirTour.addActionListener(this);
         actionsPanel.add(finirTour);
 
-        actionSpecial = new Button(capaciteSpecial,80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
+        actionSpecial = new Button("Déplacer un joueur",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         actionSpecial.setForeground(Color.WHITE);
         actionSpecial.setFont(new Font("Roboto", Font.BOLD, 19));
 
         actionSpecial.addActionListener(this);
-        actionsPanel.add(actionSpecial);
+        JPanel emptyPanel = new JPanel();
+        emptyPanel.setBackground(Color.WHITE);
+        actionsPanel.add(aventurier instanceof Navigateur ? actionSpecial : emptyPanel);
 
         donnerCarte = new Button("Donner Carte",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         donnerCarte.setForeground(Color.WHITE);
@@ -209,7 +208,11 @@ public class VueAventurier extends JPanel implements ActionListener {
             ihm.notifierObservateurs(Message.terminer(aventurier));
         }
         else if(e.getSource() == actionSpecial){
-            ihm.notifierObservateurs(Message.actionSpecial());
+            if (aventurier instanceof Navigateur) {
+                ihm.notifierObservateurs(Message.AS_Navigateur());
+            } else {
+                ihm.notifierObservateurs(Message.actionSpecial());
+            }
         }
         else if(e.getSource() == donnerCarte){
             ihm.notifierObservateurs(Message.donner(aventurier));

@@ -3,8 +3,7 @@ package m2104.ile_interdite.vue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class TitleFrame extends JFrame {
 
@@ -13,6 +12,7 @@ public class TitleFrame extends JFrame {
     JPanel main;
 
     TitleFrame(String title) {
+
 
         this.title = new JLabel(title, SwingConstants.CENTER);
         this.title.setBorder(new EmptyBorder(10, 10, 6, 10));

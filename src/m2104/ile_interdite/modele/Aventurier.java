@@ -2,6 +2,7 @@ package m2104.ile_interdite.modele;
 
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.vue.IHM;
 import m2104.ile_interdite.vue.ImagePanel;
 
 import java.util.ArrayList;

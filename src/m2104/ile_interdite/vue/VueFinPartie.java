@@ -23,7 +23,7 @@ public class VueFinPartie extends TitleFrame implements ActionListener {
     private IHM ihm;
     
     public VueFinPartie(String message, IHM ihm) {
-        super("L'île Interdite");
+        super("Fin de la partie");
         this.message = message;
         this.ihm = ihm;
         

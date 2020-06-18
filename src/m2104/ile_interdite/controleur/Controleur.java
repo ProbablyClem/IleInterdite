@@ -8,6 +8,7 @@ import m2104.ile_interdite.vue.*;
 import patterns.observateur.Observateur;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Controleur implements Observateur<Message> {
 
@@ -24,6 +25,10 @@ public class Controleur implements Observateur<Message> {
     private Carte carte;
     private VueChoixPersonnage vueChoixPerso;
     private VueChoixDefausse vueChoixDefausse;
+    private Aventurier aventurierStock;
+    HashSet<Tuile> list1;
+    HashSet<Tuile> list2;
+    ArrayList<Tuile> list3;
 
     public Controleur() {
         this.grille = new Grille();
@@ -117,6 +122,16 @@ public class Controleur implements Observateur<Message> {
                         ihm.setMessage(aventurierActuel, "Assechement impossible");
                     }
 
+                } else if (etat == Utils.Etat.AS_NAVIGATEUR) {
+                    if (list3.contains(msg.getTuile())) {
+                        aventurierStock.getEmplacement().supprimerAventurier(aventurierStock);
+                        aventurierStock.setEmplacement(msg.getTuile());
+                        // Le joueur ici est obligatoirement un navigateur
+                        ((Navigateur) aventurierActuel).utiliserAS();
+                        ihm.updateGrille();
+                    } else {
+                        ihm.setMessage(aventurierActuel, "Déplacement impossible sur cette tuile");
+                    }
                 }
                 else if (etat == Utils.Etat.ASSECHER_CASE_CARTE){
                     if (listTuiles.contains(msg.getTuile())){
@@ -245,11 +260,26 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case CHOIX_AVENTURIER :
-                aventurierActuel.donnerCarte(msg.getAventurier(), carte);
-                aventurierActuel.setActions(aventurierActuel.getActions()-1);
-                if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
-                vueChoixPerso.dispose();
-                ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
+                if (this.etat == Utils.Etat.AS_NAVIGATEUR) {
+                    this.aventurierStock = msg.getAventurier();
+                    list1 = new HashSet<>(msg.getAventurier().getEmplacement().getGrille().getTuilesAdjacentes(msg.getAventurier().getEmplacement()));
+                    list2 = new HashSet<>();
+                    for (Tuile T: list1) {
+                        list2.addAll(T.getGrille().getTuilesAdjacentes(T));
+                    }
+                    list1.addAll(list2);
+                    list1.remove(aventurierStock.getEmplacement());
+                    list3 = new ArrayList<>(list1);
+                    ihm.getMainWindow().getGrillePanel().highlightTuiles(list3);
+                    ihm.activerGrille();
+                    vueChoixPerso.dispose();
+                } else {
+                    aventurierActuel.donnerCarte(msg.getAventurier(), carte);
+                    aventurierActuel.setActions(aventurierActuel.getActions()-1);
+                    if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
+                    vueChoixPerso.dispose();
+                    ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
+                }
                 break;
             case RECUPERER_TRESOR:
                 if (aventurierActuel.getActions() < 1){
@@ -290,6 +320,18 @@ public class Controleur implements Observateur<Message> {
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
                     ihm.activerGrille();
                 }
+                break;
+            case AS_NAVIGATEUR:
+                if (!((Navigateur) aventurierActuel).isASutilisee()) {
+                    etat = Utils.Etat.AS_NAVIGATEUR;
+                    ArrayList<Aventurier> list = new ArrayList<>(aventuriers);
+                    list.remove(aventurierActuel);
+                    vueChoixPerso = new VueChoixPersonnage(ihm, list);
+                } else {
+                    ihm.setMessage(aventurierActuel, "Vous avez déjà effectué cette action");
+                }
+
+                break;
             default :
                 if (Parameters.LOGS) {
                     System.err.println("Action interdite : " + msg.getCommande().toString());

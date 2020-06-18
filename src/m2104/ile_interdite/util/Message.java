@@ -181,6 +181,10 @@ public class Message implements Serializable {
         return new Message(Utils.Commandes.CARTE_HELICOPTERE);
     }
 
+    public static Message AS_Navigateur() {
+        return new Message(Utils.Commandes.AS_NAVIGATEUR);
+    }
+
 
     /**
      * @return the commande
