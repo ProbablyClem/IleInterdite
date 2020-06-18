@@ -126,7 +126,7 @@ public class IleInterdite extends Observable<Message> {
         }
     }
 
-    public void PiocherCartesInondation(int nbCartes){
+    public void PiocherCartesInondation(int nbCartes) {
         for (int i = 0; i < nbCartes; i++) {
             if (deckInondation.size() < 1) {
                 Collections.shuffle(defausseInondation);
@@ -134,67 +134,56 @@ public class IleInterdite extends Observable<Message> {
             }
 
 
-            if (deckInondation.get(0).utiliser() == Utils.EtatTuile.COULEE){
+            if (deckInondation.get(0).utiliser() == Utils.EtatTuile.COULEE) {
 
-                try{
+                try {
                     //les aventuriers present sur la tuile coulé essayent de se refugier sur une tuile adjacente
                     ArrayList<Aventurier> aventuriers = deckInondation.get(0).getTuile().getAventuriers();
-                    for (Aventurier a: aventuriers) {
+                    for (Aventurier a : aventuriers) {
                         ArrayList<Tuile> tuilesDispo = new ArrayList<>();
                         tuilesDispo.addAll(grille.getTuilesAdjacentes(deckInondation.get(0).getTuile()));
-                        if(a instanceof Explorateur){
+                        if (a instanceof Explorateur) {
                             tuilesDispo.addAll(grille.getTuilesDiagonales(deckInondation.get(0).getTuile()));
                         }
 
 
                         tuilesDispo.removeIf(t -> t.getEtat() == Utils.EtatTuile.COULEE);
                         //si aucune tuile n'est accessible le joueur meurt
-                        if (tuilesDispo.size() < 1){
-                            notifierObservateurs(Message.finPartie("Le joueur "+ deckInondation.get(0).getTuile().getAventuriers().get(0).getNom() + "s'est noyé"));
-                        }
-                        else {
+                        if (tuilesDispo.size() < 1) {
+                            notifierObservateurs(Message.finPartie("Le joueur " + deckInondation.get(0).getTuile().getAventuriers().get(0).getNom() + "s'est noyé"));
+                        } else {
                             //on choisis une des tuiles disponible aleatoirement
                             int randomNum = ThreadLocalRandom.current().nextInt(0, tuilesDispo.size());
                             a.setEmplacement(tuilesDispo.get(randomNum));
-                            System.out.println(a.getEmplacement().getNom());
                         }
 
                     }
                     deckInondation.get(0).getTuile().getAventuriers().clear();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e.toString());
                 }
 
-
-                boolean carteExiste = false;
-                int x = 0;
-                int y = 0;
-                while(x < 6 && !carteExiste){
-                    while(y < 6 && !carteExiste){
-
-                        try{
-                            if (grille.getTuiles()[x][y].getTresor() == deckInondation.get(0).getTuile().getTresor() && grille.getTuiles()[x][y] != deckInondation.get(0).getTuile()){
-                            carteExiste = true;
+                if (deckInondation.get(0).getTuile().getTresor() != null) {
+                    boolean carteExiste = false;
+                    for (Tuile t : grille.getListTuiles()) {
+                        if (t.getTresor() != null && t.getEtat() != Utils.EtatTuile.COULEE) {
+                            if (t != deckInondation.get(0).getTuile() && t.getTresor() == deckInondation.get(0).getTuile().getTresor()) {
+                                carteExiste = true;
+                                break;
                             }
                         }
-                        catch (Exception e){
-
-                        }
-
-                        y++;
                     }
-                    x++;
-                }
-                if(!carteExiste){
-                   notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
+                    if (!carteExiste) {
+                        notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
+                    }
                 }
             }
+
             defausseInondation.add(deckInondation.remove(0));
         }
     }
 
-    public int getNiveau() {
+    public int getNiveau(){
         return niveau;
     }
 

@@ -140,7 +140,7 @@ public class Controleur implements Observateur<Message> {
             case TERMINER :
                 aventurierActuel.setActions(3);
                 ihm.getMainWindow().getAventurierPanel().ActiverBoutons();
-                //ileInterdite.PiocherCartesTresor(aventurierActuel);
+                ileInterdite.PiocherCartesTresor(aventurierActuel);
                 ileInterdite.PiocherCartesInondation(ileInterdite.getNiveau());
                 ihm.updateGrille();
                 idJoueur ++;
