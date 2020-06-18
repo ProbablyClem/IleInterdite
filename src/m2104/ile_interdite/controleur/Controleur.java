@@ -4,10 +4,7 @@ import m2104.ile_interdite.modele.*;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
-import m2104.ile_interdite.vue.IHM;
-import m2104.ile_interdite.vue.VueChoixCarte;
-import m2104.ile_interdite.vue.VueChoixPersonnage;
-import m2104.ile_interdite.vue.VueFinPartie;
+import m2104.ile_interdite.vue.*;
 import patterns.observateur.Observateur;
 
 import java.util.ArrayList;
@@ -26,6 +23,7 @@ public class Controleur implements Observateur<Message> {
     private VueChoixCarte vueChoixCarte;
     private Carte carte;
     private VueChoixPersonnage vueChoixPerso;
+    private VueChoixDefausse vueChoixDefausse;
 
     public Controleur() {
         this.grille = new Grille();
@@ -184,6 +182,11 @@ public class Controleur implements Observateur<Message> {
                 aventurierActuel = aventuriers.get(idJoueur);
                 ihm.setVueAventuriers(aventurierActuel);
                 ihm.getMainWindow().desactiverGrille();
+
+                if (aventurierActuel.getCartes().size() > 5){
+
+                    vueChoixDefausse = new VueChoixDefausse(ihm, aventurierActuel);
+                }
                 break;
             case ACTION_SPECIALE :
                 msg.getAventurier().actionSpeciale();
@@ -213,6 +216,20 @@ public class Controleur implements Observateur<Message> {
                 vueChoixPerso = new VueChoixPersonnage(ihm, memeCase);
                 carte = msg.getCarte();
                 vueChoixCarte.dispose();
+                break;
+            case CHOIX_DEFAUSSE:
+                ihm.setMessage(aventurierActuel, "Veuillez choisir une CARTE à défausser");
+                carte = msg.getCarte();
+                ileInterdite.getDefausseTresor().add(carte);
+                aventurierActuel.getCartes().remove(carte);
+                ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
+
+                vueChoixDefausse.dispose();
+
+                if (aventurierActuel.getCartes().size() > 5) {
+                    vueChoixDefausse = new VueChoixDefausse(ihm, aventurierActuel);
+
+                }
                 break;
             case CHOIX_AVENTURIER :
                 aventurierActuel.donnerCarte(msg.getAventurier(), carte);
