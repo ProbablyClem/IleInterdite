@@ -13,14 +13,15 @@ import java.io.Serializable;
 public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private final Utils.Commandes commande;
-    private final Aventurier aventurier;
-    private final Carte carte;
-    private final Utils.Tresor tresor;
-    private final Tuile tuile;
-    private final Integer nbJoueurs;
-    private final Utils.Deck deck;
+    private Utils.Commandes commande;
+    private Aventurier aventurier;
+    private Carte carte;
+    private Utils.Tresor tresor;
+    private Tuile tuile;
+    private Integer nbJoueurs;
+    private Utils.Deck deck;
     private int niveau;
+    private String texte;
 
     private Message(Utils.Commandes commande, Aventurier aventurier, Carte carte, Utils.Tresor tresor, Tuile tuile, Integer nbJoueurs, Utils.Deck deck, int niveau) {
         this.commande = commande;
@@ -31,6 +32,11 @@ public class Message implements Serializable {
         this.nbJoueurs = nbJoueurs;
         this.deck = deck;
         this.niveau = niveau;
+    }
+
+    private Message(Utils.Commandes commande, String texte){
+        this.commande = commande;
+        this.texte = texte;
     }
 
 
@@ -131,6 +137,10 @@ public class Message implements Serializable {
         return new Message(Utils.Commandes.DEPLACER, aventurier, null, null, null, null, null, 0);
     }
 
+    public static Message finPartie(String texte){
+        return new Message(Utils.Commandes.FIN_PARTIE, texte);
+    }
+
     /**
      *
      * @return un nouveau {@link #Message} pour la commande {@link m2104.ile_interdite.util.Utils.Commandes#VOIR_DEFAUSSE}
@@ -154,6 +164,7 @@ public class Message implements Serializable {
     public static Message finPartie(){
         return new Message(Utils.Commandes.FIN_PARTIE, null, null, null, null, null, null, 0);
     }
+
 
     /**
      * @return the commande
@@ -241,5 +252,9 @@ public class Message implements Serializable {
 
     public int getNiveau() {
         return niveau;
+    }
+
+    public String getTexte() {
+        return texte;
     }
 }
