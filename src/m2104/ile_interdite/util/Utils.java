@@ -14,6 +14,7 @@ public class Utils {
         DEPLACER_JOUEUR,
         ASSECHER_CASE_JOUEUR,
         ASSECHER_CASE_CARTE,
+        HELICOPTERE,
     }
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
@@ -35,7 +36,8 @@ public class Utils {
         CHOIX_DEFAUSSE("Choix de la carte à défaussé"),
         CHOIX_AVENTURIER("Choix de l'aventurier lié à certaines commandes"),
         FIN_PARTIE("La partie est fini"),
-        RELANCER("Relancer la partie");
+        RELANCER("Relancer la partie"),
+        CARTE_HELICOPTERE("Carte helicoptere");
 
         private final String libelle ;
 

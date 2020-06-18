@@ -106,13 +106,12 @@ public class VueMain extends JPanel implements MouseListener {
 
             if(e.getClickCount()==1){
                 if(((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Carte helicoptere")){
-
+                    vueAventurier.getIhm().notifierObservateurs(Message.helico());
                 }
                 else if(((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Sac Sable")){
                     ((ImagePanel) e.getSource()).setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
                     // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
-                    Message m=Message.sacdesable(vueAventurier.getAventurier());
-                    vueAventurier.getIhm().notifierObservateurs(m);
+                    vueAventurier.getIhm().notifierObservateurs(Message.sacdesable(vueAventurier.getAventurier()));
                 }
             }
             else if (e.getClickCount()==2){

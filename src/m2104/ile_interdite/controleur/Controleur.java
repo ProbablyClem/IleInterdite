@@ -131,6 +131,23 @@ public class Controleur implements Observateur<Message> {
                         ihm.setMessage(aventurierActuel, "Assechement impossible");
                     }
                 }
+                else if(etat == Utils.Etat.HELICOPTERE){
+                    if (listTuiles.contains(msg.getTuile())){
+                        Tuile emplacementActuel = aventurierActuel.getEmplacement();
+                        for (Aventurier a: aventurierActuel.getEmplacement().getAventuriers()) {
+                            a.setEmplacement(msg.getTuile());
+                        }
+                        emplacementActuel.getAventuriers().clear();
+                        ihm.updateGrille();
+                        ihm.desactiverGrille();
+                        aventurierActuel.getCartes().remove(msg.getCarte());
+                        ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
+
+                    }
+                    else {
+                        ihm.setMessage(aventurierActuel, "Assechement impossible");
+                    }
+                }
                 break;
             case ASSECHER :
                 if (aventurierActuel.getActions() > 0){
@@ -258,7 +275,20 @@ public class Controleur implements Observateur<Message> {
                 this.ihm = new IHM(this, grille);
                 this.listTuiles = new ArrayList<>();
                 break;
-
+            case CARTE_HELICOPTERE:
+                if(grille.getTresors().length < 1 && aventurierActuel.getEmplacement().getNom().equalsIgnoreCase("L'Héliport")){
+                    new VueFinPartie("Vous avez gagné !", ihm);
+                }
+                else{
+                    listTuiles = grille.getListTuiles();
+                    listTuiles.remove(aventurierActuel.getEmplacement());
+                    listTuiles.removeIf(T -> T.getEtat() == Utils.EtatTuile.COULEE);
+                    ihm.setMessage(aventurierActuel,"Choisir ou aller");
+                    ihm.activerGrille();
+                    etat = Utils.Etat.HELICOPTERE;
+                    ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
+                    ihm.activerGrille();
+                }
             default :
                 if (Parameters.LOGS) {
                     System.err.println("Action interdite : " + msg.getCommande().toString());

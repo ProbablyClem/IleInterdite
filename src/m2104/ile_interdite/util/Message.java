@@ -177,6 +177,10 @@ public class Message implements Serializable {
         return new Message(Utils.Commandes.RELANCER);
     }
 
+    public static Message helico(){
+        return new Message(Utils.Commandes.CARTE_HELICOPTERE);
+    }
+
 
     /**
      * @return the commande
