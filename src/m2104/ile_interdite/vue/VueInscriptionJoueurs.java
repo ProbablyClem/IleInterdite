@@ -145,10 +145,10 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == novice){
-            ihm.notifierObservateurs(Message.niveau(2));
+            ihm.notifierObservateurs(Message.niveau(1));
         }
         else if (e.getSource() == intermediaire){
-            ihm.notifierObservateurs(Message.niveau(3));
+            ihm.notifierObservateurs(Message.niveau(2));
         }
         else if (e.getSource() == elite){
             ihm.notifierObservateurs(Message.niveau(3));
