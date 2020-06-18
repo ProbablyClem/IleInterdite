@@ -24,7 +24,7 @@ public class CarteInondation extends Carte {
             for (Tuile t: T) {
                 //deux boucles for sont requises ici pour parcourir les 2 dimensions de l'array
                 if (t != null) {
-                    cartes.add(new CarteInondation("inondation" + t.getNom(), t.getImage(), t));
+                    cartes.add(new CarteInondation("inondation" + t.getNom(), new ImagePanel("src/images/cartes/" + t.getImageString()+".png"), t));
                 }
             }
         }

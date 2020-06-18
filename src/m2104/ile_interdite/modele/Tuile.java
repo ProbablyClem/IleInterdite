@@ -40,6 +40,10 @@ public class Tuile {
         this.departPion = departPion;
     }
 
+    public String getImageString(){
+        return image;
+    }
+
     public String getNom() {
         return this.nom;
     }
