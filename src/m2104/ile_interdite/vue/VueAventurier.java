@@ -97,35 +97,33 @@ public class VueAventurier extends JPanel implements ActionListener {
         assecher = new Button("Assecher",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         assecher.setForeground(Color.WHITE);
         assecher.setFont(new Font("Roboto", Font.BOLD, 19));
-        assecher.setBorder(new RoundedBorder(20));
         assecher.addActionListener(this);
         actionsPanel.add(assecher);
 
         finirTour = new Button("Finir Tour",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         finirTour.setForeground(Color.WHITE);
         finirTour.setFont(new Font("Roboto", Font.BOLD, 19));
-        finirTour.setBorder(new RoundedBorder(20));
         finirTour.addActionListener(this);
         actionsPanel.add(finirTour);
 
         actionSpecial = new Button(capaciteSpecial,80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         actionSpecial.setForeground(Color.WHITE);
         actionSpecial.setFont(new Font("Roboto", Font.BOLD, 19));
-        actionSpecial.setBorder(new RoundedBorder(20));
+
         actionSpecial.addActionListener(this);
         actionsPanel.add(actionSpecial);
 
         donnerCarte = new Button("Donner Carte",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         donnerCarte.setForeground(Color.WHITE);
         donnerCarte.setFont(new Font("Roboto", Font.BOLD, 19));
-        donnerCarte.setBorder(new RoundedBorder(20));
+
         donnerCarte.addActionListener(this);
         actionsPanel.add(donnerCarte);
 
         prendreTresor = new Button("Prendre Tresor",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         prendreTresor.setForeground(Color.WHITE);
         prendreTresor.setFont(new Font("Roboto", Font.BOLD, 19));
-        prendreTresor.setBorder(new RoundedBorder(20));
+
         prendreTresor.addActionListener(this);
         actionsPanel.add(prendreTresor);
 
@@ -138,17 +136,16 @@ public class VueAventurier extends JPanel implements ActionListener {
 
 
         defausseTresor = new Button("<html><body>Defausse <br>Carte <br>   Tresor</body></html>",110,90,Color.decode("#db7a12"),Color.decode("#ff9d33"));
-        defausseTresor.setBorder(new RoundedBorder(20));
         defausseTresor.setForeground(Color.WHITE);
         defausseTresor.setFont(new Font("Roboto", Font.BOLD, 15));
         defausseTresor.addActionListener(this);
         decks.setBackground(Color.white);
         decks.add(defausseTresor);
 
+
         defausseInondation = new Button("<html><body>Defausse<br>Carte<br>Inondation</body></html>",110,90,Color.decode("#1d79bf"),Color.decode("#2b92e0"));
         defausseInondation.setForeground(Color.WHITE);
         defausseInondation.setFont(new Font("Roboto", Font.BOLD, 15));
-        defausseInondation.setBorder(new RoundedBorder(20));
         defausseInondation.addActionListener(this);
         decks.add(defausseInondation);
 
@@ -191,27 +188,6 @@ public class VueAventurier extends JPanel implements ActionListener {
     public Carte getCarteSelectionne(){
         return vueMain.getCarteSelectionnée();
     }
-
-    //test
-    public static void main(String[] args) {
-        Aventurier aventurier = new Messager();
-        aventurier.setNom("Clement");
-        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        aventurier.prendreCarte(new CarteTresor("src/images/ocean.jpg", ".", Utils.Tresor.CALICE));
-        VueAventurier v = new VueAventurier(null, aventurier, "flex");
-        JFrame w = new JFrame();
-        w.add(v);
-        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        w.pack();
-        w.setTitle("vueAventurier");
-        w.setVisible(true);
-    }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {

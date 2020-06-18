@@ -69,21 +69,4 @@ public class VueDeck extends TitleFrame {
         this.setVisible(true);
         this.centrer();
     }
-
-
-
-    public static void main(String[] args) {
-        ArrayList<Carte> c = new ArrayList<>();
-        CarteTresor carte = new CarteTresor("src/images/cartes/SacsDeSable.png", "Carte", null);
-        CarteTresor cartee = new CarteTresor("src/images/ocean.jpg", "Carte", null);
-        c.add(carte);
-        c.add(cartee);
-        VueDeck vueDeck= new VueDeck("DECK", c);
-        JFrame w = new JFrame();
-        w.add(vueDeck);
-        w.setPreferredSize(new Dimension(700,700));
-        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        w.setTitle("Vueflex");
-        w.setVisible(true);
-    }
 }

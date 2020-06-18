@@ -85,20 +85,6 @@ public class Button extends JButton   {
         g2.dispose();
 
     }
-    public static void main(String[] args) {
 
-        JFrame j = new JFrame();
-        JButton po = new Button("Button",450,40,Color.BLACK,Color.BLUE);
-        JButton pa = new Button("JButton",150,30);
-
-        j.setLayout(new FlowLayout(FlowLayout.CENTER));
-        j.getContentPane().add(pa);
-        j.getContentPane().add(po);
-        j.getRootPane().setDefaultButton(po);
-        j.setSize(700,700);
-        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setVisible(true);
-
-    }
 }
 

@@ -27,6 +27,8 @@ public class MainWindow extends TitleFrame {
         this.vueNiveau = new VueNiveau(niveau);
         this.niveauPanel.add(vueNiveau, BorderLayout.SOUTH);
         JButton exit = new Button("Quitter", 0, 35, Color.RED, new Color(255, 120, 120));
+        exit.setForeground(Color.white);
+        exit.setFont(new Font("Roboto",Font.BOLD,17));
         exit.setBackground(Color.white);
         exit.addActionListener(new ActionListener() {
             @Override

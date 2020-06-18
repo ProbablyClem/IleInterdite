@@ -138,26 +138,4 @@ public class VueGrille extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
-        JFrame w = new JFrame();
-        Grille grille = new Grille();
-        VueGrille vueGrille = new VueGrille(grille, null);
-        w.add(vueGrille);
-        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        w.setSize(1000, 1000);
-        w.setTitle("vueGrille");
-        w.setVisible(true);
-        Aventurier aventurier = new Pilote();
-        ArrayList<Carte> cartes = new ArrayList<>();
-        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
-        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
-        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
-        cartes.add(new CarteTresor(null, null, Utils.Tresor.CALICE));
-        aventurier.setEmplacement(new Tuile(null, null, Utils.Tresor.CALICE));
-        aventurier.setCartes(cartes);
-        if (aventurier.prendreTresor()){
-            grille.PrendreTresor(Utils.Tresor.CALICE);
-            vueGrille.drawGrille();
-        }
-    }
 }
