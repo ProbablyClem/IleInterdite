@@ -24,7 +24,7 @@ public class VueDeck extends JPanel {
 
 
     private ArrayList<Carte> cartes;
-    private ArrayList<CarteTresor> cartesTresors;
+
 
 
     public VueDeck(String nomDeck, ArrayList<Carte> cartes) {
@@ -33,10 +33,10 @@ public class VueDeck extends JPanel {
 
         panelhaut= new JPanel(new BorderLayout());
 
-        retour= new Button("RETOUR",200,50);
+        retour= new Button("RETOUR",200,50,Color.decode("#c4443b"),Color.decode("#f02416"));
         retour.setFont(new Font("Roboto",Font.BOLD,20));
 
-        retour.setBackground(Color.RED);
+
         panelhaut.add(retour, BorderLayout.WEST);
         labelNomDeck = new JLabel(nomDeck);
 
@@ -45,18 +45,18 @@ public class VueDeck extends JPanel {
         labelNomDeck.setVerticalAlignment(JLabel.CENTER);
         labelNomDeck.setHorizontalAlignment(JLabel.CENTER);
         panelhaut.add(labelNomDeck, BorderLayout.CENTER);
-        panelhaut.setBackground(Color.lightGray);
+        panelhaut.setBackground(Color.WHITE);
 
         this.add(panelhaut,BorderLayout.NORTH);
 
 
-        if (cartes.size() <= 14){
-            grid = new JPanel(new GridLayout(1, 14));
+        if (cartes.size() <= 4){
+            grid = new JPanel(new GridLayout(1, cartes.size()));
             grid.setOpaque(true);
 
         }
         else {
-            grid = new JPanel(new GridLayout(2, 14));
+            grid = new JPanel(new GridLayout(2, cartes.size()));
             grid.setOpaque(true);
 
         }
@@ -90,10 +90,13 @@ public class VueDeck extends JPanel {
     }
 
     public void afficher(){
-        TitleFrame w = new TitleFrame("Vueflex");
+        TitleFrame w = new TitleFrame("DECK");
         w.add(this);
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+        w.setSize(1580, 800);
+        w.centrer();
         retour.addActionListener(e -> w.dispose());
-        w.setSize(500, 300);
+
         w.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         w.setVisible(true);
     }
