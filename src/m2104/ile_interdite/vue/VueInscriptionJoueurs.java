@@ -9,9 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Arrays;
-import javax.swing.*;
-
-import m2104.ile_interdite.util.Message;
 
 public class VueInscriptionJoueurs extends TitleFrame implements ActionListener {
     private final IHM ihm;
