@@ -80,7 +80,13 @@ public class VueMain extends JPanel implements MouseListener {
     }
 
     public Carte getCarteSelectionnée() {
-        return carteSelectionnée.getCarte();
+        if (carteSelectionnée != null){
+            return carteSelectionnée.getCarte();
+        }
+        else {
+            return null;
+        }
+
     }
 
     public void mouseClicked(MouseEvent e) {

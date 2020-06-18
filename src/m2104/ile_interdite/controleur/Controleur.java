@@ -123,7 +123,6 @@ public class Controleur implements Observateur<Message> {
                 else if (etat == Utils.Etat.ASSECHER_CASE_CARTE){
                     if (listTuiles.contains(msg.getTuile())){
                         msg.getTuile().setEtat(Utils.EtatTuile.ASSECHEE);
-                        if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
                         ihm.updateGrille();
                         ihm.desactiverGrille();
                         aventurierActuel.getCartes().remove(msg.getCarte());
