@@ -33,6 +33,7 @@ public class VueDeck extends TitleFrame {
         main.setLayout(new BorderLayout());
 
         panelCartes = new JPanel();
+        panelCartes.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 10));
         panelBas = new JPanel(new BorderLayout());
 
         if (cartes.size() <= 4) {
