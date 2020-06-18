@@ -55,8 +55,6 @@ public class Controleur implements Observateur<Message> {
                 if (ihm.getMainWindow() != null) {
                     ihm.setNiveau(niveau);
                 }
-
-                System.out.println(msg.getNiveau());
                 break;
             case VOIR_DECK :
                 switch (msg.getDeck()) {
