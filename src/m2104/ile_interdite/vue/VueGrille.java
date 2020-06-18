@@ -135,7 +135,7 @@ public class VueGrille extends JPanel {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 if (tuiles.contains(grille.getTuiles()[i][j])) {
-                    components.get(i*6 + j).setBorder(BorderFactory.createLineBorder(Color.green, 5, true));
+                    components.get(i*6 + j).setBorder(BorderFactory.createLineBorder(this.ihm.getMainWindow().getAventurierPanel().getAventurier().getPion().getCouleur(), 5, true));
                 }
             }
         }
