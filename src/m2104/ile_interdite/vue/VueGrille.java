@@ -36,7 +36,7 @@ public class VueGrille extends JPanel {
     public void drawGrille() {
 
         components = new ArrayList<>();
-
+        this.setBackground(Color.white);
         for (Component C : this.getComponents()) {
             this.remove(C);
         }
@@ -47,6 +47,7 @@ public class VueGrille extends JPanel {
             for (Tuile t : T) {
                 try {
                     JPanel panel = t.getImage();
+                    panel.setBackground(Color.white);
                     this.add(panel);
                     components.add(panel);
                     panel.addMouseListener(new MouseListener() {
@@ -83,6 +84,7 @@ public class VueGrille extends JPanel {
                     });
                 } catch (NullPointerException e) {
                     JPanel panel = new JPanel(new BorderLayout());
+                    panel.setBackground(Color.white);
                     this.add(panel);
                     components.add(panel);
                 }
@@ -90,28 +92,37 @@ public class VueGrille extends JPanel {
         }
 
         try{
-            components.get(0).add(grille.getTresors()[0].getImage());
+            JPanel ptresor =grille.getTresors()[0].getImage();
+            ptresor.setBackground(Color.white);
+            components.get(0).add(ptresor);
+
         }
         catch (Exception e){
             components.get(0).add(new ImagePanel());
         }
 
         try{
-            components.get(5).add(grille.getTresors()[1].getImage());
+            JPanel ptresor =grille.getTresors()[1].getImage();
+            ptresor.setBackground(Color.white);
+            components.get(5).add(ptresor);
         }
         catch (Exception e){
             components.get(5).add(new ImagePanel());
         }
 
         try{
-            components.get(30).add(grille.getTresors()[2].getImage());
+            JPanel ptresor =grille.getTresors()[2].getImage();
+            ptresor.setBackground(Color.white);
+            components.get(30).add(ptresor);
         }
         catch (Exception e){
             components.get(30).add(new ImagePanel());
         }
 
         try{
-            components.get(35).add(grille.getTresors()[3].getImage());
+            JPanel ptresor =grille.getTresors()[3].getImage();
+            ptresor.setBackground(Color.white);
+            components.get(35).add(ptresor);
         }
         catch (Exception e){
             components.get(35).add(new ImagePanel());
