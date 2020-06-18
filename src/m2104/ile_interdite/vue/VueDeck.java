@@ -39,17 +39,24 @@ public class VueDeck extends TitleFrame {
         if (cartes.size() <= 4) {
             panelCartes.setLayout(new GridLayout(1, cartes.size()));
             this.setSize(new Dimension((cartes.size() > 2 ? 120 * cartes.size() : 300),280));
+            panelCartes.setBackground(Color.white);
         } else {
             panelCartes.setLayout(new GridLayout(2, cartes.size() / 2 + cartes.size() % 2));
             this.setSize(new Dimension((cartes.size() / 2 + cartes.size() % 2 > 2 ? 120 * (cartes.size() / 2 + cartes.size() % 2) : 300),480));
+            panelCartes.setBackground(Color.white);
         }
 
         for(Carte c : cartes){
-            panelCartes.add(c.getImage());
+            ImagePanel panel= c.getImage();
+            panel.setBackground(Color.white);
+            panelCartes.add(panel);
+
+
         }
 
         retour = new Button("FERMER",200,50,Color.decode("#c4443b"),Color.decode("#f02416"));
         retour.setFont(new Font("Roboto",Font.BOLD,20));
+        retour.setBackground(Color.white);
 
         retour.addActionListener(e -> this.dispose());
 
