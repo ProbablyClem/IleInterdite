@@ -116,7 +116,7 @@ public class Utils {
     public static enum Pion {
         ROUGE("Rouge", new Color(255, 0, 0), new Color(176, 79, 79), new Color(255, 145, 145), new Color(226,166,166), "pionRouge.png"),
         VERT("Vert", new Color(0, 195, 0), new Color(79, 153, 79), new Color(145, 255, 145), new Color(166,226,166), "pionVert.png"),
-        BLEU("Bleu", new Color(55,55,198), new Color(100,100,154), new Color(175,175,221), new Color(202,202,219), "pionBleu.png"),
+        BLEU("Bleu", new Color(105,105,248), new Color(150,150,204), new Color(200,200,246), new Color(222,222,239), "pionBleu.png"),
         ORANGE("Orange", new Color(255, 148, 0), new Color(176, 135, 79), new Color(255, 199, 127), new Color(246,198,135), "pionBronze.png"),
         VIOLET("Violet", new Color(204, 94, 255), new Color(146, 115, 176), new Color(211, 164, 234), new Color(202,176,214), "pionViolet.png"),
         JAUNE("Jaune", new Color(255, 255, 0), new Color(176, 176, 79), new Color(255, 255, 140), new Color(245,245,148), "pionJaune.png") ;
