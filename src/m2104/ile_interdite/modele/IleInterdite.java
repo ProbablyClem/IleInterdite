@@ -136,6 +136,10 @@ public class IleInterdite extends Observable<Message> {
 
             if (deckInondation.get(0).utiliser() == Utils.EtatTuile.COULEE) {
 
+                if(deckInondation.get(0).getTuile().getNom().equals("L'Héliport")){
+                    notifierObservateurs(Message.finPartie("L'Héliport a coulé"));
+
+                }
                 try {
                     //les aventuriers present sur la tuile coulé essayent de se refugier sur une tuile adjacente
                     ArrayList<Aventurier> aventuriers = deckInondation.get(0).getTuile().getAventuriers();
