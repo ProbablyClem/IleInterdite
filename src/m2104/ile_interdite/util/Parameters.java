@@ -79,5 +79,5 @@ public final class Parameters {
     public static final Integer ICON_SHIFT_WIDTH = 24 ;
 
     // Easter eggs
-    public static final Boolean EKIP = true;
+    public static final Boolean EKIP = false;
 }
