@@ -40,7 +40,7 @@ public class VueDeck extends JPanel {
         panelhaut.add(retour, BorderLayout.WEST);
         labelNomDeck = new JLabel(nomDeck);
 
-        labelNomDeck.setFont(new Font("Roboto",Font.BOLD,30));
+        labelNomDeck.setFont(new Font("Roboto",Font.BOLD,24));
 
         labelNomDeck.setVerticalAlignment(JLabel.CENTER);
         labelNomDeck.setHorizontalAlignment(JLabel.CENTER);
@@ -67,7 +67,7 @@ public class VueDeck extends JPanel {
             grid.setOpaque(true);
         }
         this.add(grid, BorderLayout.CENTER);
-        this.setPreferredSize(new Dimension(700,700));
+        this.setPreferredSize(new Dimension(600,300));
         this.setOpaque(true);
         this.setBackground(Color.WHITE);
     }
@@ -93,7 +93,7 @@ public class VueDeck extends JPanel {
         TitleFrame w = new TitleFrame("DECK");
         w.add(this);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
-        w.setSize(1580, 800);
+        w.setSize(600, 600);
         w.centrer();
         retour.addActionListener(e -> w.dispose());
 

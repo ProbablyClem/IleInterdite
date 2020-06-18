@@ -44,13 +44,14 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
         JPanel panelBas = new JPanel();
         panelBas.setLayout(new BorderLayout());
-        
+        this.setBackground(Color.white);
         JPanel panelTop = new JPanel(new BorderLayout());
 
         // nombre de joueurs
         choixNbJoueurs = new JComboBox<>(new Integer[] { 2, 3, 4 });
         panelChoix.add(new JLabel("Nombre de joueurs :"));
         panelChoix.add(choixNbJoueurs);
+        panelChoix.setBackground(Color.white);
 
         // Saisie des noms de joueurs
         for(int i = 0; i < saisieNomJoueurs.length; i++) {
@@ -67,6 +68,7 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
         panelTop.add(niv, BorderLayout.NORTH);
         panelTop.add(panelLvl, BorderLayout.CENTER);
+        panelTop.setBackground(Color.white);
 
         niv.setFont(new Font("Roboto",Font.BOLD,15));
         
@@ -87,13 +89,14 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
         inscrire = new Button("Jouer", 150, 35, Color.GREEN, new Color(120, 255, 120));
         panelBas.add(inscrire, BorderLayout.EAST);
-
+        panelBas.setBackground(Color.white);
         main.setLayout(new BorderLayout());
 
         main.add(panelTop, BorderLayout.NORTH);
         main.add(panelChoix, BorderLayout.CENTER);
         main.add(panelBas, BorderLayout.SOUTH);
-
+        main.setBackground(Color.white);
+        this.setBackground(Color.white);
         // Choix du nombre de joueurs
         choixNbJoueurs.addItemListener(new ItemListener() {
             @Override
@@ -110,7 +113,6 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
         // Inscription des joueurs
         inscrire.addActionListener(this);
 
-        
         retour.addActionListener(this);
         
         novice.addActionListener(this);

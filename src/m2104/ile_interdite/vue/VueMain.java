@@ -63,7 +63,7 @@ public class VueMain extends JPanel implements MouseListener {
             for (Carte c : cartes) {
                 jcartesup.setPreferredSize(new Dimension(500, 200));
                 ImagePanel panel = c.getImage();
-                panel.setPreferredSize(new Dimension(80, 110));
+                panel.setPreferredSize(new Dimension(90, 110));
                 panel.setEnabled(true);
                 panel.addMouseListener(this);
 //                if (carteSelectionnée == panel) {
