@@ -31,7 +31,8 @@ public class Utils {
         CHOIX_NIVEAU("Choix du niveau de difficulté"),
         CHOIX_CARTE("Choix de la carte liée à certaines commandes"),
         CHOIX_AVENTURIER("Choix de l'aventurier lié à certaines commandes"),
-        FIN_PARTIE("La partie est fini");
+        FIN_PARTIE("La partie est fini"),
+        RELANCER("Relancer la partie");
 
         private final String libelle ;
 

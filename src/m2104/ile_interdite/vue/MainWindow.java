@@ -52,15 +52,6 @@ public class MainWindow extends TitleFrame {
         this.centrer();
     }
 
-    public void setAventurier(VueAventurier v) {
-        remove(aventurierPanel);
-        aventurierPanel = v;
-        add(v);
-        v.revalidate();
-        v.repaint();
-        revalidate();
-        repaint();
-    }
 
     public VueGrille getGrillePanel() {
         return grillePanel;
@@ -81,4 +72,5 @@ public class MainWindow extends TitleFrame {
     public VueNiveau getVueNiveau() {
         return vueNiveau;
     }
+
 }

@@ -57,7 +57,7 @@ public class IHM extends Observable<Message> {
     }
 
     public void finPartie(String message){
-        VueFinPartie v = new VueFinPartie(message);
+        VueFinPartie v = new VueFinPartie(message, this);
     }
 
     public void updateGrille(){

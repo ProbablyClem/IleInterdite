@@ -35,6 +35,10 @@ public class Message implements Serializable {
         this.texte = texte;
     }
 
+    private Message(Utils.Commandes commande){
+        this.commande = commande;
+    }
+
 
 
     /**
@@ -159,6 +163,10 @@ public class Message implements Serializable {
 
     public static Message finPartie(){
         return new Message(Utils.Commandes.FIN_PARTIE, null, null, null, null, null, null, 0);
+    }
+
+    public static Message relancer(){
+        return new Message(Utils.Commandes.RELANCER);
     }
 
 

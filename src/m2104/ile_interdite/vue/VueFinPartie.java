@@ -5,12 +5,14 @@
  */
 package m2104.ile_interdite.vue;
 
+import m2104.ile_interdite.util.Message;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VueFinPartie extends TitleFrame {
+public class VueFinPartie extends TitleFrame implements ActionListener {
     
 
     
@@ -18,10 +20,12 @@ public class VueFinPartie extends TitleFrame {
     private String message;
     private final Button relancer;
     private final JButton quitter;
+    private IHM ihm;
     
-    public VueFinPartie(String message) {
+    public VueFinPartie(String message, IHM ihm) {
         super("L'île Interdite");
         this.message = message;
+        this.ihm = ihm;
         
         
         textFin = new JLabel("<html><body><font color='blue'>"+ message +"</body></html>"); //penser a mettre un <br> dans le message pour un affichage propre
@@ -36,7 +40,9 @@ public class VueFinPartie extends TitleFrame {
         JLabel blank = new JLabel(" ");
         
         relancer = new Button("Relancer",150, 35, Color.GREEN, new Color(120, 255, 120));
+        relancer.addActionListener(this);
         quitter = new Button("Quitter", 150, 35, Color.RED, new Color(255, 120, 120));
+        relancer.addActionListener(this);
         panelBas.add(quitter);
         panelBas.add(blank);
         panelBas.add(relancer);
@@ -49,24 +55,21 @@ public class VueFinPartie extends TitleFrame {
         main.add(panelHaut,BorderLayout.NORTH);
         main.add(panelBas, BorderLayout.SOUTH);
         
-        relancer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        
-        quitter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        
         
         
         this.setVisible(true);
         this.centrer();
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == relancer){
+            ihm.notifierObservateurs(Message.relancer());
+            this.dispose();
+        }
+        else{
+            System.exit(0);
+        }
+
     }
     
     

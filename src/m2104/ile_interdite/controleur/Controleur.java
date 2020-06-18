@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Controleur implements Observateur<Message> {
 
     private IleInterdite ileInterdite;
-    private final IHM ihm;
+    private IHM ihm;
     private ArrayList<Aventurier> aventuriers;
     private Aventurier aventurierActuel;
     private Utils.Etat etat;
@@ -203,7 +203,13 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case FIN_PARTIE:
-                new VueFinPartie(msg.getTexte());
+                new VueFinPartie(msg.getTexte(), ihm);
+                break;
+            case RELANCER:
+                this.ihm.getMainWindow().dispose();
+                this.grille = new Grille();
+                this.ihm = new IHM(this, grille);
+                this.listTuiles = new ArrayList<>();
                 break;
 
             default :
