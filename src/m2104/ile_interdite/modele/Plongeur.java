@@ -19,7 +19,27 @@ public class Plongeur extends Aventurier {
     public ArrayList<Tuile> getDeplacementsPossibles() {
         ArrayList<Tuile> list = super.getDeplacementsPossibles();
 
+        ArrayList<Tuile> inondees = getToutesTuilesInondeesAdjacentes(new ArrayList<>(), this.getEmplacement());
+
+        list.addAll(inondees);
+
+        for (Tuile T: inondees) {
+            list.addAll(T.getGrille().getTuilesAdjacentes(T));
+        }
+
         return list;
     }
 
+    public static ArrayList<Tuile> getToutesTuilesInondeesAdjacentes(ArrayList<Tuile> passed, Tuile T) {
+        for (Tuile t: T.getGrille().getTuilesAdjacentes(T)) {
+            if (!passed.contains(t) && t.getEtat() != Utils.EtatTuile.ASSECHEE) {
+                if (t.getEtat() == Utils.EtatTuile.INONDEE) {
+                    passed.add(t);
+                }
+                getToutesTuilesInondeesAdjacentes(passed, t);
+            }
+        }
+
+        return passed;
+    }
 }
