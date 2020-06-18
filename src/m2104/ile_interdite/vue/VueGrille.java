@@ -61,15 +61,12 @@ public class VueGrille extends JPanel {
                         @Override
                         public void mousePressed(MouseEvent e) {
                             if (panel.isEnabled()) {
-                                panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
+                                panel.setBorder(new SelectBorder(new Color(150, 200, 250)));
                             }
                         }
 
                         @Override
                         public void mouseReleased(MouseEvent e) {
-                            if (panel.isEnabled()) {
-                                panel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 5));
-                            }
                         }
 
                         @Override
@@ -135,7 +132,7 @@ public class VueGrille extends JPanel {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 if (tuiles.contains(grille.getTuiles()[i][j])) {
-                    components.get(i*6 + j).setBorder(BorderFactory.createLineBorder(this.ihm.getMainWindow().getAventurierPanel().getAventurier().getPion().getCouleur(), 5, true));
+                    components.get(i*6 + j).setBorder(new SelectBorder(this.ihm.getMainWindow().getAventurierPanel().getAventurier().getPion().getCouleur()));
                 }
             }
         }

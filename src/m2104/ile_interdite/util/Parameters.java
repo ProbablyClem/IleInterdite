@@ -2,10 +2,6 @@ package m2104.ile_interdite.util;
 
 import java.awt.Color;
 
-/**
- *
- * @author IUT2-Dept Info
- */
 public final class Parameters {
 
     // ====================================================================================

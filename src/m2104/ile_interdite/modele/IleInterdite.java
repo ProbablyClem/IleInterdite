@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- *
- * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
- */
 public class IleInterdite extends Observable<Message> {
 
     private ArrayList<Aventurier> aventuriers;

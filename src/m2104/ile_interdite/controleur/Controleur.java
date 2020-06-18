@@ -12,10 +12,6 @@ import patterns.observateur.Observateur;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
- */
 public class Controleur implements Observateur<Message> {
 
     private IleInterdite ileInterdite;

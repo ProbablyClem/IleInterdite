@@ -100,7 +100,6 @@ public class Tuile {
             IF.add(panel);
         }
 
-        IF.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 4));
         return IF;
     }
 

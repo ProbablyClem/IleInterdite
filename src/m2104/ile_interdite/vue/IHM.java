@@ -11,10 +11,6 @@ import patterns.observateur.Observateur;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- *
- * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
- */
 public class IHM extends Observable<Message> {
 
     private final VueInscriptionJoueurs vueInscription;

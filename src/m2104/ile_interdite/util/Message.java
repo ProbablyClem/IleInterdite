@@ -6,10 +6,6 @@ import m2104.ile_interdite.modele.Tuile;
 
 import java.io.Serializable;
 
-/**
- *
- * @author IUT2-Dept Info
- */
 public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -10,10 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author baptd
- */
 public class VueFinPartie extends TitleFrame {
     
 
