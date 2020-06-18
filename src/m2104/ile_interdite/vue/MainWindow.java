@@ -21,11 +21,13 @@ public class MainWindow extends TitleFrame {
         this.grille = grille;
         this.ihm = ihm;
         main.setLayout(new BorderLayout());
+        main.setBackground(Color.white);
 
         this.niveauPanel = new JPanel(new BorderLayout());
         this.vueNiveau = new VueNiveau(niveau);
         this.niveauPanel.add(vueNiveau, BorderLayout.SOUTH);
         JButton exit = new Button("Quitter", 0, 35, Color.RED, new Color(255, 120, 120));
+        exit.setBackground(Color.white);
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,17 +35,19 @@ public class MainWindow extends TitleFrame {
             }
         });
         this.niveauPanel.add(exit, BorderLayout.NORTH);
+        niveauPanel.setBackground(Color.white);
 
         this.grillePanel = new VueGrille(grille, ihm);
         this.aventurierPanel = v;
         v.update(v.getAventurier());
-        ;
+
 
 
         main.add(niveauPanel, BorderLayout.WEST);
         main.add(grillePanel, BorderLayout.CENTER);
         main.add(aventurierPanel, BorderLayout.EAST);
         this.setVisible(true);
+        this.setBackground(Color.white);
         this.setSize(1580, 800);
         this.centrer();
     }

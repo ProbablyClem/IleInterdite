@@ -206,8 +206,8 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case FIN_PARTIE:
-                new VueFinPartie("La partie est finie");
-
+                new VueFinPartie(msg.getTexte());
+                break;
 
             default :
                 if (Parameters.LOGS) {

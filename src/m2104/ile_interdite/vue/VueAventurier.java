@@ -136,19 +136,21 @@ public class VueAventurier extends JPanel implements ActionListener {
         VueMain main = new VueMain(aventurier.getCartes());
         this.add(main);
 
-        JPanel decks = new JPanel(new GridLayout(2, 4, 10, 10));
+        JPanel decks = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
 
 
-        defausseTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",80,80);
+        defausseTresor = new Button("<html><body>Defausse <br>Carte Tresor</body></html>",90,100);
         defausseTresor.setBorder(new RoundedBorder(20));
         defausseTresor.addActionListener(this);
         decks.setBackground(Color.white);
         decks.add(defausseTresor);
 
-        defausseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",80,80);
+        defausseInondation = new Button("<html><body>Defausse <br>Carte Inondation</body></html>",90,100);
         defausseInondation.setBorder(new RoundedBorder(20));
         defausseInondation.addActionListener(this);
         decks.add(defausseInondation);
+
+
 
 
         this.add(decks);

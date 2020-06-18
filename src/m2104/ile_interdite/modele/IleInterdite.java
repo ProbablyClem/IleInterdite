@@ -138,7 +138,7 @@ public class IleInterdite extends Observable<Message> {
 
             if (deckInondation.get(0).utiliser() == Utils.EtatTuile.COULEE){
                 if(deckInondation.get(0).getTuile().getAventuriers().size() > 0){
-                    notifierObservateurs(Message.finPartie());
+                    notifierObservateurs(Message.finPartie("Le joueur "+ deckInondation.get(0).getTuile().getAventuriers().get(0).getNom() + "s'est noyé"));
                 }
 
                 boolean carteExiste = false;
@@ -163,9 +163,9 @@ public class IleInterdite extends Observable<Message> {
                     x++;
                 }
                 if(!carteExiste){
-                    notifierObservateurs(Message.finPartie());
+                    notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
                 }
-            };
+            }
             defausseInondation.add(deckInondation.remove(0));
         }
     }
