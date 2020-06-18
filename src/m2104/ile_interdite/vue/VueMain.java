@@ -90,34 +90,37 @@ public class VueMain extends JPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-        if (carteSelectionnée != null){
-            if (carteSelectionnée != (ImagePanel)e.getSource()){
-                carteSelectionnée.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5, true));
+        if(((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Carte helicoptere") || ((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Sac Sable") ){
+            if (carteSelectionnée != null){
+                if (carteSelectionnée != (ImagePanel)e.getSource()){
+                    carteSelectionnée.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5, true));
+                    carteSelectionnée = (ImagePanel)e.getSource();
+                    carteSelectionnée.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
+                }
+            }
+            else {
                 carteSelectionnée = (ImagePanel)e.getSource();
                 carteSelectionnée.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
             }
-        }
-        else {
-            carteSelectionnée = (ImagePanel)e.getSource();
-            carteSelectionnée.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
-        }
 
 
-        if(e.getClickCount()==1){
-            if(((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Carte helicoptere")){
+            if(e.getClickCount()==1){
+                if(((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Carte helicoptere")){
 
+                }
+                else if(((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Sac Sable")){
+                    ((ImagePanel) e.getSource()).setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
+                    // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
+                    Message m=Message.sacdesable(vueAventurier.getAventurier());
+                    vueAventurier.getIhm().notifierObservateurs(m);
+                }
             }
-            else if(((ImagePanel) e.getSource()).getCarte().getNom().equalsIgnoreCase("Sac Sable")){
-                ((ImagePanel) e.getSource()).setBorder(BorderFactory.createLineBorder(Color.black, 5, true));
-                // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5, true));
-                Message m=Message.sacdesable(vueAventurier.getAventurier());
-                vueAventurier.getIhm().notifierObservateurs(m);
+            else if (e.getClickCount()==2){
+                carteSelectionnée = null;
             }
+            draw();
         }
-        else if (e.getClickCount()==2){
-            carteSelectionnée = null;
-        }
-        draw();
+
     }
 
     @Override

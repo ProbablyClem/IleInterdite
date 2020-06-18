@@ -155,10 +155,7 @@ public class Controleur implements Observateur<Message> {
                 for (Tuile t: aventurierActuel.getEmplacement().getGrille().getListTuiles()){
                     if (t.getEtat()==Utils.EtatTuile.INONDEE  ){
                         listTuiles.add(t);
-
                     }
-
-
                 }
                 ihm.setMessage(aventurierActuel,"Choisir une case à assecher");
                 ihm.activerGrille();
@@ -204,7 +201,6 @@ public class Controleur implements Observateur<Message> {
                         ihm.setMessage(aventurierActuel, "Il n'y a personne sur votre case");
                     }
                 }
-
                 break;
             case CHOIX_CARTE :
                 ihm.setMessage(aventurierActuel, "Veuillez choisir une personne");
