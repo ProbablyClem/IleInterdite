@@ -1,5 +1,6 @@
 package m2104.ile_interdite.modele;
 
+import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.vue.ImagePanel;
 
@@ -140,11 +141,13 @@ public abstract class Aventurier {
 
         ArrayList<Aventurier> allAventuriers = new ArrayList<>();
         allAventuriers.add(new Explorateur());
-        allAventuriers.add(new Ingenieur());
         allAventuriers.add(new Messager());
-        allAventuriers.add(new Navigateur());
         allAventuriers.add(new Plongeur());
         allAventuriers.add(new Pilote());
+        if (!Parameters.EKIP) {
+            allAventuriers.add(new Navigateur());
+            allAventuriers.add(new Ingenieur());
+        }
 
         Utils.melangerAventuriers(allAventuriers);
 

@@ -78,4 +78,6 @@ public final class Parameters {
     public static final String ICON_SHIFT_DISABLED = ICONS + "iconShift_disabled.png" ;
     public static final Integer ICON_SHIFT_WIDTH = 24 ;
 
+    // Easter eggs
+    public static final Boolean EKIP = true;
 }
