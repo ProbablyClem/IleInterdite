@@ -23,7 +23,7 @@ public class TitleFrame extends JFrame {
 
         this.main = new JPanel(new GridLayout(1, 1));
         this.main.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 10));
-
+        main.setBackground(Color.white);
         this.content = new JPanel(new GridLayout(1, 1));
         this.content.add(this.main);
         this.content.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));

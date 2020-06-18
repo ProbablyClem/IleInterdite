@@ -165,7 +165,7 @@ public class IleInterdite extends Observable<Message> {
                 if(!carteExiste){
                     notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
                 }
-            };
+            }
             defausseInondation.add(deckInondation.remove(0));
         }
     }

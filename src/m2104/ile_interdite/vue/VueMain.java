@@ -34,10 +34,10 @@ public class VueMain extends JPanel {
         jcartesup = new JPanel();
         jcartesdown=new JPanel();
 
-        jcartesup.setLayout(new FlowLayout());
+        jcartesup.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));
         jcartesup.setPreferredSize(new Dimension(500,300));
 
-        jcartesdown.setLayout(new FlowLayout());
+        jcartesdown.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));
         jcartesdown.setPreferredSize(new Dimension(500,300));
 
 
@@ -47,42 +47,16 @@ public class VueMain extends JPanel {
 
 
         for (Carte C: cartes) {
-                if (cartes.size()<=5){
 
-                    jcartesup.setPreferredSize(new Dimension(500,170));
+                    jcartesup.setPreferredSize(new Dimension(500,200));
                     ImagePanel panel = C.getImage();
-                    panel.setPreferredSize(new Dimension(125,150));
+                    panel.setPreferredSize(new Dimension(120,120));
                     panel.setBackground(Color.white);
                     jcartesup.add(panel);
-
                     this.add(jcartesup,BorderLayout.CENTER);
-                }
-                else if (cartes.size()>=5){
-                    jcartesup.setPreferredSize(new Dimension(250,170));
-                    jcartesdown.setPreferredSize(new Dimension(250,170));
-                    for (int i=0;i<=5;i++){
-                        ImagePanel panel= cartes.get(i).getImage();
-                        panel.setPreferredSize(new Dimension(125,150));
-                        jcartesup.add(panel);
-                        jtapis.add(jcartesup,BorderLayout.NORTH);
-                    }
-                    for (int c=5;c<=10;c++){
-                        ImagePanel panel= cartes.get(c).getImage();
-                        jcartesdown.add(panel);
-                        jtapis.add(jcartesdown,BorderLayout.SOUTH);
-                    }
-                    this.add(jtapis,BorderLayout.CENTER);
-
-                }
-
-                }
-
-
 
             }
-
-
-
+    }
 
 
     }
