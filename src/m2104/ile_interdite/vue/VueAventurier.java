@@ -67,7 +67,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         header.add(nomAventurier, BorderLayout.CENTER);
 
-        nbActionsLabel = new RichJLabel("Actions restantes :" + aventurier.getActions() + " /3",0);
+        nbActionsLabel = new RichJLabel("Actions restantes :" + aventurier.getActions() + " /3 ",0);
         nbActionsLabel.setFont(new Font(nbActionsLabel.getFont().getFontName(), Font.PLAIN, 27));
         nbActionsLabel.setForeground(Color.decode("#e3e3e3"));
         header.add(nbActionsLabel, BorderLayout.EAST);
