@@ -45,7 +45,6 @@ public class IHM extends Observable<Message> {
 
     public void AfficherDeck(Utils.Deck deck, ArrayList<Carte> cartes) {
         VueDeck vueDeck = new VueDeck(deck.libelle, cartes);
-        vueDeck.afficher();
     }
 
     public MainWindow getMainWindow() {
