@@ -144,14 +144,14 @@ public abstract class Aventurier {
         allAventuriers.add(new Messager());
         allAventuriers.add(new Navigateur());
         allAventuriers.add(new Plongeur());
+        allAventuriers.add(new Pilote());
 
         Utils.melangerAventuriers(allAventuriers);
 
         ArrayList<Aventurier> aventuriers = new ArrayList<>();
 
-        aventuriers.add(new Pilote());
 
-        for (int i = 0; i < nb - 1; i++) {
+        for (int i = 0; i < nb; i++) {
             aventuriers.add(allAventuriers.remove(0));
         }
 
