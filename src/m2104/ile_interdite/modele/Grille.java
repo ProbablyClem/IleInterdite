@@ -35,6 +35,20 @@ public class Grille {
         return this.tuiles;
     }
 
+    public ArrayList<Tuile> getListTuiles() {
+        ArrayList<Tuile> list = new ArrayList<>();
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (getTuiles()[i][j] != null) {
+                    list.add(getTuiles()[i][j]);
+                }
+            }
+        }
+
+        return list;
+    }
+
     public void showGrille() {
         for (Tuile[] T : tuiles) {
             for (Tuile t: T) {

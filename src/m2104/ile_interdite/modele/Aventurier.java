@@ -19,7 +19,6 @@ public abstract class Aventurier {
     private ArrayList<Carte> cartes;
     private Tuile emplacement;
     private ArrayList<Utils.Tresor> tresors;
-    private boolean ASutilisee;
 
     Aventurier(String role, Utils.Pion pion) {
         this.role = role;
@@ -62,10 +61,6 @@ public abstract class Aventurier {
         }
         nouveau.ajouterAventurier(this);
         this.emplacement = nouveau;
-    }
-
-    public void setASutilisee(boolean ASutilisee) {
-        this.ASutilisee = ASutilisee;
     }
 
     public void seDeplacer(Tuile nouveau) {
