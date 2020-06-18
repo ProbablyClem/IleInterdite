@@ -62,9 +62,6 @@ public class IleInterdite extends Observable<Message> {
 
         PiocherCartesInondation(6);
 
-        // Affichage CLI de la grille
-        grille.showGrille();
-
     }
 
     public ArrayList<Aventurier> getAventuriers() {
