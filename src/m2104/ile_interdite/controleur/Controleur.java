@@ -74,7 +74,7 @@ public class Controleur implements Observateur<Message> {
                         for (CarteInondation carteInondation : ileInterdite.getDefausseInondation()) {
                             cartes.add((Carte) carteInondation);
                         }
-                        ihm.AfficherDeck(Utils.Deck.DECK_INONDATION, cartes);
+                        ihm.AfficherDeck(Utils.Deck.DEFFAUSSE_INONDATION, cartes);
                         break;
                     }
                 break;

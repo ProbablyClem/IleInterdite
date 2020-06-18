@@ -48,7 +48,7 @@ public class MainWindow extends TitleFrame {
         main.add(aventurierPanel, BorderLayout.EAST);
         this.setVisible(true);
         this.setBackground(Color.white);
-        this.setSize(1366, 800);
+        this.setSize(1500, 800);
         this.centrer();
     }
 
