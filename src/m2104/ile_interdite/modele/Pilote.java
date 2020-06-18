@@ -42,6 +42,7 @@ public class Pilote extends Aventurier {
         if (this.isAS()) {
             ArrayList<Tuile> list = this.getEmplacement().getGrille().getListTuiles();
             list.remove(this.getEmplacement());
+            list.removeIf(T -> T.getEtat() == Utils.EtatTuile.COULEE);
             return list;
         } else {
             return super.getDeplacementsPossibles();

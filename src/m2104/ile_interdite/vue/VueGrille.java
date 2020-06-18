@@ -61,7 +61,7 @@ public class VueGrille extends JPanel {
                         @Override
                         public void mousePressed(MouseEvent e) {
                             if (panel.isEnabled()) {
-                                panel.setBorder(new SelectBorder(new Color(150, 200, 250)));
+                                panel.setBorder(new SelectBorder(new Color(0, 250, 250)));
                             }
                         }
 
