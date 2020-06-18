@@ -151,6 +151,8 @@ public class VueAventurier extends JPanel implements ActionListener {
         decks.add(defausseInondation);
 
 
+
+
         this.add(decks);
 
         this.setPreferredSize(new Dimension(700,700));
