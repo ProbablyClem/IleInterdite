@@ -42,7 +42,7 @@ public class VueFinPartie extends TitleFrame implements ActionListener {
         relancer = new Button("Relancer",150, 35, Color.GREEN, new Color(120, 255, 120));
         relancer.addActionListener(this);
         quitter = new Button("Quitter", 150, 35, Color.RED, new Color(255, 120, 120));
-        relancer.addActionListener(this);
+        quitter.addActionListener(this);
         panelBas.add(quitter);
         panelBas.add(blank);
         panelBas.add(relancer);
