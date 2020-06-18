@@ -38,7 +38,6 @@ public class CarteInondation extends Carte {
         } else {
             this.tuile.setEtat(Utils.EtatTuile.COULEE);
             if(this.tuile.getAventuriers().size() > 0){
-
             }
         }
         return this.tuile.getEtat();

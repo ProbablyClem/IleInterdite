@@ -105,6 +105,7 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE :
                 if (etat == Utils.Etat.DEPLACER_JOUEUR) {
                     if (listTuiles.contains(msg.getTuile())) {
+                        aventurierActuel.getEmplacement().supprimerAventurier(aventurierActuel);
                         aventurierActuel.setEmplacement(msg.getTuile());
                         aventurierActuel.setActions(aventurierActuel.getActions() - 1);
                         if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
@@ -143,7 +144,7 @@ public class Controleur implements Observateur<Message> {
             case TERMINER :
                 aventurierActuel.setActions(3);
                 ihm.getMainWindow().getAventurierPanel().ActiverBoutons();
-                ileInterdite.PiocherCartesTresor(aventurierActuel);
+                //ileInterdite.PiocherCartesTresor(aventurierActuel);
                 ileInterdite.PiocherCartesInondation(ileInterdite.getNiveau());
                 ihm.updateGrille();
                 idJoueur ++;
@@ -159,7 +160,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             case DONNER :
                 if (aventurierActuel.getActions() < 1) {
-                    ihm.setMessage(aventurierActuel, "Vous n'aez pas assez d'actions");
+                    ihm.setMessage(aventurierActuel, "Vous n'avez pas assez d'actions");
                 }
                 else{
                     if (aventurierActuel.getRole().equals("Messager") || aventurierActuel.getEmplacement().getAventuriers().size() > 1) {
@@ -207,6 +208,9 @@ public class Controleur implements Observateur<Message> {
                 break;
             case FIN_PARTIE:
                 new VueFinPartie(msg.getTexte());
+                break;
+            case REFRESH_GRILLE:
+                ihm.updateGrille();
                 break;
 
             default :

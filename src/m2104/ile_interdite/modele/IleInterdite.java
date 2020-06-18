@@ -7,6 +7,7 @@ import patterns.observateur.Observateur;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -136,10 +137,39 @@ public class IleInterdite extends Observable<Message> {
                 deckInondation = defausseInondation;
             }
 
+
             if (deckInondation.get(0).utiliser() == Utils.EtatTuile.COULEE){
-                if(deckInondation.get(0).getTuile().getAventuriers().size() > 0){
-                    notifierObservateurs(Message.finPartie("Le joueur "+ deckInondation.get(0).getTuile().getAventuriers().get(0).getNom() + "s'est noyé"));
+
+                try{
+                    //les aventuriers present sur la tuile coulé essayent de se refugier sur une tuile adjacente
+                    ArrayList<Aventurier> aventuriers = deckInondation.get(0).getTuile().getAventuriers();
+                    for (Aventurier a: aventuriers) {
+                        ArrayList<Tuile> tuilesDispo = new ArrayList<>();
+                        tuilesDispo.addAll(grille.getTuilesAdjacentes(deckInondation.get(0).getTuile()));
+                        if(a instanceof Explorateur){
+                            tuilesDispo.addAll(grille.getTuilesDiagonales(deckInondation.get(0).getTuile()));
+                        }
+
+
+                        tuilesDispo.removeIf(t -> t.getEtat() == Utils.EtatTuile.COULEE);
+                        //si aucune tuile n'est accessible le joueur meurt
+                        if (tuilesDispo.size() < 1){
+                            notifierObservateurs(Message.finPartie("Le joueur "+ deckInondation.get(0).getTuile().getAventuriers().get(0).getNom() + "s'est noyé"));
+                        }
+                        else {
+                            //on choisis une des tuiles disponible aleatoirement
+                            int randomNum = ThreadLocalRandom.current().nextInt(0, tuilesDispo.size());
+                            a.setEmplacement(tuilesDispo.get(randomNum));
+                            System.out.println(a.getEmplacement().getNom());
+                        }
+
+                    }
+                    deckInondation.get(0).getTuile().getAventuriers().clear();
                 }
+                catch (Exception e){
+                    System.out.println(e.toString());
+                }
+
 
                 boolean carteExiste = false;
                 int x = 0;
@@ -148,12 +178,10 @@ public class IleInterdite extends Observable<Message> {
                     while(y < 6 && !carteExiste){
 
                         try{
-                            if (grille.getTuiles()[x][y].getTresor() == deckInondation.get(0).getTuile().getTresor()){
+                            if (grille.getTuiles()[x][y].getTresor() == deckInondation.get(0).getTuile().getTresor() && grille.getTuiles()[x][y] != deckInondation.get(0).getTuile()){
                             carteExiste = true;
+                            }
                         }
-                        else{
-                            System.out.println("Debug");
-                        }}
                         catch (Exception e){
 
                         }
@@ -163,7 +191,7 @@ public class IleInterdite extends Observable<Message> {
                     x++;
                 }
                 if(!carteExiste){
-                    notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
+                   notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
                 }
             }
             defausseInondation.add(deckInondation.remove(0));

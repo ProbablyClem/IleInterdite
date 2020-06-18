@@ -57,9 +57,6 @@ public abstract class Aventurier {
     }
 
     public void setEmplacement(Tuile nouveau) {
-        if (this.emplacement != null) {
-            emplacement.supprimerAventurier(this);
-        }
         nouveau.ajouterAventurier(this);
         this.emplacement = nouveau;
     }
