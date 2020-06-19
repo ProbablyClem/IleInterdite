@@ -38,13 +38,14 @@ public class VueInformation extends TitleFrame {
         panelHaut.add(textLabel);
         p.add(panelHaut, BorderLayout.NORTH);
         p.add(ok, BorderLayout.SOUTH);
-        this.add(p);
+        main.add(p);
         this.setSize(300, 150);
         this.setLocation(400, 0);
         this.setVisible(true);
         this.centrer();
         this.setMinimumSize(new Dimension(textLabel.getWidth(), 150));
         this.setPreferredSize(new Dimension(300, 150));
+        this.setAlwaysOnTop(true);
     }
 
     public static void main(String[] args) {
