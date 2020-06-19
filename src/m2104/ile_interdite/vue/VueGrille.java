@@ -1,8 +1,8 @@
 package m2104.ile_interdite.vue;
 
-import m2104.ile_interdite.modele.*;
+import m2104.ile_interdite.modele.Grille;
+import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
-import m2104.ile_interdite.util.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -133,6 +133,9 @@ public class VueGrille extends JPanel {
             for (int j = 0; j < 6; j++) {
                 if (tuiles.contains(grille.getTuiles()[i][j])) {
                     components.get(i*6 + j).setBorder(new SelectBorder(this.ihm.getMainWindow().getAventurierPanel().getAventurier().getPion().getCouleur()));
+                }
+                else {
+                    components.get(i*6 + j).setBorder(javax.swing.BorderFactory.createEmptyBorder());
                 }
             }
         }
