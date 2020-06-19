@@ -168,19 +168,26 @@ public class IleInterdite extends Observable<Message> {
                 }
 
                 if (deckInondation.get(0).getTuile().getTresor() != null) {
-                    boolean carteExiste = false;
-                    for (Tuile t : grille.getListTuiles()) {
-                        if (t.getTresor() != null && t.getEtat() != Utils.EtatTuile.COULEE) {
-                            if (t != deckInondation.get(0).getTuile() && t.getTresor() == deckInondation.get(0).getTuile().getTresor()) {
-                                carteExiste = true;
-                                break;
+                    if (!(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.CRISTAL && grille.getTresors()[0] == null) &&
+                            !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.CALICE && grille.getTresors()[1] == null) &&
+                            !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.PIERRE && grille.getTresors()[2] == null) &&
+                            !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.ZEPHYR && grille.getTresors()[3] == null)
+                    ){
+                        boolean carteExiste = false;
+                        for (Tuile t : grille.getListTuiles()) {
+                            if (t.getTresor() != null && t.getEtat() != Utils.EtatTuile.COULEE) {
+                                if (t != deckInondation.get(0).getTuile() && t.getTresor() == deckInondation.get(0).getTuile().getTresor()) {
+                                    carteExiste = true;
+                                    break;
+                                }
                             }
                         }
+                        if (!carteExiste) {
+                            notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
+                        }
                     }
-                    if (!carteExiste) {
-                        notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
                     }
-                }
+
             }
 
             defausseInondation.add(deckInondation.remove(0));
