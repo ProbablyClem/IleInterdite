@@ -287,7 +287,7 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case RECUPERER_TRESOR:
-                ihm.desactiverGrille();
+                //ihm.desactiverGrille();
                 if (aventurierActuel.getActions() < 1){
                     ihm.setMessage(aventurierActuel, "Vous n'avez pas assez d'actions");
                 }

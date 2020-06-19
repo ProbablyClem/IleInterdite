@@ -1,5 +1,7 @@
 package m2104.ile_interdite.vue;
 
+import m2104.ile_interdite.util.Utils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +18,8 @@ public class VueInformation extends TitleFrame {
         super("Information");
         this.message = message;
 
-        main.setLayout(new BorderLayout());
+        JPanel p = new JPanel();
+        p.setLayout(new BorderLayout());
         JPanel panelHaut = new JPanel();
 
         textLabel = new JLabel("<html><body><font color='blue'>"+ message +"</body></html>"); //penser a mettre un <br> dans le message pour un affichage propre
@@ -33,18 +36,18 @@ public class VueInformation extends TitleFrame {
         });
 
         panelHaut.add(textLabel);
-        main.add(panelHaut, BorderLayout.NORTH);
-        main.add(ok, BorderLayout.SOUTH);
-        this.setSize(400, 150);
+        p.add(panelHaut, BorderLayout.NORTH);
+        p.add(ok, BorderLayout.SOUTH);
+        this.add(p);
+        this.setSize(300, 150);
         this.setLocation(400, 0);
         this.setVisible(true);
         this.centrer();
         this.setMinimumSize(new Dimension(textLabel.getWidth(), 150));
         this.setPreferredSize(new Dimension(300, 150));
-        this.setAlwaysOnTop(true);
     }
 
     public static void main(String[] args) {
-        new VueInformation("Le tresor le calice de l'oublie a coul, vous avez perdu la partie");
+        Utils.afficherInformation("Vous avez recupere le tresor calice de l'oublie" );
     }
 }
