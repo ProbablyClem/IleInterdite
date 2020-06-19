@@ -1,6 +1,7 @@
 package m2104.ile_interdite.util;
 
 import m2104.ile_interdite.modele.Aventurier;
+import m2104.ile_interdite.vue.VueInformation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,8 @@ public class Utils {
         ASSECHER_CASE_CARTE,
         HELICOPTERE,
         AS_NAVIGATEUR,
-        DON_CARTE
+        DON_CARTE,
+        FIN_PARTIE
     }
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
@@ -225,6 +227,6 @@ public class Utils {
      * @param message Message à afficher
      */
     public static void afficherInformation(String message) {
-        JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.OK_OPTION);
+        new VueInformation(message);
     }
 }

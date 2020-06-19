@@ -210,7 +210,7 @@ public class Controleur implements Observateur<Message> {
                 ihm.setVueAventuriers(aventurierActuel);
                 ihm.getMainWindow().desactiverGrille();
 
-                if (aventurierActuel.getCartes().size() > 5){
+                if (aventurierActuel.getCartes().size() > 5 && etat != Utils.Etat.FIN_PARTIE){
 
                     vueChoixDefausse = new VueChoixDefausse(ihm, aventurierActuel);
                 }
@@ -304,6 +304,8 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case FIN_PARTIE:
+                etat = Utils.Etat.FIN_PARTIE;
+                ihm.getMainWindow().setEnabled(false);
                 new VueFinPartie(msg.getTexte(), ihm);
                 break;
             case RELANCER:
