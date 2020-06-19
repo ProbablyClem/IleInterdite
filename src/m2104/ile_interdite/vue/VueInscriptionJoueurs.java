@@ -154,20 +154,18 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        buttonSelection((Button) e.getSource());
+
         if (e.getSource() == novice){
-            buttonSelection(novice);
             ihm.notifierObservateurs(Message.niveau(1));
         }
         else if (e.getSource() == intermediaire){
-            buttonSelection(intermediaire);
             ihm.notifierObservateurs(Message.niveau(2));
         }
         else if (e.getSource() == elite){
-            buttonSelection(elite);
             ihm.notifierObservateurs(Message.niveau(3));
         }
         else if (e.getSource() == legendaire){
-            buttonSelection(legendaire);
             ihm.notifierObservateurs(Message.niveau(4));
         }
         else if (e.getSource() == inscrire){
