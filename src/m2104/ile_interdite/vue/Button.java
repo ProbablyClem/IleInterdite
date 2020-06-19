@@ -41,6 +41,11 @@ public class Button extends JButton   {
         this.color2 = Color.white;
     }
 
+    public void setColors(Color c1, Color c2) {
+        this.color1 = c1;
+        this.color2 = c2;
+    }
+
     public Color getColor1() {
         return color1;
     }

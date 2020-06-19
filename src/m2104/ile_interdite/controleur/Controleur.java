@@ -270,6 +270,7 @@ public class Controleur implements Observateur<Message> {
                     }
                     list1.addAll(list2);
                     list1.remove(aventurierStock.getEmplacement());
+                    list1.removeIf(T -> T.getEtat() == Utils.EtatTuile.COULEE);
                     list3 = new ArrayList<>(list1);
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(list3);
                     vueChoixPerso.dispose();
