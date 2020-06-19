@@ -99,7 +99,9 @@ public class VueGrille extends JPanel {
 
         }
         catch (Exception e){
-            components.get(0).add(new ImagePanel());
+            ImagePanel blankPanel = new ImagePanel();
+            blankPanel.setBackground(Color.WHITE);
+            components.get(35).add(blankPanel);
         }
 
         try{
@@ -108,7 +110,9 @@ public class VueGrille extends JPanel {
             components.get(5).add(ptresor);
         }
         catch (Exception e){
-            components.get(5).add(new ImagePanel());
+            ImagePanel blankPanel = new ImagePanel();
+            blankPanel.setBackground(Color.WHITE);
+            components.get(35).add(blankPanel);
         }
 
         try{
@@ -117,7 +121,9 @@ public class VueGrille extends JPanel {
             components.get(30).add(ptresor);
         }
         catch (Exception e){
-            components.get(30).add(new ImagePanel());
+            ImagePanel blankPanel = new ImagePanel();
+            blankPanel.setBackground(Color.WHITE);
+            components.get(35).add(blankPanel);
         }
 
         try{
@@ -126,7 +132,9 @@ public class VueGrille extends JPanel {
             components.get(35).add(ptresor);
         }
         catch (Exception e){
-            components.get(35).add(new ImagePanel());
+            ImagePanel blankPanel = new ImagePanel();
+            blankPanel.setBackground(Color.WHITE);
+            components.get(35).add(blankPanel);
         }
 
         etatGrille(false);

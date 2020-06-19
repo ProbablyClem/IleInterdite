@@ -16,7 +16,7 @@ public class Utils {
         ASSECHER_CASE_CARTE,
         HELICOPTERE,
         AS_NAVIGATEUR,
-        DONNER_CARTE;
+        DON_CARTE
     }
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
