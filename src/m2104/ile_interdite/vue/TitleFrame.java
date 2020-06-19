@@ -10,7 +10,8 @@ public class TitleFrame extends JFrame {
     JLabel title;
     JPanel content;
     JPanel main;
-
+    TitleFrame win = this;
+    Point pos = null;
     TitleFrame(String title) {
 
 
@@ -20,6 +21,44 @@ public class TitleFrame extends JFrame {
         this.title.setBackground(Color.BLACK);
         this.title.setForeground(Color.WHITE);
         this.title.setFont(new Font("Roboto",Font.BOLD,20));
+
+        this.title.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if (pos == null) {
+                    pos = new Point(e.getXOnScreen(), e.getYOnScreen());
+                }
+                win.setLocation((int) (win.getLocationOnScreen().getX() + (e.getXOnScreen() - pos.getX())), (int) (win.getLocationOnScreen().getY() + (e.getYOnScreen() - pos.getY())));
+                pos = new Point(e.getXOnScreen(), e.getYOnScreen());
+            }
+        });
+
+        this.title.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                pos = null;
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         this.main = new JPanel(new GridLayout(1, 1));
         this.main.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 10));
