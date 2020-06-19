@@ -59,6 +59,7 @@ public class VueFinPartie extends TitleFrame implements ActionListener {
         
         this.setVisible(true);
         this.centrer();
+        this.setAlwaysOnTop(true);
     }
 
     public void actionPerformed(ActionEvent e) {

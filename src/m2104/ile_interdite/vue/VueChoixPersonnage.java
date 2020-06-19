@@ -49,5 +49,6 @@ public class VueChoixPersonnage extends TitleFrame {
         }
         this.centrer();
         this.setVisible(true);
+        this.setAlwaysOnTop(true);
     }
 }

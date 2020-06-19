@@ -316,7 +316,8 @@ public class Controleur implements Observateur<Message> {
                 break;
             case CARTE_HELICOPTERE:
                 if(grille.nbTresors() < 1 && aventurierActuel.getEmplacement().getNom().equalsIgnoreCase("L'Héliport") && aventurierActuel.getEmplacement().getAventuriers().size() == aventuriers.size()){
-                    new VueFinPartie("Vous avez gagné !", ihm);
+                    Boolean checkCond = true;
+                    new VueFinPartie((Parameters.EKIP ? "L'EKIP a " : "Vous avez") + "gagné !", ihm);
                 }
                 else{
                     listTuiles = grille.getListTuiles();

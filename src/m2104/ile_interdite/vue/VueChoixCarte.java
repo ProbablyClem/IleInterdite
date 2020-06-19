@@ -50,5 +50,6 @@ public class VueChoixCarte extends TitleFrame {
         }
         this.centrer();
         this.setVisible(true);
+        this.setAlwaysOnTop(true);
     }
 }
