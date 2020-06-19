@@ -315,7 +315,7 @@ public class Controleur implements Observateur<Message> {
                 this.listTuiles = new ArrayList<>();
                 break;
             case CARTE_HELICOPTERE:
-                if(grille.getTresors().length < 1 && aventurierActuel.getEmplacement().getNom().equalsIgnoreCase("L'Héliport") && aventurierActuel.getEmplacement().getAventuriers().size() == aventuriers.size()){
+                if(grille.nbTresors() < 1 && aventurierActuel.getEmplacement().getNom().equalsIgnoreCase("L'Héliport") && aventurierActuel.getEmplacement().getAventuriers().size() == aventuriers.size()){
                     new VueFinPartie("Vous avez gagné !", ihm);
                 }
                 else{

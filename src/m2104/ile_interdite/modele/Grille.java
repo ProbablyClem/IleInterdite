@@ -120,6 +120,16 @@ public class Grille {
         }
         tresors[cpt] = null;
     }
+
+    public int nbTresors(){
+        int cpt = 0;
+        for (int i = 0; i < 4; i++) {
+            if(tresors[i] != null){
+                cpt ++;
+            }
+        }
+        return cpt;
+    }
 }
 
 class Index {
