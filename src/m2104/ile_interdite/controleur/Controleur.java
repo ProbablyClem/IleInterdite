@@ -328,7 +328,7 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case AS_NAVIGATEUR:
-                if (aventurierActuel.getActions() > 1) {
+                if (aventurierActuel.getActions() > 0) {
                     etat = Utils.Etat.AS_NAVIGATEUR;
                     ArrayList<Aventurier> list = new ArrayList<>(aventuriers);
                     list.remove(aventurierActuel);
