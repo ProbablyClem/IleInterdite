@@ -114,11 +114,12 @@ public class Grille {
     }
 
     public void PrendreTresor(Utils.Tresor t){
-        int cpt = 0;
-        while(tresors[cpt].getTresor() != t){
-            cpt++;
+        for (int i = 0; i < 4; i++) {
+            if(tresors[i] != null && tresors[i].getTresor() == t){
+                tresors[i] = null;
+                break;
+            }
         }
-        tresors[cpt] = null;
     }
 
     public int nbTresors(){
