@@ -72,17 +72,20 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
 
         niv.setFont(new Font("Roboto",Font.BOLD,15));
         
-        novice = new Button("Novice", 0, 35, new Color(0, 250, 0), new Color(175, 250, 175));
+        novice = new Button("Novice", 0, 35, Color.BLACK, Color.WHITE);
         panelLvl.add(novice);
         
-        intermediaire = new Button("Intermédiaire", 0, 35, new Color(250, 220, 0), new Color(250, 220, 175));
+        intermediaire = new Button("Intermédiaire", 0, 35, Color.BLACK, Color.WHITE);
         panelLvl.add(intermediaire);
         
-        elite = new Button("Élite", 0, 35, new Color(0, 220, 250), new Color(175, 220, 250));
+        elite = new Button("Élite", 0, 35, Color.BLACK, Color.WHITE);
         panelLvl.add(elite);
         
-        legendaire = new Button("Légendaire", 0, 35, new Color(220, 0, 250), new Color(220, 150, 250));
+        legendaire = new Button("Légendaire", 0, 35, Color.BLACK, Color.WHITE);
         panelLvl.add(legendaire);
+
+        resetColorButtons();
+        buttonSelection(intermediaire);
 
         retour = new Button("Quitter", 150, 35, Color.RED, new Color(255, 120, 120));
         panelBas.add(retour, BorderLayout.WEST);
@@ -135,20 +138,36 @@ public class VueInscriptionJoueurs extends TitleFrame implements ActionListener 
         return Arrays.copyOf(this.nomJoueurs, this.nomJoueurs.length);
     }
 
+    public void resetColorButtons() {
+        novice.setColors(new Color(0, 250, 0), new Color(175, 250, 175));
+        intermediaire.setColors(new Color(250, 220, 0), new Color(250, 220, 175));
+        elite.setColors(new Color(0, 220, 250), new Color(175, 220, 250));
+        legendaire.setColors(new Color(220, 0, 250), new Color(220, 150, 250));
+    }
+
+    public void buttonSelection(Button btn) {
+        resetColorButtons();
+        btn.setColors(Color.DARK_GRAY, Color.LIGHT_GRAY);
+        this.repaint();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == novice){
+            buttonSelection(novice);
             ihm.notifierObservateurs(Message.niveau(1));
         }
         else if (e.getSource() == intermediaire){
+            buttonSelection(intermediaire);
             ihm.notifierObservateurs(Message.niveau(2));
         }
         else if (e.getSource() == elite){
+            buttonSelection(elite);
             ihm.notifierObservateurs(Message.niveau(3));
         }
         else if (e.getSource() == legendaire){
+            buttonSelection(legendaire);
             ihm.notifierObservateurs(Message.niveau(4));
         }
         else if (e.getSource() == inscrire){
