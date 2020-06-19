@@ -105,7 +105,6 @@ public class Controleur implements Observateur<Message> {
                         aventurierActuel.setEmplacement(msg.getTuile());
                         aventurierActuel.setActions(aventurierActuel.getActions() - 1);
                         if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
-
                         ihm.updateGrille();
                         ihm.updateActions();
                         traiterMessage(Message.deplacer(aventurierActuel));
@@ -129,6 +128,7 @@ public class Controleur implements Observateur<Message> {
                         aventurierStock.getEmplacement().supprimerAventurier(aventurierStock);
                         aventurierStock.setEmplacement(msg.getTuile());
                         aventurierActuel.setActions(aventurierActuel.getActions() - 1);
+                        if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
                         ihm.updateGrille();
                         ihm.desactiverGrille();
                     } else {
@@ -273,15 +273,20 @@ public class Controleur implements Observateur<Message> {
                     list3 = new ArrayList<>(list1);
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(list3);
                     vueChoixPerso.dispose();
+                    if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
                 } else {
                     aventurierActuel.donnerCarte(msg.getAventurier(), carte);
                     aventurierActuel.setActions(aventurierActuel.getActions()-1);
-                    if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
+                    if (aventurierActuel.getActions() < 1) {
+                        ihm.getMainWindow().getAventurierPanel().DesactiverBoutons();
+                    }
                     vueChoixPerso.dispose();
+
                     ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
                 }
                 break;
             case RECUPERER_TRESOR:
+                ihm.desactiverGrille();
                 if (aventurierActuel.getActions() < 1){
                     ihm.setMessage(aventurierActuel, "Vous n'avez pas assez d'actions");
                 }
@@ -294,7 +299,7 @@ public class Controleur implements Observateur<Message> {
                     if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
                 }
                 else {
-                    ihm.setMessage(aventurierActuel, "Vous n'avez pas les tresors neccesaires pour prendre le tresor");
+                    ihm.setMessage(aventurierActuel, "Vous n'avez pas les cartes neccesaires pour prendre le tresor");
                 }
                 break;
             case FIN_PARTIE:
