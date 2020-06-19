@@ -164,7 +164,7 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case ASSECHER :
-                if (aventurierActuel.getActions() > 0){
+                if (aventurierActuel.getActions() > 0 || (aventurierActuel instanceof Ingenieur && !((Ingenieur) aventurierActuel).isEtatAS())) {
                     listTuiles = aventurierActuel.getAssechementPossible();
                     ihm.setMessage(aventurierActuel,"Choisir une case à assecher");
                     ihm.activerGrille();

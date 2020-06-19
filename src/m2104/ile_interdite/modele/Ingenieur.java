@@ -25,6 +25,10 @@ public class Ingenieur extends Aventurier {
         etatAS = !etatAS;
     }
 
+    public boolean isEtatAS() {
+        return etatAS;
+    }
+
     @Override
     public String actionSpeciale() {
         return "assecher";

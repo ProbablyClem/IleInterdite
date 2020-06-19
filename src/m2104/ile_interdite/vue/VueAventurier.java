@@ -170,7 +170,9 @@ public class VueAventurier extends JPanel implements ActionListener {
 
     public void DesactiverBoutons(){
         seDeplacer.setEnabled(false);
-        assecher.setEnabled(false);
+        if (!(aventurier instanceof Ingenieur && !((Ingenieur) aventurier).isEtatAS())) {
+            assecher.setEnabled(false);
+        }
         actionSpecial.setEnabled(false);
         donnerCarte.setEnabled(false);
         prendreTresor.setEnabled(false);
