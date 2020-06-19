@@ -126,8 +126,7 @@ public class Controleur implements Observateur<Message> {
                     if (list3.contains(msg.getTuile())) {
                         aventurierStock.getEmplacement().supprimerAventurier(aventurierStock);
                         aventurierStock.setEmplacement(msg.getTuile());
-                        // Le joueur ici est obligatoirement un navigateur
-                        ((Navigateur) aventurierActuel).utiliserAS();
+                        aventurierActuel.setActions(aventurierActuel.getActions() - 1);
                         ihm.updateGrille();
                     } else {
                         ihm.setMessage(aventurierActuel, "Déplacement impossible sur cette tuile");
@@ -225,6 +224,7 @@ public class Controleur implements Observateur<Message> {
                     ihm.setMessage(aventurierActuel, "Vous n'avez pas assez d'actions");
                 }
                 else{
+                    etat = Utils.Etat.DON_CARTE;
                     if (aventurierActuel.getRole().equals("Messager") || aventurierActuel.getEmplacement().getAventuriers().size() > 1) {
                         if (aventurierActuel.getCartesTresor().size() != 0) {
                             ihm.setMessage(aventurierActuel, "Veuillez choisir une carte");
@@ -322,13 +322,13 @@ public class Controleur implements Observateur<Message> {
                 }
                 break;
             case AS_NAVIGATEUR:
-                if (!((Navigateur) aventurierActuel).isASutilisee()) {
+                if (aventurierActuel.getActions() > 1) {
                     etat = Utils.Etat.AS_NAVIGATEUR;
                     ArrayList<Aventurier> list = new ArrayList<>(aventuriers);
                     list.remove(aventurierActuel);
                     vueChoixPerso = new VueChoixPersonnage(ihm, list);
                 } else {
-                    ihm.setMessage(aventurierActuel, "Vous avez déjà effectué cette action");
+                    ihm.setMessage(aventurierActuel, "Vous n'avez plus de points d'action");
                 }
 
                 break;
