@@ -90,7 +90,6 @@ public class Controleur implements Observateur<Message> {
                     ihm.setMessage(aventurierActuel, "Choisir une tuile ou aller");
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
 
-                    ihm.activerGrille();
                     etat = Utils.Etat.DEPLACER_JOUEUR;
                 }
                 else {
@@ -106,8 +105,10 @@ public class Controleur implements Observateur<Message> {
                         aventurierActuel.setEmplacement(msg.getTuile());
                         aventurierActuel.setActions(aventurierActuel.getActions() - 1);
                         if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
+
                         ihm.updateGrille();
                         ihm.updateActions();
+                        traiterMessage(Message.deplacer(aventurierActuel));
                     } else {
                         ihm.setMessage(aventurierActuel, "Déplacement impossible");
                     }
@@ -117,6 +118,7 @@ public class Controleur implements Observateur<Message> {
                         if (aventurierActuel.getActions() < 1) { ihm.getMainWindow().getAventurierPanel().DesactiverBoutons(); }
                         ihm.updateGrille();
                         ihm.updateActions();
+                        traiterMessage(Message.assecher(aventurierActuel));
                     }
                     else {
                         ihm.setMessage(aventurierActuel, "Assechement impossible");
@@ -129,6 +131,7 @@ public class Controleur implements Observateur<Message> {
                         // Le joueur ici est obligatoirement un navigateur
                         ((Navigateur) aventurierActuel).utiliserAS();
                         ihm.updateGrille();
+                        ihm.desactiverGrille();
                     } else {
                         ihm.setMessage(aventurierActuel, "Déplacement impossible sur cette tuile");
                     }
@@ -140,7 +143,6 @@ public class Controleur implements Observateur<Message> {
                         ihm.desactiverGrille();
                         aventurierActuel.getCartes().remove(msg.getCarte());
                         ihm.getMainWindow().getAventurierPanel().update(aventurierActuel);
-
                     }
                     else {
                         ihm.setMessage(aventurierActuel, "Assechement impossible");
@@ -162,16 +164,15 @@ public class Controleur implements Observateur<Message> {
                     else {
                         ihm.setMessage(aventurierActuel, "Assechement impossible");
                     }
+                    ihm.desactiverGrille();
                 }
                 break;
             case ASSECHER :
                 if (aventurierActuel.getActions() > 0){
                     listTuiles = aventurierActuel.getAssechementPossible();
                     ihm.setMessage(aventurierActuel,"Choisir une case à assecher");
-                    ihm.activerGrille();
                     etat = Utils.Etat.ASSECHER_CASE_JOUEUR;
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
-                    ihm.activerGrille();
                 }
                 else {
                     ihm.getMainWindow().getAventurierPanel().DesactiverBoutons();
@@ -188,12 +189,10 @@ public class Controleur implements Observateur<Message> {
                     }
                 }
                 ihm.setMessage(aventurierActuel,"Choisir une case à assecher");
-                ihm.activerGrille();
 
                 etat = Utils.Etat.ASSECHER_CASE_CARTE;
 
                 ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
-                ihm.activerGrille();
 
                 break;
 
@@ -228,6 +227,9 @@ public class Controleur implements Observateur<Message> {
                     if (aventurierActuel.getRole().equals("Messager") || aventurierActuel.getEmplacement().getAventuriers().size() > 1) {
                         if (aventurierActuel.getCartesTresor().size() != 0) {
                             ihm.setMessage(aventurierActuel, "Veuillez choisir une carte");
+                            etat = Utils.Etat.DONNER_CARTE;
+                            ihm.desactiverGrille();
+                            ihm.updateGrille();
                             vueChoixCarte = new VueChoixCarte(ihm, aventurierActuel);
                         } else {
                             ihm.setMessage(aventurierActuel, "Vous n'avez pas de carte à donner");
@@ -271,7 +273,6 @@ public class Controleur implements Observateur<Message> {
                     list1.remove(aventurierStock.getEmplacement());
                     list3 = new ArrayList<>(list1);
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(list3);
-                    ihm.activerGrille();
                     vueChoixPerso.dispose();
                 } else {
                     aventurierActuel.donnerCarte(msg.getAventurier(), carte);
@@ -315,10 +316,8 @@ public class Controleur implements Observateur<Message> {
                     listTuiles.remove(aventurierActuel.getEmplacement());
                     listTuiles.removeIf(T -> T.getEtat() == Utils.EtatTuile.COULEE);
                     ihm.setMessage(aventurierActuel,"Choisir ou aller");
-                    ihm.activerGrille();
                     etat = Utils.Etat.HELICOPTERE;
                     ihm.getMainWindow().getGrillePanel().highlightTuiles(listTuiles);
-                    ihm.activerGrille();
                 }
                 break;
             case AS_NAVIGATEUR:

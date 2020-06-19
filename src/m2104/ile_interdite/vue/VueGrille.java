@@ -30,7 +30,11 @@ public class VueGrille extends JPanel {
     public void etatGrille(boolean etat) {
         for (JPanel P: components) {
             P.setEnabled(etat);
+            if (P.isEnabled()){
+                P.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+            }
         }
+
     }
 
     public void drawGrille() {
@@ -125,7 +129,7 @@ public class VueGrille extends JPanel {
             components.get(35).add(new ImagePanel());
         }
 
-        etatGrille(true);
+        etatGrille(false);
     }
 
     public void highlightTuiles(ArrayList<Tuile> tuiles) {
@@ -133,9 +137,11 @@ public class VueGrille extends JPanel {
             for (int j = 0; j < 6; j++) {
                 if (tuiles.contains(grille.getTuiles()[i][j])) {
                     components.get(i*6 + j).setBorder(new SelectBorder(this.ihm.getMainWindow().getAventurierPanel().getAventurier().getPion().getCouleur()));
+                    components.get(i*6 + j).setEnabled(true);
                 }
                 else {
                     components.get(i*6 + j).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+                    components.get(i*6 + j).setEnabled(false);
                 }
             }
         }
