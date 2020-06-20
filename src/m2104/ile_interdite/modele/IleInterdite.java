@@ -113,7 +113,7 @@ public class IleInterdite extends Observable<Message> {
                 Collections.shuffle(defausseInondation);
                 for(CarteInondation c : defausseInondation){
                     deckInondation.add(0, c);
-                }
+            }
                 defausseInondation.clear();
                 notifierObservateurs(Message.niveau(niveau));
                 defausseTresor.add(deckTresor.get(i));
@@ -166,27 +166,31 @@ public class IleInterdite extends Observable<Message> {
                 } catch (Exception e) {
                     System.out.println(e.toString());
                 }
-
-                if (deckInondation.get(0).getTuile().getTresor() != null) {
-                    if (!(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.CRISTAL && grille.getTresors()[0] == null) &&
-                            !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.CALICE && grille.getTresors()[1] == null) &&
-                            !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.PIERRE && grille.getTresors()[2] == null) &&
-                            !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.ZEPHYR && grille.getTresors()[3] == null)
-                    ){
-                        boolean carteExiste = false;
-                        for (Tuile t : grille.getListTuiles()) {
-                            if (t.getTresor() != null && t.getEtat() != Utils.EtatTuile.COULEE) {
-                                if (t != deckInondation.get(0).getTuile() && t.getTresor() == deckInondation.get(0).getTuile().getTresor()) {
-                                    carteExiste = true;
-                                    break;
+                try{
+                    if (deckInondation.get(0).getTuile().getTresor() != null) {
+                        if (!(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.CRISTAL && grille.getTresors()[0] == null) &&
+                                !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.CALICE && grille.getTresors()[1] == null) &&
+                                !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.PIERRE && grille.getTresors()[2] == null) &&
+                                !(deckInondation.get(0).getTuile().getTresor() == Utils.Tresor.ZEPHYR && grille.getTresors()[3] == null)
+                        ){
+                            boolean carteExiste = false;
+                            for (Tuile t : grille.getListTuiles()) {
+                                if (t.getTresor() != null && t.getEtat() != Utils.EtatTuile.COULEE) {
+                                    if (t != deckInondation.get(0).getTuile() && t.getTresor() == deckInondation.get(0).getTuile().getTresor()) {
+                                        carteExiste = true;
+                                        break;
+                                    }
                                 }
                             }
-                        }
-                        if (!carteExiste) {
-                            notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
+                            if (!carteExiste) {
+                                notifierObservateurs(Message.finPartie("Le tresor " + deckInondation.get(0).getTuile().getTresor() + " a coulé !"));
+                            }
                         }
                     }
-                    }
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
 
             }
 
