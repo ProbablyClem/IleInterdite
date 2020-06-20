@@ -38,7 +38,7 @@ public class VueInformation extends TitleFrame {
         panelHaut.add(textLabel);
         p.add(panelHaut, BorderLayout.NORTH);
         p.add(ok, BorderLayout.SOUTH);
-        main.add(p);
+        this.add(p);
         this.setSize(300, 150);
         this.setLocation(400, 0);
         this.setVisible(true);
