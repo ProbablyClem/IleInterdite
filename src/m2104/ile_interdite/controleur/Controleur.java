@@ -16,7 +16,7 @@ public class Controleur implements Observateur<Message> {
     private IHM ihm;
     private ArrayList<Aventurier> aventuriers;
     private Aventurier aventurierActuel;
-    private Utils.Etat etat;
+    private Utils.Etat etat = Utils.Etat.NONE;
     private Grille grille;
     private int niveau = 2;
     private int idJoueur = 0;
@@ -197,16 +197,16 @@ public class Controleur implements Observateur<Message> {
 
 
             case TERMINER :
-                aventurierActuel.setActions(3);
-                ihm.getMainWindow().getAventurierPanel().ActiverBoutons();
-                ileInterdite.PiocherCartesTresor(aventurierActuel);
-                ileInterdite.PiocherCartesInondation(ileInterdite.getNiveau());
-                ihm.updateGrille();
                 idJoueur ++;
                 if (idJoueur == aventuriers.size()) {
                     idJoueur = 0;
                 }
                 aventurierActuel = aventuriers.get(idJoueur);
+                aventurierActuel.setActions(3);
+                ihm.getMainWindow().getAventurierPanel().ActiverBoutons();
+                ileInterdite.PiocherCartesTresor(aventurierActuel);
+                ileInterdite.PiocherCartesInondation(ileInterdite.getNiveau());
+                ihm.updateGrille();
                 ihm.setVueAventuriers(aventurierActuel);
                 ihm.getMainWindow().desactiverGrille();
 
@@ -313,6 +313,7 @@ public class Controleur implements Observateur<Message> {
                 this.grille = new Grille();
                 this.ihm = new IHM(this, grille);
                 this.listTuiles = new ArrayList<>();
+                this.etat = Utils.Etat.NONE;
                 break;
             case CARTE_HELICOPTERE:
                 if(grille.nbTresors() < 1 && aventurierActuel.getEmplacement().getNom().equalsIgnoreCase("L'Héliport") && aventurierActuel.getEmplacement().getAventuriers().size() == aventuriers.size()){

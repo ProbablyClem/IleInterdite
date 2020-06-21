@@ -12,6 +12,7 @@ import java.util.Collections;
 public class Utils {
 
     public static enum Etat{
+        NONE,
         DEPLACER_JOUEUR,
         ASSECHER_CASE_JOUEUR,
         ASSECHER_CASE_CARTE,
