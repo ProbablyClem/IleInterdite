@@ -101,8 +101,9 @@ public class IleInterdite extends Observable<Message> {
 
         for (int i = 0; i < 2; i++) {
             if (deckTresor.size() < 1) {
-                Collections.shuffle(defausseTresor);
-                deckTresor = defausseTresor;
+                deckTresor.addAll(defausseTresor);
+                Collections.shuffle(deckTresor);
+                defausseTresor.clear();
             }
             if(deckTresor.get(i) instanceof CarteMonteeDesEaux ){
                 Utils.afficherInformation("L'eau monte !");
