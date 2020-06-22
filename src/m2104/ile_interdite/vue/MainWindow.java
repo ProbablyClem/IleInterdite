@@ -16,7 +16,7 @@ public class MainWindow extends TitleFrame {
     private Grille grille;
 
     public MainWindow(IHM ihm, Grille grille, VueAventurier v, int niveau){
-        super("L'île Interdite", "src/images/bgile.jpg");
+        super("L'île Interdite", "src/images/bgile.png");
 
         this.grille = grille;
         this.ihm = ihm;
