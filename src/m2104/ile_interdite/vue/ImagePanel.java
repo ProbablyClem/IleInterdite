@@ -73,13 +73,13 @@ public class ImagePanel extends JPanel {
             h = h - margin * h/this.getHeight() * 2;
             w = w - margin * w/this.getWidth() * 2;
 
-            if (scaledImage == null) {
+            if (scaledImage == null || scaledImage.getWidth(null) != w || scaledImage.getHeight(null) != h) {
                 scaledImage = this.image.getScaledInstance(w, h, Image.SCALE_AREA_AVERAGING);
             }
 
             g.drawImage(scaledImage, (this.getWidth() - w) / 2, (this.getHeight() - h) / 2, w, h, null);
         } else {
-            if (scaledImage == null) {
+            if (scaledImage == null || scaledImage.getWidth(null) != this.getWidth() || scaledImage.getHeight(null) != this.getHeight()) {
                 scaledImage = this.image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_AREA_AVERAGING);
             }
             g.drawImage(scaledImage, 0, 0, this.getWidth(), this.getHeight(), null);
