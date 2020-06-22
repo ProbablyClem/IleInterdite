@@ -1,5 +1,6 @@
 package m2104.ile_interdite.modele;
 
+import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class CarteSacDeSable extends CarteSpeciale {
     public static ArrayList<CarteSacDeSable> getAllCartes() {
         ArrayList<CarteSacDeSable> cartes = new ArrayList<>();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < Parameters.NB_SACS_DE_SABLE; i++) {
             cartes.add(new CarteSacDeSable());
         }
 

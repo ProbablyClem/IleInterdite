@@ -1,6 +1,7 @@
 package m2104.ile_interdite.modele;
 
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
@@ -60,7 +61,7 @@ public class IleInterdite extends Observable<Message> {
 
         Collections.shuffle(deckInondation);
 
-        PiocherCartesInondation(6);
+        PiocherCartesInondation(Parameters.NB_INONDATIONS_INITIALES);
 
     }
 
