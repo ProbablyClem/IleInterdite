@@ -12,6 +12,7 @@ import java.io.IOException;
 public class ImagePanel extends JPanel {
 
     private BufferedImage image;
+    private Image scaledImage;
     private Integer margin = 0;
     private Carte carte;
     private boolean stretch = false;
@@ -23,7 +24,6 @@ public class ImagePanel extends JPanel {
             System.out.println(path);
             e.printStackTrace();
         }
-
     }
 
     public ImagePanel(String path, Carte carte){
@@ -73,12 +73,16 @@ public class ImagePanel extends JPanel {
             h = h - margin * h/this.getHeight() * 2;
             w = w - margin * w/this.getWidth() * 2;
 
-            Image newImage = this.image.getScaledInstance(w, h, Image.SCALE_AREA_AVERAGING);
+            if (scaledImage == null) {
+                scaledImage = this.image.getScaledInstance(w, h, Image.SCALE_AREA_AVERAGING);
+            }
 
-            g.drawImage(newImage, (this.getWidth() - w) / 2, (this.getHeight() - h) / 2, w, h, null);
+            g.drawImage(scaledImage, (this.getWidth() - w) / 2, (this.getHeight() - h) / 2, w, h, null);
         } else {
-            Image newImage = this.image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_AREA_AVERAGING);
-            g.drawImage(newImage, 0, 0, this.getWidth(), this.getHeight(), null);
+            if (scaledImage == null) {
+                scaledImage = this.image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_AREA_AVERAGING);
+            }
+            g.drawImage(scaledImage, 0, 0, this.getWidth(), this.getHeight(), null);
         }
     }
 
