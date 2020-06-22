@@ -27,7 +27,7 @@ public class VueNiveau extends JPanel {
         this.mainPanel.setLayout(new BorderLayout());
         this.mainPanel.setBackground(Color.WHITE);
         this.mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
-        this.setBackground(Color.white);
+        this.setOpaque(false);
 
         JLabel labelTitre = new JLabel("Niveau", JLabel.CENTER);
         this.mainPanel.add(labelTitre, BorderLayout.NORTH);

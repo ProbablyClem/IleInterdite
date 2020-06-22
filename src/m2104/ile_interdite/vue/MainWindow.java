@@ -16,7 +16,7 @@ public class MainWindow extends TitleFrame {
     private Grille grille;
 
     public MainWindow(IHM ihm, Grille grille, VueAventurier v, int niveau){
-        super("L'île Interdite");
+        super("L'île Interdite", "src/images/bgile.jpg");
 
         this.grille = grille;
         this.ihm = ihm;
@@ -29,7 +29,7 @@ public class MainWindow extends TitleFrame {
         JButton exit = new Button("Quitter", 0, 35, Color.RED, new Color(255, 120, 120));
         exit.setForeground(Color.white);
         exit.setFont(new Font("Roboto",Font.BOLD,17));
-        exit.setBackground(Color.white);
+        exit.setOpaque(false);
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,7 +37,7 @@ public class MainWindow extends TitleFrame {
             }
         });
         this.niveauPanel.add(exit, BorderLayout.NORTH);
-        niveauPanel.setBackground(Color.white);
+        niveauPanel.setOpaque(false);
 
         this.grillePanel = new VueGrille(grille, ihm);
         this.aventurierPanel = v;

@@ -9,12 +9,11 @@ public class TitleFrame extends JFrame {
 
     JLabel title;
     JPanel content;
-    JPanel main;
+    ImagePanel main;
     TitleFrame win = this;
     Point pos = null;
+
     TitleFrame(String title) {
-
-
         this.title = new JLabel(title, SwingConstants.CENTER);
         this.title.setBorder(new EmptyBorder(10, 10, 6, 10));
         this.title.setOpaque(true);
@@ -60,9 +59,11 @@ public class TitleFrame extends JFrame {
             }
         });
 
-        this.main = new JPanel(new GridLayout(1, 1));
+        this.main = new ImagePanel();
+        this.main.setLayout(new GridLayout(1, 1));
         this.main.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 10));
-        main.setBackground(Color.white);
+        this.main.setBackground(Color.white);
+
         this.content = new JPanel(new GridLayout(1, 1));
         this.content.add(this.main);
         this.content.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
@@ -71,6 +72,13 @@ public class TitleFrame extends JFrame {
         this.add(this.title, BorderLayout.NORTH);
         this.add(this.content, BorderLayout.CENTER);
         this.setUndecorated(true);
+    }
+
+    TitleFrame(String title, String bgPath){
+        this(title);
+        this.main.setImage(bgPath);
+        this.main.stretch();
+        this.repaint();
     }
 
     public void centrer() {

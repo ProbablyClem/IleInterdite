@@ -14,6 +14,7 @@ public class ImagePanel extends JPanel {
     private BufferedImage image;
     private Integer margin = 0;
     private Carte carte;
+    private boolean stretch = false;
 
     public ImagePanel(String path) {
         try {
@@ -22,16 +23,11 @@ public class ImagePanel extends JPanel {
             System.out.println(path);
             e.printStackTrace();
         }
+
     }
 
     public ImagePanel(String path, Carte carte){
-        try {
-            this.image = ImageIO.read(new File(path));
-        } catch (IOException e) {
-            System.out.println(path);
-            e.printStackTrace();
-        }
-
+        this(path);
         this.carte = carte;
     }
 
@@ -44,29 +40,46 @@ public class ImagePanel extends JPanel {
         this.margin = margin;
     }
 
+    public void setImage(String path) {
+        try {
+            this.image = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            System.out.println(path);
+            e.printStackTrace();
+        }
+    }
+
+    public void stretch() {
+        this.stretch = true;
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int h = image.getHeight();
-        int w = image.getWidth();
+        if (!stretch) {
+            int h = image.getHeight();
+            int w = image.getWidth();
 
-        if (h > this.getHeight()) {
-            w = w * this.getHeight() / h;
-            h = this.getHeight();
+            if (h > this.getHeight()) {
+                w = w * this.getHeight() / h;
+                h = this.getHeight();
+            }
+
+            if (w > this.getWidth()) {
+                h = h * this.getWidth() / w;
+                w = this.getWidth();
+            }
+
+            h = h - margin * h/this.getHeight() * 2;
+            w = w - margin * w/this.getWidth() * 2;
+
+            Image newImage = this.image.getScaledInstance(w, h, Image.SCALE_AREA_AVERAGING);
+
+            g.drawImage(newImage, (this.getWidth() - w) / 2, (this.getHeight() - h) / 2, w, h, null);
+        } else {
+            Image newImage = this.image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_AREA_AVERAGING);
+            g.drawImage(newImage, 0, 0, this.getWidth(), this.getHeight(), null);
         }
-
-        if (w > this.getWidth()) {
-            h = h * this.getWidth() / w;
-            w = this.getWidth();
-        }
-
-        h = h - margin * h/this.getHeight() * 2;
-        w = w - margin * w/this.getWidth() * 2;
-
-        Image newImage = this.image.getScaledInstance(w, h, Image.SCALE_AREA_AVERAGING);
-
-        g.drawImage(newImage, (this.getWidth() - w) / 2, (this.getHeight() - h) / 2, w, h, null);
-
     }
 
     public Carte getCarte() {

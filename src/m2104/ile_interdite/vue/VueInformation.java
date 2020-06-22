@@ -48,7 +48,4 @@ public class VueInformation extends TitleFrame {
         this.setAlwaysOnTop(true);
     }
 
-    public static void main(String[] args) {
-        Utils.afficherInformation("Vous avez recupere le tresor calice de l'oublie" );
-    }
 }

@@ -30,13 +30,14 @@ public class VueMain extends JPanel implements MouseListener {
 
     private void draw() {
         this.setLayout(new BorderLayout());
+        this.setOpaque(false);
         titre = new JLabel("Cartes Joueur");
         pheader = new JPanel();
         titre.setFont(new Font("Roboto", Font.BOLD, 20));
         titre.setHorizontalAlignment(JLabel.CENTER);
 
         titre.setVerticalAlignment(JLabel.CENTER);
-        pheader.setBackground(Color.white);
+        pheader.setOpaque(false);
 
         pheader.add(titre, BorderLayout.NORTH);
         this.add(pheader, BorderLayout.NORTH);
@@ -54,8 +55,8 @@ public class VueMain extends JPanel implements MouseListener {
 
 
         jtapis.setLayout(new BorderLayout());
-        jcartesup.setBackground(Color.white);
-        jcartesdown.setBackground(Color.white);
+        jcartesup.setOpaque(false);
+        jcartesdown.setOpaque(false);
 
         if (cartes.size() <= 5) {
 
@@ -72,7 +73,7 @@ public class VueMain extends JPanel implements MouseListener {
 //                else {
 //                    panel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5, true));
 //                }
-                panel.setBackground(Color.white);
+                panel.setOpaque(false);
                 jcartesup.add(panel);
                 this.add(jcartesup, BorderLayout.CENTER);
             }

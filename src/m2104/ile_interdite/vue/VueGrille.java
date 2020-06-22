@@ -40,7 +40,7 @@ public class VueGrille extends JPanel {
     public void drawGrille() {
 
         components = new ArrayList<>();
-        this.setBackground(Color.white);
+        this.setOpaque(false);
         for (Component C : this.getComponents()) {
             this.remove(C);
         }
@@ -51,7 +51,7 @@ public class VueGrille extends JPanel {
             for (Tuile t : T) {
                 try {
                     JPanel panel = t.getImage();
-                    panel.setBackground(Color.white);
+                    panel.setOpaque(false);
                     this.add(panel);
                     components.add(panel);
                     panel.addMouseListener(new MouseListener() {
@@ -85,7 +85,7 @@ public class VueGrille extends JPanel {
                     });
                 } catch (NullPointerException e) {
                     JPanel panel = new JPanel(new BorderLayout());
-                    panel.setBackground(Color.white);
+                    panel.setOpaque(false);
                     this.add(panel);
                     components.add(panel);
                 }
@@ -94,46 +94,46 @@ public class VueGrille extends JPanel {
 
         try{
             JPanel ptresor =grille.getTresors()[0].getImage();
-            ptresor.setBackground(Color.white);
+            ptresor.setOpaque(false);
             components.get(0).add(ptresor);
 
         }
         catch (Exception e){
             ImagePanel blankPanel = new ImagePanel();
-            blankPanel.setBackground(Color.WHITE);
+            blankPanel.setOpaque(false);
             components.get(35).add(blankPanel);
         }
 
         try{
             JPanel ptresor =grille.getTresors()[1].getImage();
-            ptresor.setBackground(Color.white);
+            ptresor.setOpaque(false);
             components.get(5).add(ptresor);
         }
         catch (Exception e){
             ImagePanel blankPanel = new ImagePanel();
-            blankPanel.setBackground(Color.WHITE);
+            blankPanel.setOpaque(false);
             components.get(35).add(blankPanel);
         }
 
         try{
             JPanel ptresor =grille.getTresors()[2].getImage();
-            ptresor.setBackground(Color.white);
+            ptresor.setOpaque(false);
             components.get(30).add(ptresor);
         }
         catch (Exception e){
             ImagePanel blankPanel = new ImagePanel();
-            blankPanel.setBackground(Color.WHITE);
+            blankPanel.setOpaque(false);
             components.get(35).add(blankPanel);
         }
 
         try{
             JPanel ptresor =grille.getTresors()[3].getImage();
-            ptresor.setBackground(Color.white);
+            ptresor.setOpaque(false);
             components.get(35).add(ptresor);
         }
         catch (Exception e){
             ImagePanel blankPanel = new ImagePanel();
-            blankPanel.setBackground(Color.WHITE);
+            blankPanel.setOpaque(false);
             components.get(35).add(blankPanel);
         }
 

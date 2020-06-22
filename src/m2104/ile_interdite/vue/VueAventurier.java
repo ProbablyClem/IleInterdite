@@ -53,6 +53,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
     private void draw(){
         this.removeAll();
+        this.setOpaque(false);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -68,8 +69,9 @@ public class VueAventurier extends JPanel implements ActionListener {
         nbActionsLabel = new RichJLabel("Actions restantes : " + aventurier.getActions() + "/3 ",0);
         nbActionsLabel.setFont(new Font("Roboto",Font.BOLD,20));
         nbActionsLabel.setForeground(aventurier.getPion().getCouleur());
+
         header.add(nbActionsLabel, BorderLayout.EAST);
-        header.setBackground(Color.white);
+        header.setOpaque(false);
 
 
 
@@ -82,7 +84,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
 
         JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 10, 10));
-        actionsPanel.setBackground(Color.WHITE);
+        actionsPanel.setOpaque(false);
         seDeplacer = new Button("Se Deplacer",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
         seDeplacer.setForeground(Color.WHITE);
         seDeplacer.setFont(new Font("Roboto", Font.BOLD, 19));
@@ -109,7 +111,7 @@ public class VueAventurier extends JPanel implements ActionListener {
 
         actionSpecial.addActionListener(this);
         JPanel emptyPanel = new JPanel();
-        emptyPanel.setBackground(Color.WHITE);
+        emptyPanel.setOpaque(false);
         actionsPanel.add(aventurier instanceof Navigateur ? actionSpecial : emptyPanel);
 
         donnerCarte = new Button("Donner Carte",80,80,Color.decode("#1d87ad"),Color.decode("#32afdb"));
@@ -129,6 +131,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         this.add(actionsPanel);
 
         vueMain = new VueMain(aventurier.getCartes(),this);
+        vueMain.setOpaque(false);
         this.add(vueMain);
 
         JPanel decks = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
@@ -138,7 +141,7 @@ public class VueAventurier extends JPanel implements ActionListener {
         defausseTresor.setForeground(Color.WHITE);
         defausseTresor.setFont(new Font("Roboto", Font.BOLD, 15));
         defausseTresor.addActionListener(this);
-        decks.setBackground(Color.white);
+        decks.setOpaque(false);
         decks.add(defausseTresor);
 
 
