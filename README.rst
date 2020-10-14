@@ -1,3 +1,5 @@
+*Extrait de la description du projet*
+
 ====================
 Projet Île Interdite
 ====================
